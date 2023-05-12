@@ -19,11 +19,18 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "eslint-config-shortly": "*",
     "eslint": "^7.32.0",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",
     "turbo": "^1.9.3"
+  },
+  "lint-staged": {
+    "extends": "./lint-staged.config.js"
   },
   "packageManager": "^yarn@1.22.19"
 }

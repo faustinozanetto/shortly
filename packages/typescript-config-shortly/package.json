@@ -1,16 +1,13 @@
 {
-    "name": "@shortly/tailwind-config",
+    "name": "@shortly/typescript-config",
     "version": "0.0.1",
     "description": "Shortly is a free and easy to use url shortner.",
     "author": {
         "name": "Faustino Zanetto",
         "email": "zanettofaustino@gmail.com"
     },
-    "main": "index.js",
-    "devDependencies": {
-        "tailwindcss": "^3.2.4"
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+    "files": [
+        "base.json",
+        "nextjs.json"
+    ]
 }

@@ -1,5 +1,16 @@
 {
+  "name": "shortly",
+  "version": "0.0.1",
+  "description": "Shortly is a free and easy to use url shortner.",
+  "author": {
+    "name": "Faustino Zanetto",
+    "email": "zanettofaustino@gmail.com"
+  },
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -9,9 +20,7 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.11",
     "turbo": "^1.9.3"
   },
   "packageManager": "^yarn@1.22.19"

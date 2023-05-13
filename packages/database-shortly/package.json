@@ -32,6 +32,6 @@
     "@shortly/typescript-config": "*",
     "tsup": "^6.0.0",
     "tsx": "^3.7.1",
-    "typescript": "^4.5.5"
+    "typescript": "^5.0.0"
   }
 }

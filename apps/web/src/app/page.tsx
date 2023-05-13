@@ -1,15 +1,17 @@
+import HomeHero from '@modules/home/components/hero/home-hero';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Web - Turborepo Example',
+  title: 'Home Page | Shortly',
+  description: 'Shortly is a free and easy to use url shortner.',
 };
 
-export default function Home() {
+const HomePage: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <h1 className="mx-auto text-center text-6xl font-extrabold tracking-tight text-black sm:text-7xl lg:text-8xl xl:text-8xl">
-        Shortly - Url Shortner
-      </h1>
+    <div className="flex flex-col items-center justify-center">
+      <HomeHero />
     </div>
   );
-}
+};
+
+export default HomePage;

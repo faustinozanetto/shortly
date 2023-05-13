@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={clsx('bg-neutral-50 dark:bg-neutral-900', sourceSansPro.variable)}>
       <body className="antialiased">
         <Navbar />
-        <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:mt-0 md:px-0">{children}</main>
+        <main className="mx-4 flex flex-col pt-4 md:mx-0 md:pt-6" style={{ minHeight: 'calc(100vh - 80px)' }}>
+          {children}
+        </main>
       </body>
     </html>
   );

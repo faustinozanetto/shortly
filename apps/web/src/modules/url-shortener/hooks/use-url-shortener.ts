@@ -1,14 +1,22 @@
-import { generateURLShortenHash, urlValidationSchema } from '../lib/url-shortener.lib';
-import { storeShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
+import { urlValidationSchema } from '../lib/url-shortener.lib';
 
 const useURLShortener = () => {
   const generate = async (url: string) => {
     const validation = urlValidationSchema.safeParse({ url });
     if (!validation) throw new Error('The URL is invalid!');
 
-    const hash = generateURLShortenHash(url);
-    const storedURL = await storeShortenedURL({ hash, originalURL: url });
-    return storedURL;
+    const response = await fetch('/api/short-link', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ link: url }),
+    });
+
+    const data = await response.json();
+
+    return data;
   };
 
   return { generate };

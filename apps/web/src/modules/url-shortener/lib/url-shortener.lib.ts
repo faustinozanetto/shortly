@@ -11,3 +11,8 @@ export const generateURLShortenHash = (url: string): string => {
   const hash = nanoid(HASH_LENGTH);
   return hash;
 };
+
+export const getCompleteShortenedURl = (hash: string): string => {
+  const BASE_PATH = process.env.NEXT_PUBLIC_URL;
+  return `${BASE_PATH}/to/${hash}`;
+};

@@ -1,7 +1,6 @@
-
-import { retrieveShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { retrieveShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
 
 export const metadata: Metadata = {
   title: 'Home Page | Shortly',
@@ -17,10 +16,8 @@ type UrlHashPageProps = {
 export default async function UrlHashPage(props: UrlHashPageProps) {
   const { params } = props;
 
-  try {
-    // const storedUrl = await retrieveShortenedURL({ hash: params.hash });
-    // return redirect(storedUrl.url);
-  } catch (err) {
-    return redirect('/');
-  }
+  const storedUrl = await retrieveShortenedURL({ hash: params.hash });
+  if (!storedUrl) return redirect('/');
+
+  return redirect(storedUrl.url);
 }

@@ -1,3 +1,4 @@
+'use client';
 import { LazyMotion, domAnimation, AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { useToastContext } from '@modules/toasts/hooks/use-toast-context';

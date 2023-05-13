@@ -21,7 +21,7 @@ export const InputWrapperContent: React.FC<InputWrapperToggleProps> = (props) =>
       {children}
       {help ? <p className="mt-0.5 text-sm text-neutral-800 dark:text-neutral-300">{helpMessage}</p> : null}
       {error ? (
-        <p className="text-sm font-medium !text-red-600 dark:!text-red-400" role="alert">
+        <p className="text-sm font-semibold text-red-600 dark:text-red-400" role="alert">
           {errorMessage}
         </p>
       ) : null}

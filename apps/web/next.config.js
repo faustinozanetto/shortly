@@ -6,6 +6,7 @@ module.exports = {
   swcMinify: true,
   experimental: {
     appDir: true,
+    serverActions: true,
   },
   webpack: (config, { isServer }) => {
     if (isServer) {

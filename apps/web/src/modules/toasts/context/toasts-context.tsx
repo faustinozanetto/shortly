@@ -1,6 +1,8 @@
+'use client';
 import React, { createContext, useReducer } from 'react';
-import { reducer } from './reducer';
+
 import { ToastContextState } from '@modules/toasts/types/toasts.types';
+import { reducer } from '@modules/toasts/context/reducer';
 
 const initialState: ToastContextState = {
   state: { toasts: [] },

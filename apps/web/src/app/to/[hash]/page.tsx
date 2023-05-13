@@ -17,6 +17,7 @@ export default async function UrlHashPage(props: UrlHashPageProps) {
   const { params } = props;
 
   const storedUrl = await retrieveShortenedURL({ hash: params.hash });
+  // Redirect back to home if not found
   if (!storedUrl) return redirect('/');
 
   return redirect(storedUrl.url);

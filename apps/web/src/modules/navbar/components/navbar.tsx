@@ -11,12 +11,11 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <NavbarLogo />
         {/* Links */}
-        <nav className="hidden gap-4 md:flex">
+        <nav className="ml-auto hidden gap-4 md:mr-4 md:flex">
           {NAVBAR_LINKS.map((link) => {
             return <NavbarLink key={link.label} {...link} />;
           })}
         </nav>
-
         <ThemeToggler />
       </div>
     </div>

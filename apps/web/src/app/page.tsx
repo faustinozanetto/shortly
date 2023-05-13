@@ -1,6 +1,7 @@
 import HomeFeatures from '@modules/home/components/features/home-features';
 import HomeHero from '@modules/home/components/hero/home-hero';
 import HomeShorten from '@modules/home/components/shorten/home-shorten';
+import HomeStats from '@modules/home/components/stats/home-stats';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ const HomePage: React.FC = () => {
       <HomeHero />
       <HomeShorten />
       <HomeFeatures />
+      <HomeStats />
     </div>
   );
 };

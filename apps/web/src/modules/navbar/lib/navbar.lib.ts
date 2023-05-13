@@ -5,4 +5,12 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     href: '/',
     label: 'Home',
   },
+  {
+    href: '/about',
+    label: 'About',
+  },
+  {
+    href: '/contact',
+    label: 'Contact',
+  },
 ];

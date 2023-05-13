@@ -1,22 +1,14 @@
-import { nanoid } from 'nanoid';
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@shortly/database';
+import { generateURLShortenHash, storeShortedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 
 export const POST = async (request: NextRequest) => {
   const body = await request.json();
+  const link = body.link;
 
-  console.log({ body });
+  const hash = generateURLShortenHash(link);
+  const storedLink = await storeShortedURL({ hash, originalURL: link });
 
-  const hash = nanoid(15);
-
-  const link = await prisma.link.create({
-    data: {
-      hash,
-      url: body.link,
-    },
-  });
-
-  console.log({ link });
+  console.log({ storedLink });
 
   return NextResponse.json({ hash });
 };

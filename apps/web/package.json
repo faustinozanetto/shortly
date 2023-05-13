@@ -18,13 +18,15 @@
     "react-dom": "^18.2.0",
     "clsx": "^1.2.1",
     "tailwind-merge": "1.12.0",
-    "class-variance-authority": "0.6.0"
+    "class-variance-authority": "0.6.0",
+    "nanoid": "4.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.17",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",
     "eslint-config-shortly": "*",
+    "@shortly/database": "*",
     "@shortly/tailwind-config": "*",
     "@shortly/typescript-config": "*",
     "postcss": "^8.4.20",

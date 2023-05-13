@@ -1,4 +1,5 @@
 import './globals.css';
+
 import clsx from 'clsx';
 import React from 'react';
 import { Source_Sans_Pro } from 'next/font/google';
@@ -14,7 +15,7 @@ const sourceSansPro = Source_Sans_Pro({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={clsx('bg-neutral-50 dark:bg-neutral-900', sourceSansPro.variable)}>
-      <body className="flex min-h-screen flex-col overflow-hidden subpixel-antialiased transition-all">
+      <body className="flex flex-col antialiased transition-all">
         <Navbar />
         <main style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</main>
       </body>

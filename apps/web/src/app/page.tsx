@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     <div className="flex flex-col items-center justify-center">
       <HomeHero />
       <HomeShorten />
-      {/* <HomeFeatures /> */}
+      <HomeFeatures />
     </div>
   );
 };

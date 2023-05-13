@@ -23,15 +23,11 @@ export const InputWrapper = React.forwardRef<HTMLDivElement, InputWrapperProps>(
   const { id, label, error = false, errorMessage, help = false, helpMessage, children } = props;
 
   return (
-    <div className="flex w-full flex-col items-start" ref={ref}>
+    <div className="flex w-full flex-col items-start gap-1" ref={ref}>
       {label ? (
-        <div className="mb-1.5 flex w-full flex-row items-center justify-between">
-          {label ? (
-            <label htmlFor={id} className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
-              {label}
-            </label>
-          ) : null}
-        </div>
+        <label htmlFor={id} className="block text-sm font-medium text-neutral-900 dark:text-neutral-50 md:text-base">
+          {label}
+        </label>
       ) : null}
       <InputWrapperContent error={error} errorMessage={errorMessage} help={help} helpMessage={helpMessage}>
         {children}

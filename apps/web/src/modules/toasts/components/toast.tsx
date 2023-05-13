@@ -90,16 +90,14 @@ const Toast: React.FC<ToastProps> = (props) => {
     >
       <div
         className={clsx(
-          'flex items-start overflow-hidden rounded-md p-4 text-neutral-800 shadow-md dark:text-neutral-50',
-          toast.variant === 'success' && 'bg-green-200 dark:bg-green-700',
-          toast.variant === 'error' && 'bg-red-200 dark:bg-red-700',
-          toast.variant === 'info' && 'bg-blue-200 dark:bg-blue-700'
+          'flex items-center overflow-hidden rounded-md p-4 text-neutral-900 shadow-md dark:text-neutral-50',
+          toast.variant === 'success' && 'bg-green-300 dark:bg-green-700',
+          toast.variant === 'error' && 'bg-red-300 dark:bg-red-700',
+          toast.variant === 'info' && 'bg-blue-300 dark:bg-blue-700'
         )}
       >
         <div className="mr-2 flex-shrink-0">{toastIcon()}</div>
-        <div className="max-w-full flex-1">
-          <p className="text-sm font-medium">{toast.content}</p>
-        </div>
+        <p className="text-sm font-semibold md:text-base">{toast.content}</p>
       </div>
     </m.li>
   );

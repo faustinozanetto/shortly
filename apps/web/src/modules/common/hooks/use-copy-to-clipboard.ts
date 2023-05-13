@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useCopyToClipboard = (): [string, (text: string) => void] => {
+const useCopyToClipboard = () => {
   const [copiedText, setCopiedText] = useState<string>('');
 
   const copyToClipboard = (text: string) => {
@@ -41,7 +41,7 @@ const useCopyToClipboard = (): [string, (text: string) => void] => {
     };
   }, []);
 
-  return [copiedText, copyToClipboard];
+  return { copyToClipboard };
 };
 
 export default useCopyToClipboard;

@@ -4,26 +4,30 @@ import clsx from 'clsx';
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 import { TextInput } from '@modules/ui/components/forms/text-input';
-import { getCompleteShortenedURl, urlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
+import { urlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
 
 const HomeShortenForm: React.FC = () => {
-  const [copiedText, copyToClipboard] = useCopyToClipboard();
+  const { copyToClipboard } = useCopyToClipboard();
   const { toast } = useToast();
-  const { generate } = useURLShortener();
+  const { generateShortenedURL } = useURLShortener();
   const { handleSubmit, control, formState } = useForm<{ url: string }>({
     resolver: zodResolver(urlValidationSchema),
     mode: 'onTouched',
   });
 
   const onSubmit = async (data: { url: string }) => {
-    const hash = await generate(data.url);
-    const completeURL = getCompleteShortenedURl(hash.hash);
-    copyToClipboard(completeURL);
-    toast({ variant: 'success', content: 'URL hash generated: ' + completeURL });
+    try {
+      const shortenedURL = await generateShortenedURL(data.url);
+      copyToClipboard(shortenedURL);
+      toast({ variant: 'success', content: 'Shortened URL Copied to Clipboard!' }, 6000);
+    } catch (err) {
+      console.log({ err });
+      toast({ variant: 'error', content: 'An error occurred!' });
+    }
   };
 
   return (

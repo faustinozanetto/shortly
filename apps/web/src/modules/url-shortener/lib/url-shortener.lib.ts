@@ -12,7 +12,7 @@ export const generateURLShortenHash = (url: string): string => {
   return hash;
 };
 
-export const getCompleteShortenedURl = (hash: string): string => {
+export const getCompleteShortenedURL = (hash: string): string => {
   const BASE_PATH = process.env.NEXT_PUBLIC_URL;
   return `${BASE_PATH}/to/${hash}`;
 };

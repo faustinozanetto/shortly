@@ -1,9 +1,10 @@
-import './globals.css';
+import '../styles/global.css';
 
-import clsx from 'clsx';
 import React from 'react';
 import { Source_Sans_Pro } from 'next/font/google';
 import Navbar from '@modules/navbar/components/navbar';
+import Footer from '@modules/footer/components/footer';
+import ThemeProvider from '@modules/theming/context/theme-context';
 
 const sourceSansPro = Source_Sans_Pro({
   variable: '--font-sans',
@@ -14,10 +15,15 @@ const sourceSansPro = Source_Sans_Pro({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={clsx('bg-neutral-50 dark:bg-neutral-900', sourceSansPro.variable)}>
-      <body className="flex flex-col antialiased transition-all">
-        <Navbar />
-        <main style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</main>
+    <html lang="en" className={sourceSansPro.variable}>
+      <body className="flex flex-col antialiased transition-colors duration-300 ">
+        <ThemeProvider>
+          <main className="bg-neutral-50 dark:bg-neutral-900">
+            <Navbar />
+            <div style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</div>
+            <Footer />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

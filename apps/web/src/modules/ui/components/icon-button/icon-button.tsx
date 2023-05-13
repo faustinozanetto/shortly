@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@modules/ui/lib/ui.lib';
 import { VariantProps, cva } from 'class-variance-authority';
 
-const buttonVariants = cva(
+const iconButtonVariants = cva(
   'inline-flex appearance-none items-center justify-center relative whitespace-nowrap rounded-lg font-semibold focus-visible:outline-none focus-visible:ring-4 transition-colors text-neutral-900 dark:text-neutral-50 disabled:cursor-not-allowed shadow-sm',
   {
     variants: {
@@ -14,9 +14,9 @@ const buttonVariants = cva(
           'border-2 border-primary-300 dark:border-primary-600 hover:bg-primary-400 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-600 dark:focus-visible:ring-primary-500',
       },
       size: {
-        sm: 'text-sm px-4 py-2 leading-4',
-        base: 'px-6 py-3',
-        lg: 'px-6.5 py-3.5',
+        sm: 'p-2',
+        base: 'p-2.5',
+        lg: 'p-3',
         xl: 'text-lg px-7 py-4',
       },
     },
@@ -27,18 +27,21 @@ const buttonVariants = cva(
   }
 );
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants> & {};
+export type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof iconButtonVariants> & {
+    icon: React.ReactElement;
+  };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, variant, size, ...props }, ref) => {
+const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ className, icon, variant, size, ...props }, ref) => {
     return (
-      <button className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
-        {children}
+      <button className={cn(iconButtonVariants({ variant, size, className }))} ref={ref} {...props}>
+        {icon}
       </button>
     );
   }
 );
 
-Button.displayName = 'Button';
+IconButton.displayName = 'IconButton';
 
-export default Button;
+export default IconButton;

@@ -25,7 +25,7 @@ export const InputWrapper = React.forwardRef<HTMLDivElement, InputWrapperProps>(
   return (
     <div className="flex w-full flex-col items-start gap-1" ref={ref}>
       {label ? (
-        <label htmlFor={id} className="block text-sm font-medium text-neutral-900 dark:text-neutral-50 md:text-base">
+        <label htmlFor={id} className="block text-sm font-semibold text-neutral-900 dark:text-neutral-50 md:text-base">
           {label}
         </label>
       ) : null}

@@ -33,9 +33,14 @@ const HomeStats: React.FC = () => {
   return (
     <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
       <div className="relative mx-auto my-8 max-w-[85rem] px-4 sm:px-6 md:my-16 lg:my-20 lg:px-8">
-        <h2 className="mb-4 text-center text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:mb-8 md:text-start md:text-5xl">
+        <h2 className="mb-4 text-start text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl">
           The numbers speak for themselves
         </h2>
+
+        <p className="mb-4 text-neutral-800 dark:text-neutral-100 md:mb-8 md:text-lg">
+          Make your links shorter, smarter, and shareable in a breeze!. Customize, track, and optimize your links
+          effortlessly. Boost your brand and engage your audience with shortened links that leave a lasting impression.
+        </p>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:items-center md:gap-8">

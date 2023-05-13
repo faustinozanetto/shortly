@@ -29,7 +29,7 @@ const HomeFeatures: React.FC = () => {
 
           {/* Right */}
           <div>
-            <h2 className="leading-2 block text-3xl font-bold text-neutral-800 dark:text-white sm:text-4xl lg:text-5xl">
+            <h2 className="leading-2 mt-2 block text-3xl font-bold text-neutral-800 dark:text-white sm:text-4xl md:mt-0 lg:text-5xl">
               These are just <span className="text-secondary-500 dark:text-secondary-600">some</span> of our features
             </h2>
             {/* Features Nav */}

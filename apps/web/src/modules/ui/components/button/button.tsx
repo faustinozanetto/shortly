@@ -14,7 +14,7 @@ const buttonVariants = cva(
           'border-2 border-primary-300 dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500',
       },
       size: {
-        sm: 'text-sm px-4 py-2 leading-4',
+        sm: 'px-4 py-2.5',
         base: 'px-6 py-3',
         lg: 'px-6.5 py-3.5',
         xl: 'text-lg px-7 py-4',

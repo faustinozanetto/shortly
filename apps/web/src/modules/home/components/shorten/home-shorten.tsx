@@ -15,26 +15,18 @@ const HomeShorten: React.FC = () => {
 
           {/* Right */}
           <div className="mx-auto w-full">
-            <form className="w-full">
-              <label
-                htmlFor="default-search"
-                className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Search
-              </label>
-              <div className="flex items-end gap-1">
-                <TextInput
-                  id="url"
-                  name="url"
-                  label="Shorten your Link"
-                  value=""
-                  placeholder="https://www.youtube.com/"
-                  onValueChanged={() => {}}
-                  className="h-12"
-                />
-                <Button className="">Shorten</Button>
-              </div>
-            </form>
+            <div className="flex items-end gap-1">
+              <TextInput
+                id="url"
+                name="url"
+                label="Shorten your Link"
+                value=""
+                placeholder="https://www.youtube.com/"
+                onValueChanged={() => {}}
+                className="h-12"
+              />
+              <Button className="">Shorten</Button>
+            </div>
           </div>
         </div>
       </div>

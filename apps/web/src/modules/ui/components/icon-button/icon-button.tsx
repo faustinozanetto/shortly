@@ -12,6 +12,8 @@ const iconButtonVariants = cva(
           'bg-primary-500 hover:bg-primary-500/90 focus-visible:ring-primary-400 dark:bg-primary-700 dark:hover:bg-primary-900/90 text-white',
         outline:
           'border-2 border-primary-300 dark:border-primary-600 hover:bg-primary-400 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-600 dark:focus-visible:ring-primary-500',
+        ghost:
+          'dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500',
       },
       size: {
         sm: 'p-2',

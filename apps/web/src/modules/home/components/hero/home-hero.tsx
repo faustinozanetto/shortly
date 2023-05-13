@@ -1,6 +1,7 @@
 import Button from '@modules/ui/components/button/button';
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HomeHero: React.FC = () => {
   return (
@@ -27,7 +28,11 @@ const HomeHero: React.FC = () => {
             {/* CTA Buttos */}
             <div className="mt-6 grid w-full gap-4 md:inline-flex">
               <Button>Get Started Now</Button>
-              <Button variant="outline">Sign Up For Free</Button>
+              <Link href="/auth/signup">
+                <Button variant="outline" aria-label="Sign Up" role="link">
+                  Sign Up for Free
+                </Button>
+              </Link>
             </div>
           </div>
 

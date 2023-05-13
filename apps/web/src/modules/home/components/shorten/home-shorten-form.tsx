@@ -11,27 +11,27 @@ import { useToast } from '@modules/toasts/hooks/use-toast';
 import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
 
 const HomeShortenForm: React.FC = () => {
-  const { copyToClipboard } = useCopyToClipboard();
   const { toast } = useToast();
+  const { copyToClipboard } = useCopyToClipboard();
   const { generateShortenedURL } = useURLShortener();
+
   const { handleSubmit, control, formState } = useForm<{ url: string }>({
     resolver: zodResolver(urlValidationSchema),
     mode: 'onTouched',
   });
 
-  const onSubmit = async (data: { url: string }) => {
+  const handleFormSubmit = async (data: { url: string }) => {
     try {
       const shortenedURL = await generateShortenedURL(data.url);
       copyToClipboard(shortenedURL);
       toast({ variant: 'success', content: 'Shortened URL Copied to Clipboard!' }, 6000);
-    } catch (err) {
-      console.log({ err });
+    } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
   };
 
   return (
-    <form className="flex flex-col gap-2 md:flex-row md:items-end" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-2 md:flex-row md:items-end" onSubmit={handleSubmit(handleFormSubmit)}>
       <Controller
         name="url"
         control={control}

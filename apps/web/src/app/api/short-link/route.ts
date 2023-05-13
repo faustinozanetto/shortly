@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateURLShortenHash, storeShortedURL } from '@modules/url-shortener/lib/url-shortener.lib';
+import { generateURLShortenHash, storeShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 
 export const POST = async (request: NextRequest) => {
   const body = await request.json();
   const link = body.link;
 
   const hash = generateURLShortenHash(link);
-  const storedLink = await storeShortedURL({ hash, originalURL: link });
+  const storedLink = await storeShortenedURL({ hash, originalURL: link });
 
   console.log({ storedLink });
 

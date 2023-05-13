@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { prisma } from '@shortly/database';
-import { StoreShortedURLPayload } from '../types/url-shortener.types';
+import { RetrieveShortenedURLPayload, StoreShortenedURLPayload } from '../types/url-shortener.types';
 
 export const HASH_LENGTH = 12;
 
@@ -9,7 +9,7 @@ export const generateURLShortenHash = (url: string): string => {
   return hash;
 };
 
-export const storeShortedURL = async (payload: StoreShortedURLPayload) => {
+export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
   try {
     const link = await prisma.link.create({
       data: {
@@ -21,5 +21,21 @@ export const storeShortedURL = async (payload: StoreShortedURLPayload) => {
     return link;
   } catch (err) {
     throw new Error('Could not store shortened URL!');
+  }
+};
+
+export const retrieveShortenedURL = async (payload: RetrieveShortenedURLPayload) => {
+  try {
+    const link = await prisma.link.findFirst({
+      where: {
+        hash: payload.hash,
+      },
+    });
+
+    if (!link) throw new Error('No shortened URL found with the given hash!');
+
+    return link;
+  } catch (err) {
+    throw new Error('Could not retrieve shortened URL!');
   }
 };

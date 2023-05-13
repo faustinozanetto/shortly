@@ -1,13 +1,14 @@
 {
-    "name": "@shortly/typescript-config",
-    "version": "0.0.1",
-    "description": "Shortly is a free and easy to use url shortner.",
-    "author": {
-        "name": "Faustino Zanetto",
-        "email": "zanettofaustino@gmail.com"
-    },
-    "files": [
-        "base.json",
-        "nextjs.json"
-    ]
+  "name": "@shortly/typescript-config",
+  "version": "0.0.1",
+  "description": "Shortly is a free and easy to use url shortner.",
+  "author": {
+    "name": "Faustino Zanetto",
+    "email": "zanettofaustino@gmail.com"
+  },
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "ui-library.json"
+  ]
 }

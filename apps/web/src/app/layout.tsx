@@ -14,11 +14,9 @@ const sourceSansPro = Source_Sans_Pro({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={clsx('bg-neutral-50 dark:bg-neutral-900', sourceSansPro.variable)}>
-      <body className="antialiased">
+      <body className="flex min-h-screen flex-col overflow-hidden subpixel-antialiased transition-all">
         <Navbar />
-        <main className="mx-4 flex flex-col pt-4 md:mx-0 md:pt-6" style={{ minHeight: 'calc(100vh - 80px)' }}>
-          {children}
-        </main>
+        <main style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</main>
       </body>
     </html>
   );

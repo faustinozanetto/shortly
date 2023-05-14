@@ -8,6 +8,7 @@ import ThemeProvider from '@modules/theming/context/theme-context';
 import ToastsContainer from '@modules/toasts/components/toasts-container';
 import { ToastProvider } from '@modules/toasts/context/toasts-context';
 import { Metadata } from 'next';
+import { NextAuthProvider } from './providers';
 
 const sourceSansPro = Source_Sans_Pro({
   variable: '--font-sans',
@@ -61,16 +62,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={sourceSansPro.variable}>
       <body className="flex flex-col antialiased transition-colors duration-300 ">
-        <ThemeProvider>
-          <ToastProvider>
-            <main className="bg-neutral-50 dark:bg-neutral-900">
-              <Navbar />
-              <div style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</div>
-              <Footer />
-              <ToastsContainer />
-            </main>
-          </ToastProvider>
-        </ThemeProvider>
+        <NextAuthProvider>
+          <ThemeProvider>
+            <ToastProvider>
+              <main className="bg-neutral-50 dark:bg-neutral-900">
+                <Navbar />
+                <div style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</div>
+                <Footer />
+                <ToastsContainer />
+              </main>
+            </ToastProvider>
+          </ThemeProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

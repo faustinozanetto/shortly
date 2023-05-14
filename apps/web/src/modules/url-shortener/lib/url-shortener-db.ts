@@ -8,8 +8,13 @@ import { prisma } from '@shortly/database';
 export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
   const link = await prisma.link.create({
     data: {
-      hash: payload.hash,
-      url: payload.originalURL,
+      url: payload.url,
+      alias: payload.alias,
+      user: {
+        connect: {
+          id: payload.userId,
+        },
+      },
     },
   });
 
@@ -21,9 +26,11 @@ export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
 export const retrieveShortenedURL = async (payload: RetrieveShortenedURLPayload) => {
   const link = await prisma.link.findFirst({
     where: {
-      hash: payload.hash,
+      alias: payload.alias,
     },
   });
+
+  if (!link) throw new Error(`Could not find shortened URL with alias '${payload.alias}'!`);
 
   return link;
 };

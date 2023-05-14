@@ -1,8 +1,7 @@
-export type StoreShortenedURLPayload = {
-  originalURL: string;
-  hash: string;
-};
+export type StoreShortenedURLPayload = { url: string; alias: string; userId?: string };
 
 export type RetrieveShortenedURLPayload = {
-  hash: string;
+  alias: string;
 };
+
+export type GenerateShortenedURLPayload = { url: string; userId?: string; alias?: string };

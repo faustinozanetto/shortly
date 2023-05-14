@@ -66,16 +66,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" className={sourceSansPro.variable}>
-      <body className="flex flex-col antialiased transition-colors duration-300">
+      <body className="antialiased transition-colors duration-300">
         <AuthContext session={session}>
           <ThemeProvider>
             <ToastProvider>
-              <main className="bg-neutral-50 dark:bg-neutral-900">
+              <main className="flex min-h-screen flex-col bg-neutral-50 dark:bg-neutral-900">
                 <Navbar />
-                <div style={{ minHeight: 'calc(100vh - 80px)' }}>{children}</div>
+                <div className="flex flex-grow">{children}</div>
                 <Footer />
-                <ToastsContainer />
               </main>
+              <ToastsContainer />
             </ToastProvider>
           </ThemeProvider>
         </AuthContext>

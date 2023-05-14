@@ -1,25 +1,30 @@
-import { getCompleteShortenedURL, urlValidationSchema } from '../lib/url-shortener.lib';
+import { generateRandomURLAlias, getCompleteShortenedURL } from '../lib/url-shortener.lib';
 import { Link } from '@shortly/database';
+import { GenerateShortenedURLPayload } from '../types/url-shortener.types';
 
 const useURLShortener = () => {
-  const generateShortenedURL = async (url: string) => {
-    const validation = urlValidationSchema.safeParse({ url });
-    if (!validation) throw new Error('The URL is invalid!');
+  const generateShortenedURL = async (payload: GenerateShortenedURLPayload) => {
+    const alias = payload.alias || generateRandomURLAlias(payload.url);
+    const body = JSON.stringify({ url: payload.url, userId: payload.userId, alias });
 
-    const fetchBody = { url };
-
-    const response = await fetch('/api/short-link', {
+    const response = await fetch('/api/shorten-link', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(fetchBody),
+      body,
     });
 
-    const data: { storedURL: Link } = await response.json();
-    const completeURL = getCompleteShortenedURL(data.storedURL.hash);
-    return completeURL;
+    const data: { storedURL: Link; message: string } = await response.json();
+
+    // Error handling
+    if (!response.ok) {
+      const errorMessage = data.message || 'An error has occurred!';
+      throw new Error(errorMessage);
+    }
+
+    return getCompleteShortenedURL(data.storedURL.alias);
   };
 
   return { generateShortenedURL };

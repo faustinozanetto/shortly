@@ -47,9 +47,13 @@ const HomeHero: React.FC = () => {
               whileInView={{ opacity: 1, translateX: 0 }}
               transition={{ delay: 0.25, duration: 0.35 }}
             >
-              <Button>Get Started Now</Button>
+              <Link href="/shorten">
+                <Button aria-label="Goto Shortener" className="h-12" role="link">
+                  Get Started Now
+                </Button>
+              </Link>
               <Link href="/auth/signup">
-                <Button variant="outline" aria-label="Sign Up" role="link" className="w-full">
+                <Button variant="outline" aria-label="Goto Sign Up" className="h-12 w-full" role="link">
                   Sign Up for Free
                 </Button>
               </Link>

@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 
 type UrlHashPageProps = {
   params: {
-    hash: string;
+    alias: string;
   };
 };
 
 export default async function UrlHashPage(props: UrlHashPageProps) {
   const { params } = props;
 
-  const storedUrl = await retrieveShortenedURL({ hash: params.hash });
+  const storedUrl = await retrieveShortenedURL({ alias: params.alias });
   // Redirect back to home if not found
   if (!storedUrl) return redirect('/');
 

@@ -6,7 +6,7 @@ import HomeStats from '@modules/home/components/stats/home-stats';
 
 const HomePage = async () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center">
       <HomeHero />
       <HomeShorten />
       <HomeFeatures />

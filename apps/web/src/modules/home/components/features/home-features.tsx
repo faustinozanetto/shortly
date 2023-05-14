@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { HOME_FEATURES } from '@modules/home/lib/home.lib';
 import HomeFeatureCard from './home-feature-card';
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const HomeFeatures: React.FC = () => {
   const [selectedFeature, setSelectedFeature] = useState<{ index: number; image: string }>({
@@ -16,7 +16,7 @@ const HomeFeatures: React.FC = () => {
       <div className="md:my-22 relative mx-auto my-14 max-w-[85rem] px-4 sm:px-6 lg:my-32 lg:px-8">
         <div className="relative z-10 grid gap-4 md:grid-cols-2 md:items-start md:gap-8 xl:gap-20">
           {/* Left */}
-          <m.div
+          <motion.div
             className="rounded-md bg-neutral-200 p-4 shadow-lg dark:bg-neutral-800"
             initial={{ opacity: 0, translateY: -20 }}
             viewport={{ once: true }}
@@ -32,11 +32,11 @@ const HomeFeatures: React.FC = () => {
               width={500}
               height={500}
             />
-          </m.div>
+          </motion.div>
 
           {/* Right */}
           <div>
-            <m.h2
+            <motion.h2
               className="leading-2 mt-2 block text-3xl font-bold text-neutral-800 dark:text-white sm:text-4xl md:mt-0 lg:text-5xl"
               initial={{ opacity: 0, translateX: 20 }}
               viewport={{ once: true }}
@@ -44,12 +44,12 @@ const HomeFeatures: React.FC = () => {
               transition={{ delay: 0.25, duration: 0.35 }}
             >
               These are just <span className="text-secondary-500 dark:text-secondary-600">some</span> of our features
-            </m.h2>
+            </motion.h2>
             {/* Features Nav */}
             <nav className="mt-4 grid gap-2 md:mt-6 md:gap-4" aria-label="Tabs" role="tablist">
               {HOME_FEATURES.map((feature, index) => {
                 return (
-                  <m.div
+                  <motion.div
                     key={`feature-${index}`}
                     initial={{ opacity: 0, translateY: -20 }}
                     viewport={{ once: true }}
@@ -61,7 +61,7 @@ const HomeFeatures: React.FC = () => {
                       isSelected={index === selectedFeature.index}
                       onClick={() => setSelectedFeature({ index, image: feature.image })}
                     />
-                  </m.div>
+                  </motion.div>
                 );
               })}
             </nav>

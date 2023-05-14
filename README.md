@@ -11,7 +11,7 @@ Shortly is a free and easy to use URL Shortener webesite.
 ```sh
 git clone https://github.com/faustinozanetto/shortly # First clone the repo in your folder of choice.
 cd shortly # Move into the recently cloned repo.
-yarn install # Install using yarn or npm.
+yarn install # Install using yarn or npmotion.
 yarn dev # Boot up the project using the following command.
 ```
 

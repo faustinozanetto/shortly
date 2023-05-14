@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
 import React from 'react';
 import { Toast as ToastData } from '../types/toasts.types';
+import { motion } from 'framer-motion';
 
 type ToastProps = {
   toast: ToastData;
@@ -70,7 +70,7 @@ const Toast: React.FC<ToastProps> = (props) => {
   };
 
   return (
-    <m.li
+    <motion.li
       initial={{ height: 0, opacity: 0 }}
       animate={{
         height: 'auto',
@@ -99,7 +99,7 @@ const Toast: React.FC<ToastProps> = (props) => {
         <div className="mr-2 flex-shrink-0">{toastIcon()}</div>
         <p className="text-sm font-semibold md:text-base">{toast.content}</p>
       </div>
-    </m.li>
+    </motion.li>
   );
 };
 

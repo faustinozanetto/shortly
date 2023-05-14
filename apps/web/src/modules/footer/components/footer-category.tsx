@@ -11,7 +11,7 @@ const FooterCategory: React.FC<FooterCategoryProps> = (props) => {
 
   return (
     <div>
-      <h4 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">{title}</h4>
+      <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">{title}</span>
       <ul className="mt-3 grid space-y-2 text-sm">
         {links.map((link) => {
           return <FooterLink key={link.label} {...link} />;

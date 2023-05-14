@@ -1,8 +1,9 @@
+'use client';
 import Button from '@modules/ui/components/button/button';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const HomeHero: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const HomeHero: React.FC = () => {
         <div className="relative z-10 grid gap-4 md:grid-cols-2 md:items-center md:gap-8 xl:gap-20">
           {/* Left */}
           <div>
-            <m.h1
+            <motion.h1
               className="leading-2 block text-4xl font-bold text-neutral-800 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl"
               initial={{ opacity: 0, translateY: -20 }}
               viewport={{ once: true }}
@@ -25,8 +26,8 @@ const HomeHero: React.FC = () => {
             >
               Your <span className="text-secondary-500 dark:text-secondary-600">Fast</span> and{' '}
               <span className="text-secondary-500 dark:text-secondary-600">Reliable</span> URL Shortener
-            </m.h1>
-            <m.p
+            </motion.h1>
+            <motion.p
               className="mt-3 text-neutral-800 dark:text-neutral-100 md:text-lg"
               initial={{ opacity: 0, translateY: -20 }}
               viewport={{ once: true }}
@@ -36,10 +37,10 @@ const HomeHero: React.FC = () => {
               Make your links shorter, smarter, and shareable in a breeze!. Customize, track, and optimize your links
               effortlessly. Boost your brand and engage your audience with shortened links that leave a lasting
               impression.
-            </m.p>
+            </motion.p>
 
             {/* CTA Buttos */}
-            <m.div
+            <motion.div
               className="mt-6 grid w-full gap-4 md:inline-flex"
               initial={{ opacity: 0, translateX: -20 }}
               viewport={{ once: true }}
@@ -52,11 +53,11 @@ const HomeHero: React.FC = () => {
                   Sign Up for Free
                 </Button>
               </Link>
-            </m.div>
+            </motion.div>
           </div>
 
           {/* Right */}
-          <m.div
+          <motion.div
             className="ml-4"
             initial={{ opacity: 0, translateX: 20 }}
             viewport={{ once: true }}
@@ -72,7 +73,7 @@ const HomeHero: React.FC = () => {
               width={500}
               height={500}
             />
-          </m.div>
+          </motion.div>
         </div>
       </div>
     </section>

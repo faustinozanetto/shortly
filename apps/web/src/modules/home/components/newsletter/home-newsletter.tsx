@@ -33,7 +33,7 @@ const HomeNewsletter: React.FC = () => {
           </div>
           <p className="text-start text-sm  text-neutral-900 dark:text-neutral-50">
             We care about your privacy, learn more at{' '}
-            <Link href="/privacy" className="text-primary-600 dark:text-primary-500 font-medium hover:underline">
+            <Link href="/privacy" className="text-primary-800 dark:text-primary-300 font-semibold hover:underline">
               privacy
             </Link>
           </p>

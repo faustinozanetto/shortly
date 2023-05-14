@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign Up | Shortly',
-  description: 'Shortly is a free and easy to use url shortner.',
+  title: 'Sign Up',
 };
 
 const AuthSignUpPage: React.FC = () => {

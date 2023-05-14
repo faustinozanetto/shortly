@@ -1,4 +1,4 @@
-export type StoreShortenedURLPayload = { url: string; alias: string; userId?: string };
+export type StoreShortenedURLPayload = { url: string; alias: string; userId: string | null };
 
 export type RetrieveShortenedURLPayload = {
   alias: string;

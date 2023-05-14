@@ -8,6 +8,7 @@ import { fromZodError } from 'zod-validation-error';
 
 export async function POST(request: Request) {
   const body = await request.json();
+
   const { url, alias, userId } = body;
 
   try {
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
       alias,
     });
 
-    const storedURL = await storeShortenedURL({ url, userId, alias });
+    const storedURL = await storeShortenedURL({ url, alias, userId });
     return NextResponse.json(
       { storedURL, message: `Shorted URL for alias '${alias}' created successfully!` },
       { status: 200 }

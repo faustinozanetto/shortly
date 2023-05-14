@@ -10,11 +10,7 @@ export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
     data: {
       url: payload.url,
       alias: payload.alias,
-      user: {
-        connect: {
-          id: payload.userId,
-        },
-      },
+      userId: payload.userId,
     },
   });
 

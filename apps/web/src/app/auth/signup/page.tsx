@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Sign Up',
 };
 
-const AuthSignUpPage: React.FC = () => {
+const AuthSignUpPage = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <h1>Sign Up</h1>

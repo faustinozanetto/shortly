@@ -8,7 +8,10 @@ import ThemeProvider from '@modules/theming/context/theme-context';
 import ToastsContainer from '@modules/toasts/components/toasts-container';
 import { ToastProvider } from '@modules/toasts/context/toasts-context';
 import { Metadata } from 'next';
-import { NextAuthProvider } from './providers';
+
+import { headers } from 'next/headers';
+import AuthContext from '@modules/auth/context/auth-context';
+import { getSession } from '@modules/auth/lib/auth.lib';
 
 const sourceSansPro = Source_Sans_Pro({
   variable: '--font-sans',
@@ -58,11 +61,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await getSession(headers().get('cookie') ?? '');
+
   return (
     <html lang="en" className={sourceSansPro.variable}>
-      <body className="flex flex-col antialiased transition-colors duration-300 ">
-        <NextAuthProvider>
+      <body className="flex flex-col antialiased transition-colors duration-300">
+        <AuthContext session={session}>
           <ThemeProvider>
             <ToastProvider>
               <main className="bg-neutral-50 dark:bg-neutral-900">
@@ -73,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </main>
             </ToastProvider>
           </ThemeProvider>
-        </NextAuthProvider>
+        </AuthContext>
       </body>
     </html>
   );

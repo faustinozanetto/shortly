@@ -29,6 +29,18 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
+
+  callbacks: {
+    async session({ session, user, token }) {
+      return {
+        ...session,
+        user: {
+          ...user,
+        },
+      };
+    },
+  },
+
   cookies: {
     sessionToken: {
       name: `${COOKIES_PREFIX}.session-token`,

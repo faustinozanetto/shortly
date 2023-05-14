@@ -4,6 +4,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "next-auth.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [

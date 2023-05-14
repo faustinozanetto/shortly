@@ -48,7 +48,7 @@ const HomeHero: React.FC = () => {
             >
               <Button>Get Started Now</Button>
               <Link href="/auth/signup">
-                <Button variant="outline" aria-label="Sign Up" role="link">
+                <Button variant="outline" aria-label="Sign Up" role="link" className="w-full">
                   Sign Up for Free
                 </Button>
               </Link>

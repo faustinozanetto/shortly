@@ -71,6 +71,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ThemeProvider>
             <ToastProvider>
               <main className="flex min-h-screen flex-col bg-neutral-50 dark:bg-neutral-900">
+                {/* @ts-expect-error Server Component */}
                 <Navbar />
                 <div className="flex flex-grow">{children}</div>
                 <Footer />

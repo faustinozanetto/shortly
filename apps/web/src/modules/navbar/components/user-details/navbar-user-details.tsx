@@ -1,18 +1,15 @@
-'use client';
 import React from 'react';
-import { useSession } from 'next-auth/react';
 import IconButton from '@modules/ui/components/icon-button/icon-button';
 import Link from 'next/link';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@modules/auth/lib/auth.lib';
 
-const NavbarUserDetails: React.FC = () => {
-  const { data, status } = useSession();
-
-  if (status === 'loading') return <>loading</>;
-  if (status === 'unauthenticated') return null;
-  if (!data) return null;
+const NavbarUserDetails = async () => {
+  const session = await getServerSession(authOptions);
+  if (!session) return null;
 
   return (
-    <Link href={`/user/${data.user.id}`}>
+    <Link href="/dashboard">
       <IconButton
         icon={
           <svg

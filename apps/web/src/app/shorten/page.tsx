@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const URLShortenerPage = () => {
   return (
-    <div className="mx-4 flex w-full flex-col items-center justify-center md:mx-0">
+    <div className="mx-4 flex w-full flex-col items-center md:mx-0">
       <URLShortener />
     </div>
   );

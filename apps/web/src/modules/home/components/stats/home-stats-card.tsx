@@ -2,7 +2,7 @@ import React from 'react';
 
 export type HomeStatsCardProps = {
   title: string;
-  stat: string;
+  stat: string | number;
   unit: string;
   description: string;
 };

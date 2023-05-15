@@ -3,35 +3,23 @@ import React from 'react';
 
 import HomeStatsCard, { HomeStatsCardProps } from './home-stats-card';
 import { motion } from 'framer-motion';
+import { HomeStatsData } from '@modules/home/types/home.types';
+import { HOME_STATS, getHomeStatsUnit } from '@modules/home/lib/home.lib';
 
-const HOME_STATS: HomeStatsCardProps[] = [
-  {
-    title: 'Active Users',
-    stat: '10',
-    unit: 'k',
-    description: ' Lorem ipsum dolor sit.',
-  },
-  {
-    title: 'Links Shortened',
-    stat: '20',
-    unit: 'k',
-    description: ' Lorem ipsum dolor sit.',
-  },
-  {
-    title: 'Active Users',
-    stat: '100',
-    unit: 'k',
-    description: ' Lorem ipsum dolor sit.',
-  },
-  {
-    title: 'Uptime Server',
-    stat: '99',
-    unit: '%',
-    description: ' Lorem ipsum dolor sit.',
-  },
-];
+type HomeStatsProps = {
+  stats: HomeStatsData;
+};
 
-const HomeStats: React.FC = () => {
+const HomeStats: React.FC<HomeStatsProps> = (props) => {
+  const { stats } = props;
+  const { activeUsers, linksShortened, linksClicked, uptimeServer } = stats;
+
+  const statsMap: Record<number, { stat: number; unit: string }> = {};
+  statsMap[0] = { stat: getHomeStatsUnit(activeUsers)[0], unit: getHomeStatsUnit(activeUsers)[1] };
+  statsMap[1] = { stat: getHomeStatsUnit(linksShortened)[0], unit: getHomeStatsUnit(linksShortened)[1] };
+  statsMap[2] = { stat: getHomeStatsUnit(linksClicked)[0], unit: getHomeStatsUnit(linksClicked)[1] };
+  statsMap[3] = { stat: getHomeStatsUnit(uptimeServer)[0], unit: '%' };
+
   return (
     <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
       <div className="relative mx-auto my-8 max-w-[85rem] px-4 sm:px-6 md:my-16 lg:my-20 lg:px-8">
@@ -67,7 +55,7 @@ const HomeStats: React.FC = () => {
                 whileInView={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 0.15 * index + 0.45, duration: 0.35 }}
               >
-                <HomeStatsCard {...stat} />
+                <HomeStatsCard {...stat} stat={statsMap[index].stat} unit={statsMap[index].unit} />
               </motion.div>
             );
           })}

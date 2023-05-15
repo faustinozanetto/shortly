@@ -48,7 +48,7 @@ const HomeHero: React.FC = () => {
               transition={{ delay: 0.25, duration: 0.35 }}
             >
               <Link href="/shorten">
-                <Button aria-label="Goto Shortener" className="h-12" role="link">
+                <Button aria-label="Goto Shortener" className="h-12 w-full" role="link">
                   Get Started Now
                 </Button>
               </Link>

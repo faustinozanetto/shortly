@@ -1,4 +1,13 @@
+import { HomeStatsCardProps } from '../components/stats/home-stats-card';
 import { HomeFeatureData } from '../types/home.types';
+
+export const getHomeStatsUnit = (stat: number): [number, string] => {
+  if (stat >= 1000) {
+    const formattedStat = Math.floor(stat / 1000);
+    return [formattedStat, 'k'];
+  }
+  return [stat, ''];
+};
 
 export const HOME_FEATURES: HomeFeatureData[] = [
   {
@@ -64,5 +73,24 @@ export const HOME_FEATURES: HomeFeatureData[] = [
         <polyline points="12 7 12 12 15 15" />
       </svg>
     ),
+  },
+];
+
+export const HOME_STATS: Omit<HomeStatsCardProps, 'stat' | 'unit'>[] = [
+  {
+    title: 'Active Users',
+    description: 'Alltime users registered',
+  },
+  {
+    title: 'Links Shortened',
+    description: 'Sum of all links shortened',
+  },
+  {
+    title: 'Links Clicked',
+    description: 'The amount of clicks combined',
+  },
+  {
+    title: 'Uptime Server',
+    description: 'Server availability',
   },
 ];

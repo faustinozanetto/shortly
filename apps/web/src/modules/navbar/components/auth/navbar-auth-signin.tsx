@@ -1,13 +1,15 @@
 'use client';
 import Button from '@modules/ui/components/button/button';
 import React from 'react';
-import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
 const NavbarAuthSignIn: React.FC = () => {
   return (
-    <Button className="h-10" aria-label="Sign In" variant="outline" role="link" onClick={() => signIn()}>
-      Sign In
-    </Button>
+    <Link href="/auth/signin">
+      <Button className="h-10" aria-label="Sign In" role="link">
+        Sign In
+      </Button>
+    </Link>
   );
 };
 

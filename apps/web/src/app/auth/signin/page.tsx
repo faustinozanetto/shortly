@@ -1,3 +1,4 @@
+import AuthSignIn from '@modules/auth/components/sign-in/auth-sign-in';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,8 +7,8 @@ export const metadata: Metadata = {
 
 const AuthSignInPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1>Sign In</h1>
+    <div className="mx-4 flex w-full flex-col items-center md:mx-0">
+      <AuthSignIn />
     </div>
   );
 };

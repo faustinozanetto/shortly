@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import NavbarAuthSignUp from './navbar-auth-signup';
 import NavbarAuthSignIn from './navbar-auth-signin';
 import { useSession } from 'next-auth/react';
 import NavbarAuthSignOut from '@modules/navbar/components/auth/navbar-auth-signout';
@@ -13,7 +12,6 @@ const NavbarAuth: React.FC = () => {
       {status === 'unauthenticated' ? (
         <>
           <NavbarAuthSignIn />
-          <NavbarAuthSignUp />
         </>
       ) : null}
       {status === 'authenticated' ? (

@@ -30,3 +30,11 @@ export const retrieveShortenedURL = async (payload: RetrieveShortenedURLPayload)
 
   return link;
 };
+
+export const getTotalLinksShortened = async () => {
+  return await prisma.link.count();
+};
+
+export const getTotalActiveUsers = async () => {
+  return await prisma.user.count();
+};

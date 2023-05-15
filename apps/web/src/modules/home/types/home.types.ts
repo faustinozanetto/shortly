@@ -4,3 +4,10 @@ export type HomeFeatureData = {
   icon: JSX.Element;
   image: string;
 };
+
+export type HomeStatsData = {
+  activeUsers: number;
+  linksShortened: number;
+  linksClicked: number;
+  uptimeServer: number;
+};

@@ -7,7 +7,7 @@ import React from 'react';
 
 const AuthSignIn: React.FC = () => {
   const handleAuthSignIn = async (provider: BuiltInProviderType) => {
-    await signIn(provider);
+    await signIn(provider, { callbackUrl: '/shorten' });
   };
 
   return (

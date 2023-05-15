@@ -52,9 +52,9 @@ const HomeHero: React.FC = () => {
                   Get Started Now
                 </Button>
               </Link>
-              <Link href="/auth/signup">
-                <Button variant="outline" aria-label="Goto Sign Up" className="h-12 w-full" role="link">
-                  Sign Up for Free
+              <Link href="/auth/signin">
+                <Button variant="outline" aria-label="Sign In For Free" className="h-12 w-full" role="link">
+                  Sign In for Free
                 </Button>
               </Link>
             </motion.div>

@@ -66,7 +66,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" className={sourceSansPro.variable}>
-      <body className="antialiased transition-colors duration-300">
+      <body className="antialiased transition-colors duration-300" suppressHydrationWarning={true}>
         <AuthContext session={session}>
           <ThemeProvider>
             <ToastProvider>

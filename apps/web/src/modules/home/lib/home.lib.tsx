@@ -87,7 +87,7 @@ export const HOME_STATS: Omit<HomeStatsCardProps, 'stat' | 'unit'>[] = [
   },
   {
     title: 'Links Clicked',
-    description: 'The amount of clicks combined',
+    description: 'The amount of clicks',
   },
   {
     title: 'Uptime Server',

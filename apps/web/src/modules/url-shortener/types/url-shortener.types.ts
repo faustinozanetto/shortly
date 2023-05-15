@@ -4,4 +4,8 @@ export type RetrieveShortenedURLPayload = {
   alias: string;
 };
 
+export type IncrementShortenedURLClicks = {
+  alias: string;
+};
+
 export type GenerateShortenedURLPayload = { url: string; userId?: string; alias?: string };

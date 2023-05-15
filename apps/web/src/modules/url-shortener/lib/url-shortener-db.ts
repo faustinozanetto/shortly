@@ -1,9 +1,10 @@
 'use server';
 import {
+  IncrementShortenedURLClicks,
   RetrieveShortenedURLPayload,
   StoreShortenedURLPayload,
 } from '@modules/url-shortener/types/url-shortener.types';
-import { prisma } from '@shortly/database';
+import { prisma } from '@modules/database/lib/database.lib';
 
 export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
   const link = await prisma.link.create({
@@ -31,10 +32,19 @@ export const retrieveShortenedURL = async (payload: RetrieveShortenedURLPayload)
   return link;
 };
 
+export const incrementShortenedURLClicks = async (payload: IncrementShortenedURLClicks) => {
+  await prisma.link.update({ where: { alias: payload.alias }, data: { clicks: { increment: 1 } } });
+};
+
 export const getTotalLinksShortened = async () => {
   return await prisma.link.count();
 };
 
 export const getTotalActiveUsers = async () => {
   return await prisma.user.count();
+};
+
+export const getTotalLinksClicked = async () => {
+  const result = await prisma.link.aggregate({ _sum: { clicks: true } });
+  return result._sum.clicks ?? 0;
 };

@@ -1,5 +1,0 @@
-# local env files
-.env.local
-.env.development
-.env.test.local
-.env.production

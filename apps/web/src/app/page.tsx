@@ -4,17 +4,22 @@ import HomeNewsletter from '@modules/home/components/newsletter/home-newsletter'
 import HomeShorten from '@modules/home/components/shorten/home-shorten';
 import HomeStats from '@modules/home/components/stats/home-stats';
 import { HomeStatsData } from '@modules/home/types/home.types';
-import { getTotalActiveUsers, getTotalLinksShortened } from '@modules/url-shortener/lib/url-shortener-db';
+import {
+  getTotalActiveUsers,
+  getTotalLinksClicked,
+  getTotalLinksShortened,
+} from '@modules/url-shortener/lib/url-shortener-db';
 
 const HomePage = async () => {
   const getHomeStatsData = async (): Promise<HomeStatsData> => {
     const totalLinksShortened = await getTotalLinksShortened();
     const totalActiveUsers = await getTotalActiveUsers();
+    const totalLinksClicked = await getTotalLinksClicked();
 
     return {
       linksShortened: totalLinksShortened,
       activeUsers: totalActiveUsers,
-      linksClicked: 0,
+      linksClicked: totalLinksClicked,
       uptimeServer: 99,
     };
   };

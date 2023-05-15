@@ -1,12 +1,12 @@
 import { storeShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
 import { completeUrlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
-import { Prisma } from '@shortly/database';
+import { Prisma } from '@prisma/client';
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
 
   const { url, alias, userId } = body;

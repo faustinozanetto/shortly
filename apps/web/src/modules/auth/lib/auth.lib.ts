@@ -1,9 +1,10 @@
 import { NextAuthOptions, Session } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
+import DiscordProvider from 'next-auth/providers/discord';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { prisma } from '@shortly/database';
 
-const COOKIES_PREFIX = 'shortly';
+import { AuthSignInOption } from '../types/auth.types';
+import { prisma } from '@modules/database/lib/database.lib';
 
 export const getSession = async (cookie: string): Promise<Session> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/auth/session`, {
@@ -17,11 +18,17 @@ export const getSession = async (cookie: string): Promise<Session> => {
   return Object.keys(session).length > 0 ? session : null;
 };
 
+const COOKIES_PREFIX = 'shortly';
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.AUTH_GITHUB_ID!,
       clientSecret: process.env.AUTH_GITHUB_SECRET!,
+    }),
+    DiscordProvider({
+      clientId: process.env.AUTH_DISCORD_ID!,
+      clientSecret: process.env.AUTH_DISCORD_SECRET!,
     }),
   ],
   session: {
@@ -31,7 +38,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
-    async session({ session, user, token }) {
+    async session({ session, user }) {
       return {
         ...session,
         user: {

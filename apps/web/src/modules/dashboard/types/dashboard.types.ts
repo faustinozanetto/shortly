@@ -7,3 +7,8 @@ export type UserDashboardStatsData = {
   totalClicks: number;
   cplRate: number;
 };
+
+export type DeleteUserLinkPayload = {
+  userId: string;
+  linkId: string;
+};

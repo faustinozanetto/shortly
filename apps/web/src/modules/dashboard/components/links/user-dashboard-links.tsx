@@ -1,13 +1,13 @@
 import { getUserLinks } from '@modules/dashboard/lib/dashboard.lib';
 import { Session } from 'next-auth';
 import React from 'react';
-import UserDashboardURLsTable from './user-dashboard-urls-table';
+import UserDashboardLinksTable from './table/user-dashboard-links-table';
 
-type UserDashboardURLsProps = {
+type UserDashboardLinksProps = {
   user: Session['user'];
 };
 
-const UserDashboardURLs = async (props: UserDashboardURLsProps) => {
+const UserDashboardLinks = async (props: UserDashboardLinksProps) => {
   const { user } = props;
 
   const links = await getUserLinks({ userId: user.id });
@@ -23,10 +23,10 @@ const UserDashboardURLs = async (props: UserDashboardURLsProps) => {
       </p>
 
       <div className="mt-2 md:mt-4">
-        <UserDashboardURLsTable links={links} />
+        <UserDashboardLinksTable links={links} />
       </div>
     </div>
   );
 };
 
-export default UserDashboardURLs;
+export default UserDashboardLinks;

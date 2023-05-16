@@ -4,22 +4,23 @@ import { cn } from '@modules/ui/lib/ui.lib';
 import { VariantProps, cva } from 'class-variance-authority';
 
 export const buttonVariants = cva(
-  'inline-flex appearance-none items-center justify-center relative whitespace-nowrap rounded-lg font-semibold focus-visible:outline-none focus-visible:ring-4 transition-colors text-neutral-900 dark:text-neutral-50 disabled:cursor-not-allowed',
+  'inline-flex items-center justify-center rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
   {
     variants: {
       variant: {
         default:
-          'bg-primary-400 hover:bg-primary-500 focus-visible:ring-primary-400 dark:bg-primary-700 dark:hover:bg-primary-800 text-neutral-900 dark:text-neutral-50',
+          'bg-primary-400 hover:bg-primary-500 focus-visible:ring-primary-400 dark:bg-primary-700 dark:hover:bg-primary-800 text-neutral-900 dark:text-neutral-50 rounded-md',
         outline:
           'border-2 border-primary-300 dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500',
         ghost:
           'dark:border-primary-600 hover:bg-primary-300/70 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800/70 dark:focus-visible:ring-primary-500',
+        danger:
+          'bg-red-400 hover:bg-red-500 focus-visible:ring-red-400 dark:bg-red-700 dark:hover:bg-red-800 text-neutral-900 dark:text-neutral-50',
       },
       size: {
-        sm: 'px-4 py-1.5',
-        base: 'px-6 py-2',
-        lg: 'px-6.5 py-2.5',
-        xl: 'text-lg px-7 py-3',
+        base: 'h-10 py-2 px-4',
+        sm: 'h-9 px-3',
+        lg: 'h-11 px-8',
       },
     },
     defaultVariants: {

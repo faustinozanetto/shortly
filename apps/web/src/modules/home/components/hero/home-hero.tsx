@@ -48,10 +48,10 @@ const HomeHero: React.FC = () => {
               whileInView={{ opacity: 1, translateX: 0 }}
               transition={{ delay: 0.25, duration: 0.35 }}
             >
-              <Link href="/shorten" className={cn(buttonVariants({}))}>
+              <Link href="/shorten" className={cn(buttonVariants({ size: 'lg' }))}>
                 Get Started Now
               </Link>
-              <Link href="/auth/signin" className={cn(buttonVariants({ variant: 'outline' }), 'h-12')}>
+              <Link href="/auth/signin" className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}>
                 Sign In for Free
               </Link>
             </motion.div>

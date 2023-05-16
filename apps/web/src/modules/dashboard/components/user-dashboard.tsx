@@ -2,7 +2,7 @@ import React from 'react';
 import UserDashboardGreeting from './greeting/user-dashboard-greeting';
 import UserDashboardStats from './stats/user-dashboard-stats';
 import { Session } from 'next-auth';
-import UserDashboardURLs from './urls/user-dashboard-urls';
+import UserDashboardURLs from './links/user-dashboard-links';
 
 type UserDashboardProps = {
   user: Session['user'];

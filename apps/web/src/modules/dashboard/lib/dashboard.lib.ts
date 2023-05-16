@@ -1,5 +1,5 @@
 import { prisma } from '@modules/database/lib/database.lib';
-import { UserDashboardPayload } from '../types/dashboard.types';
+import { DeleteUserLinkPayload, UserDashboardPayload } from '../types/dashboard.types';
 
 export const getUserTotalLinks = async (payload: UserDashboardPayload) => {
   return await prisma.link.count({ where: { userId: payload.userId } });

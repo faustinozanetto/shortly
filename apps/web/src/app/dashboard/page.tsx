@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   if (!user) return redirect('/auth/signin');
 
   return (
-    <div className="container my-4 md:my-14 lg:my-20">
+    <div className="container my-4 md:my-8 ">
       <UserDashboard user={user} />
     </div>
   );

@@ -4,15 +4,16 @@ import React, { useState } from 'react';
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 import { TextInput } from '@modules/ui/components/forms/text-input';
-import { completeUrlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
+
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
 import { z } from 'zod';
 import { Session } from 'next-auth';
+import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 
-type GenerateLinkFormData = z.infer<typeof completeUrlValidationSchema>;
+type GenerateLinkFormData = z.infer<typeof linkValidationSchema>;
 
 type URLShortenerFormProps = {
   user: Session['user'] | null;
@@ -28,7 +29,7 @@ const URLShortenerForm: React.FC<URLShortenerFormProps> = (props) => {
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
 
   const { handleSubmit, control } = useForm<GenerateLinkFormData>({
-    resolver: zodResolver(completeUrlValidationSchema),
+    resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
 

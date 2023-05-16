@@ -1,5 +1,6 @@
 import { storeShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
-import { completeUrlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
+import { linkValidationSchema } from '@modules/validations/lib/validations-link';
+
 import { Prisma } from '@prisma/client';
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -13,7 +14,7 @@ export async function POST(request: NextRequest) {
 
   try {
     // Validate body input
-    completeUrlValidationSchema.parse({
+    linkValidationSchema.parse({
       url,
       alias,
     });

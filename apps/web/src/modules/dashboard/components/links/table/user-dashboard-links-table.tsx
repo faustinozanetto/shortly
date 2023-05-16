@@ -1,13 +1,12 @@
 'use client';
 import Button from '@modules/ui/components/button/button';
-import IconButton from '@modules/ui/components/icon-button/icon-button';
 import Table from '@modules/ui/components/table/table';
 import TableBody from '@modules/ui/components/table/table-body';
 import TableCell from '@modules/ui/components/table/table-cell';
 import TableHead from '@modules/ui/components/table/table-head';
 import TableHeader from '@modules/ui/components/table/table-header';
 import TableRow from '@modules/ui/components/table/table-row';
-import { Link } from '@prisma/client';
+import { Link as PrismaLink } from '@prisma/client';
 import {
   Column,
   ColumnDef,
@@ -19,15 +18,17 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import UserLinkManagement from '../management/user-link-management';
+import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
+import Link from 'next/link';
 
 type UserDashboardURLsTableProps = {
-  links: Link[];
+  links: PrismaLink[];
 };
 
 type SortableColumnProps = {
-  column: Column<Link>;
+  column: Column<PrismaLink>;
   title: string;
 };
 
@@ -65,7 +66,7 @@ const SortableColumn: React.FC<SortableColumnProps> = (props) => {
 const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
   const { links } = props;
 
-  const columns: ColumnDef<Link>[] = [
+  const columns: ColumnDef<PrismaLink>[] = [
     {
       header: 'ID',
       accessorKey: 'id',
@@ -77,9 +78,20 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
       cell: ({ row }) => <div className="capitalize">{row.getValue('url')}</div>,
     },
     {
-      header: 'Alias',
       accessorKey: 'alias',
-      cell: ({ row }) => <div className="font-bold">{row.getValue('alias')}</div>,
+      header: 'Alias',
+      cell: ({ row }) => {
+        const completeURL = getCompleteShortenedURL(row.getValue('alias'));
+        return (
+          <Link
+            href={completeURL}
+            className="hover:text-primary-400 dark:hover:text-primary-500 font-bold"
+            target="_blank"
+          >
+            {row.getValue('alias')}
+          </Link>
+        );
+      },
     },
     {
       accessorKey: 'clicks',

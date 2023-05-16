@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 import { TextInput } from '@modules/ui/components/forms/text-input';
-import { urlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
+
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
@@ -12,8 +12,9 @@ import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
 
 import { z } from 'zod';
 import { Session } from 'next-auth';
+import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 
-type HomeShortenLinkFormData = z.infer<typeof urlValidationSchema>;
+type HomeShortenLinkFormData = z.infer<typeof linkValidationSchema>;
 
 type HomeShortenFormProps = {
   user: Session['user'] | null;
@@ -29,7 +30,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
   const { generateShortenedURL } = useURLShortener();
 
   const { handleSubmit, control, formState } = useForm<HomeShortenLinkFormData>({
-    resolver: zodResolver(urlValidationSchema),
+    resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
 

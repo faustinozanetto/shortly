@@ -1,13 +1,5 @@
-import { HomeStatsCardProps } from '../components/stats/home-stats-card';
+import { StatsCardProps } from '@modules/common/components/stats/stats-card';
 import { HomeFeatureData } from '../types/home.types';
-
-export const getHomeStatsUnit = (stat: number): [number, string] => {
-  if (stat >= 1000) {
-    const formattedStat = Math.floor(stat / 1000);
-    return [formattedStat, 'k'];
-  }
-  return [stat, ''];
-};
 
 export const HOME_FEATURES: HomeFeatureData[] = [
   {
@@ -76,7 +68,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
   },
 ];
 
-export const HOME_STATS: Omit<HomeStatsCardProps, 'stat' | 'unit'>[] = [
+export const HOME_STATS: Omit<StatsCardProps, 'stat' | 'unit'>[] = [
   {
     title: 'Active Users',
     description: 'Alltime users registered',

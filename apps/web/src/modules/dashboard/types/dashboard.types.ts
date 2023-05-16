@@ -1,9 +1,8 @@
-import { Session } from 'next-auth';
-
-export type UserTotalLinksPayload = {
+export type UserDashboardPayload = {
   userId: string;
 };
 
 export type UserDashboardStatsData = {
   totalLinks: number;
+  totalClicks: number;
 };

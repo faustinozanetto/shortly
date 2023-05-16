@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
 
-import HomeStatsCard, { HomeStatsCardProps } from './home-stats-card';
 import { motion } from 'framer-motion';
 import { HomeStatsData } from '@modules/home/types/home.types';
-import { HOME_STATS, getHomeStatsUnit } from '@modules/home/lib/home.lib';
+import { HOME_STATS } from '@modules/home/lib/home.lib';
+import StatsCard from '@modules/common/components/stats/stats-card';
+import { getFormattedNumberIntoThousands } from '@modules/common/lib/common.lib';
 
 type HomeStatsProps = {
   stats: HomeStatsData;
@@ -15,10 +16,19 @@ const HomeStats: React.FC<HomeStatsProps> = (props) => {
   const { activeUsers, linksShortened, linksClicked, uptimeServer } = stats;
 
   const statsMap: Record<number, { stat: number; unit: string }> = {};
-  statsMap[0] = { stat: getHomeStatsUnit(activeUsers)[0], unit: getHomeStatsUnit(activeUsers)[1] };
-  statsMap[1] = { stat: getHomeStatsUnit(linksShortened)[0], unit: getHomeStatsUnit(linksShortened)[1] };
-  statsMap[2] = { stat: getHomeStatsUnit(linksClicked)[0], unit: getHomeStatsUnit(linksClicked)[1] };
-  statsMap[3] = { stat: getHomeStatsUnit(uptimeServer)[0], unit: '%' };
+  statsMap[0] = {
+    stat: getFormattedNumberIntoThousands(activeUsers)[0],
+    unit: getFormattedNumberIntoThousands(activeUsers)[1],
+  };
+  statsMap[1] = {
+    stat: getFormattedNumberIntoThousands(linksShortened)[0],
+    unit: getFormattedNumberIntoThousands(linksShortened)[1],
+  };
+  statsMap[2] = {
+    stat: getFormattedNumberIntoThousands(linksClicked)[0],
+    unit: getFormattedNumberIntoThousands(linksClicked)[1],
+  };
+  statsMap[3] = { stat: getFormattedNumberIntoThousands(uptimeServer)[0], unit: '%' };
 
   return (
     <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
@@ -55,7 +65,7 @@ const HomeStats: React.FC<HomeStatsProps> = (props) => {
                 whileInView={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 0.15 * index + 0.45, duration: 0.35 }}
               >
-                <HomeStatsCard {...stat} stat={statsMap[index].stat} unit={statsMap[index].unit} />
+                <StatsCard {...stat} stat={statsMap[index].stat} unit={statsMap[index].unit} />
               </motion.div>
             );
           })}

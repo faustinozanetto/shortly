@@ -1,13 +1,13 @@
 import React from 'react';
 
-export type HomeStatsCardProps = {
+export type StatsCardProps = {
   title: string;
   stat: string | number;
   unit: string;
   description: string;
 };
 
-const HomeStatsCard: React.FC<HomeStatsCardProps> = (props) => {
+const StatsCard: React.FC<StatsCardProps> = (props) => {
   const { title, stat, unit, description } = props;
 
   return (
@@ -19,4 +19,4 @@ const HomeStatsCard: React.FC<HomeStatsCardProps> = (props) => {
   );
 };
 
-export default HomeStatsCard;
+export default StatsCard;

@@ -28,19 +28,33 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
   const handleUserLinkDelete = async () => {
-    const deleteResponse = await fetch(`/api/links/${link.id}`, {
-      method: 'DELETE',
-    });
+    try {
+      setIsDeleteLoading(true);
+      const deleteResponse = await fetch(`/api/links/${link.id}`, {
+        method: 'DELETE',
+      });
 
-    if (deleteResponse && !deleteResponse.ok) {
+      if (deleteResponse && !deleteResponse.ok) {
+        return toast({
+          variant: 'error',
+          content: 'An error occurred while deleting link!',
+        });
+      }
+
+      router.refresh();
+      setIsDeleteLoading(false);
+      setShowDeleteAlert(false);
+
+      return toast({
+        variant: 'success',
+        content: 'Link deleted successfully!',
+      });
+    } catch (error) {
       toast({
         variant: 'error',
-        content: 'An error occurred while deleting link!',
+        content: 'An error occurred!',
       });
-      return false;
     }
-
-    return true;
   };
 
   return (
@@ -55,18 +69,11 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
           <AlertDialogAction
             onClick={async (event) => {
               event.preventDefault();
-              setIsDeleteLoading(true);
-
-              const deleted = await handleUserLinkDelete();
-              if (deleted) {
-                setIsDeleteLoading(false);
-                setShowDeleteAlert(false);
-                router.refresh();
-              }
+              await handleUserLinkDelete();
             }}
             className="!bg-red-600 focus:!ring-red-600"
           >
-            {!isDeleteLoading ? (
+            {isDeleteLoading ? (
               <svg
                 className="mr-2 h-4 w-4 animate-spin stroke-neutral-900 dark:stroke-neutral-50"
                 xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Shorten Link',
+  description: 'Shorten your links with a few clicks.',
 };
 
 export default async function URLShortenerPage() {
@@ -15,7 +16,7 @@ export default async function URLShortenerPage() {
   }
 
   return (
-    <div className="mx-4 flex w-full flex-col items-center md:mx-0">
+    <div className="container my-4 md:my-14 lg:my-20">
       <URLShortener user={user} />
     </div>
   );

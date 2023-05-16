@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'User Dashboard',
+  description: 'Keep track and manage your shortened URLs in one place.',
 };
 
 export default async function DashboardPage() {
@@ -12,7 +13,7 @@ export default async function DashboardPage() {
   if (!user) return redirect('/auth/signin');
 
   return (
-    <div className="mx-auto my-6 w-full max-w-6xl px-4 sm:px-6 md:my-14 lg:my-20">
+    <div className="container my-4 md:my-14 lg:my-20">
       <UserDashboard user={user} />
     </div>
   );

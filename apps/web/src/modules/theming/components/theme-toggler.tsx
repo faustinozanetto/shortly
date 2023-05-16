@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { useThemeContext } from '../hooks/use-theme';
+import { useTheme } from 'next-themes';
 import IconButton from '@modules/ui/components/icon-button/icon-button';
 
 const ThemeToggler: React.FC = () => {
-  const { theme, toggle } = useThemeContext();
+  const { theme, setTheme } = useTheme();
 
   const renderLightModeIcon = (
     <svg
@@ -51,7 +51,12 @@ const ThemeToggler: React.FC = () => {
     return renderDarkModeIcon;
   };
 
-  return <IconButton aria-label="Toggle Theme" variant="ghost" onClick={() => toggle()} icon={themeIcon()} />;
+  const handleThemeChange = () => {
+    if (theme === 'dark') setTheme('light');
+    else setTheme('dark');
+  };
+
+  return <IconButton aria-label="Toggle Theme" variant="ghost" onClick={handleThemeChange} icon={themeIcon()} />;
 };
 
 export default ThemeToggler;

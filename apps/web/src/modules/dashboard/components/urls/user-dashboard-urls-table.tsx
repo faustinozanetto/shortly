@@ -19,7 +19,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Session } from 'next-auth';
 import React, { useMemo, useState } from 'react';
 
 type UserDashboardURLsTableProps = {

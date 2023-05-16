@@ -8,6 +8,7 @@ module.exports = {
     appDir: true,
     serverActions: true,
   },
+  images: { domains: ['cdn.discordapp.com'] },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.plugins = [...config.plugins, new PrismaPlugin()];

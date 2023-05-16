@@ -1,9 +1,10 @@
 'use client';
-import Button from '@modules/ui/components/button/button';
+import Button, { buttonVariants } from '@modules/ui/components/button/button';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { cn } from '@modules/ui/lib/ui.lib';
 
 const HomeHero: React.FC = () => {
   return (
@@ -47,15 +48,11 @@ const HomeHero: React.FC = () => {
               whileInView={{ opacity: 1, translateX: 0 }}
               transition={{ delay: 0.25, duration: 0.35 }}
             >
-              <Link href="/shorten">
-                <Button aria-label="Goto Shortener" className="h-12 w-full" role="link">
-                  Get Started Now
-                </Button>
+              <Link href="/shorten" className={cn(buttonVariants({}))}>
+                Get Started Now
               </Link>
-              <Link href="/auth/signin">
-                <Button variant="outline" aria-label="Sign In For Free" className="h-12 w-full" role="link">
-                  Sign In for Free
-                </Button>
+              <Link href="/auth/signin" className={cn(buttonVariants({ variant: 'outline' }), 'h-12')}>
+                Sign In for Free
               </Link>
             </motion.div>
           </div>

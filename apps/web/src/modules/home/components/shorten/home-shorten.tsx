@@ -2,8 +2,15 @@
 import React from 'react';
 import HomeShortenForm from '@modules/home/components/shorten/home-shorten-form';
 import { motion } from 'framer-motion';
+import { Session } from 'next-auth';
 
-const HomeShorten: React.FC = () => {
+type HomeShortenProps = {
+  user: Session['user'] | null;
+};
+
+const HomeShorten: React.FC<HomeShortenProps> = (props) => {
+  const { user } = props;
+
   return (
     <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
       <div className="relative mx-auto my-8 max-w-[85rem] px-4 sm:px-6 md:my-16 lg:my-20 lg:px-8">
@@ -41,7 +48,7 @@ const HomeShorten: React.FC = () => {
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ delay: 0.25, duration: 0.35 }}
           >
-            <HomeShortenForm />
+            <HomeShortenForm user={user} />
           </motion.div>
         </div>
       </div>

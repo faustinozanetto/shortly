@@ -6,11 +6,11 @@ import { Session } from 'next-auth';
 import React from 'react';
 
 type UserDashboardStatsProps = {
-  session: Session;
+  user: Session['user'];
 };
 
 const UserDashboardStats = async (props: UserDashboardStatsProps) => {
-  const { session } = props;
+  const { user } = props;
 
   const getUserStats = async (userId: string): Promise<UserDashboardStatsData> => {
     const totalLinks = await getUserTotalLinks({ userId });
@@ -23,7 +23,7 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
     };
   };
 
-  const userStats = await getUserStats(session.user.id);
+  const userStats = await getUserStats(user.id);
 
   const statsMap: Record<number, { stat: number; unit: string }> = {};
   statsMap[0] = {

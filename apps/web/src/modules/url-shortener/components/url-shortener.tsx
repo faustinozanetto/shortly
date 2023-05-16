@@ -1,8 +1,15 @@
 import React from 'react';
 
 import URLShortenerForm from './url-shortener-form';
+import { getCurrentUser } from '@modules/auth/lib/auth.lib';
+import { Session } from 'next-auth';
 
-const URLShortener: React.FC = () => {
+type URLShortenerProps = {
+  user: Session['user'];
+};
+
+const URLShortener: React.FC<URLShortenerProps> = (props) => {
+  const { user } = props;
   return (
     <div className="mx-auto my-6 max-w-[85rem] rounded-lg bg-neutral-100 p-4 px-4 shadow-lg dark:bg-neutral-800 sm:px-6 md:my-14 md:max-w-2xl md:p-6 lg:my-20">
       <div className="flex flex-col gap-4">
@@ -12,7 +19,7 @@ const URLShortener: React.FC = () => {
         <p className="max-w-md text-center text-neutral-800 dark:text-neutral-100 md:text-lg">
           Enter your desired URL to shorten and include a custom alias to identify the link if you want!
         </p>
-        <URLShortenerForm />
+        <URLShortenerForm user={user} />
       </div>
     </div>
   );

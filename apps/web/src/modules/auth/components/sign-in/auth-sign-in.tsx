@@ -1,5 +1,6 @@
 'use client';
 import { AuthSignInOption } from '@modules/auth/types/auth.types';
+import { useToast } from '@modules/toasts/hooks/use-toast';
 import Button from '@modules/ui/components/button/button';
 
 import { BuiltInProviderType } from 'next-auth/providers';
@@ -51,8 +52,10 @@ export const AUTH_SIGN_IN_OPTIONS: AuthSignInOption[] = [
 ];
 
 const AuthSignIn: React.FC = () => {
+  const { toast } = useToast();
+
   const handleAuthSignIn = async (provider: BuiltInProviderType) => {
-    await signIn(provider, { redirect: true, callbackUrl: '/' });
+    const signInResult = await signIn(provider, { redirect: false, callbackUrl: '/dashboard' });
   };
 
   return (

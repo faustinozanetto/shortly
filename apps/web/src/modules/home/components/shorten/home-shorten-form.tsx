@@ -9,13 +9,18 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
-import { useSession } from 'next-auth/react';
+
 import { z } from 'zod';
+import { Session } from 'next-auth';
 
 type HomeShortenLinkFormData = z.infer<typeof urlValidationSchema>;
 
-const HomeShortenForm: React.FC = () => {
-  const { data: session } = useSession();
+type HomeShortenFormProps = {
+  user: Session['user'] | null;
+};
+
+const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
+  const { user } = props;
   const { toast } = useToast();
   const { copyToClipboard } = useCopyToClipboard();
   const { generateShortenedURL } = useURLShortener();
@@ -29,7 +34,7 @@ const HomeShortenForm: React.FC = () => {
     try {
       const { url } = data;
       let shortenedURL: string;
-      if (session) shortenedURL = await generateShortenedURL({ url, userId: session.user.id });
+      if (user) shortenedURL = await generateShortenedURL({ url, userId: user.id });
       else shortenedURL = await generateShortenedURL({ url });
 
       copyToClipboard(shortenedURL);

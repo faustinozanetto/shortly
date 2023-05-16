@@ -5,12 +5,10 @@ export const metadata: Metadata = {
   title: 'Sign In',
 };
 
-const AuthSignInPage = () => {
+export default function AuthSignInPage() {
   return (
     <div className="mx-4 flex w-full flex-col items-center md:mx-0">
       <AuthSignIn />
     </div>
   );
-};
-
-export default AuthSignInPage;
+}

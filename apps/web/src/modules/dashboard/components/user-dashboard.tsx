@@ -5,19 +5,19 @@ import { Session } from 'next-auth';
 import UserDashboardURLs from './urls/user-dashboard-urls';
 
 type UserDashboardProps = {
-  session: Session;
+  user: Session['user'];
 };
 
 const UserDashboard: React.FC<UserDashboardProps> = (props) => {
-  const { session } = props;
+  const { user } = props;
 
   return (
     <div className="flex flex-col gap-2 md:gap-4">
-      <UserDashboardGreeting session={session} />
+      <UserDashboardGreeting user={user} />
       {/* @ts-expect-error Server Component */}
-      <UserDashboardStats session={session} />
+      <UserDashboardStats user={user} />
       {/* @ts-expect-error Server Component */}
-      <UserDashboardURLs session={session} />
+      <UserDashboardURLs user={user} />
     </div>
   );
 };

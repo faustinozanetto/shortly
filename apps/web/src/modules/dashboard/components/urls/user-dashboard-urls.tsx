@@ -4,13 +4,13 @@ import React from 'react';
 import UserDashboardURLsTable from './user-dashboard-urls-table';
 
 type UserDashboardURLsProps = {
-  session: Session;
+  user: Session['user'];
 };
 
 const UserDashboardURLs = async (props: UserDashboardURLsProps) => {
-  const { session } = props;
+  const { user } = props;
 
-  const links = await getUserLinks({ userId: session.user.id });
+  const links = await getUserLinks({ userId: user.id });
 
   return (
     <div className="rounded-lg bg-neutral-100 p-4 shadow-lg dark:bg-neutral-800 md:p-6">

@@ -77,7 +77,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" className={sourceSansPro.variable} suppressHydrationWarning>
-      <body className="bg-neutral-50 font-sans antialiased dark:bg-neutral-900">
+      <body className="bg-neutral-50 font-sans antialiased dark:bg-neutral-900" suppressHydrationWarning>
         <AuthContext session={session}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ToastProvider>

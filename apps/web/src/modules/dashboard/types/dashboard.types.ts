@@ -5,4 +5,5 @@ export type UserDashboardPayload = {
 export type UserDashboardStatsData = {
   totalLinks: number;
   totalClicks: number;
+  cplRate: number;
 };

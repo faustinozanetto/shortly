@@ -15,10 +15,11 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
   const getUserStats = async (userId: string): Promise<UserDashboardStatsData> => {
     const totalLinks = await getUserTotalLinks({ userId });
     const totalClicks = await getUserTotalLinkClicks({ userId });
-
+    const cplRate = (totalClicks / totalLinks) * 100;
     return {
       totalLinks,
       totalClicks,
+      cplRate,
     };
   };
 
@@ -32,6 +33,10 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
   statsMap[1] = {
     stat: getFormattedNumberIntoThousands(userStats.totalClicks)[0],
     unit: getFormattedNumberIntoThousands(userStats.totalClicks)[1],
+  };
+  statsMap[2] = {
+    stat: userStats.cplRate,
+    unit: '%',
   };
 
   return (
@@ -56,6 +61,12 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
           description="Sum of all clicks"
           stat={statsMap[1].stat}
           unit={statsMap[1].unit}
+        />
+        <StatsCard
+          title="CPL Rate"
+          description="Click-Per-Link Rate"
+          stat={statsMap[2].stat.toFixed(2)}
+          unit={statsMap[2].unit}
         />
       </div>
     </div>

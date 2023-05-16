@@ -11,6 +11,7 @@ const NavbarUserDetails = async () => {
   return (
     <Link href="/dashboard">
       <IconButton
+        aria-label="User Dashboard"
         icon={
           <svg
             className="h-5 w-5 stroke-black dark:stroke-white"

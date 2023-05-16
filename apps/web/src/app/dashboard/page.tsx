@@ -13,7 +13,7 @@ const DashboardPage = async () => {
   if (!session) return redirect('/');
 
   return (
-    <div className="mx-auto my-6 w-full max-w-4xl px-4 sm:px-6 md:my-14 lg:my-20">
+    <div className="mx-auto my-6 w-full max-w-6xl px-4 sm:px-6 md:my-14 lg:my-20">
       <UserDashboard session={session} />
     </div>
   );

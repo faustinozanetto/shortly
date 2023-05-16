@@ -1,12 +1,64 @@
 'use client';
+import Button from '@modules/ui/components/button/button';
 import Table from '@modules/ui/components/table/table';
+import TableBody from '@modules/ui/components/table/table-body';
+import TableCell from '@modules/ui/components/table/table-cell';
+import TableHead from '@modules/ui/components/table/table-head';
+import TableHeader from '@modules/ui/components/table/table-header';
+import TableRow from '@modules/ui/components/table/table-row';
 import { Link } from '@prisma/client';
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import {
+  Column,
+  ColumnDef,
+  SortingState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
 import { Session } from 'next-auth';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 type UserDashboardURLsTableProps = {
   links: Link[];
+};
+
+type SortableColumnProps = {
+  column: Column<Link>;
+  title: string;
+};
+
+const SortableColumn: React.FC<SortableColumnProps> = (props) => {
+  const { column, title } = props;
+
+  return (
+    <Button
+      size="sm"
+      icon={
+        <svg
+          className="h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="17" y1="3" x2="17" y2="21" />
+          <path d="M10 18l-3 3l-3 -3" />
+          <line x1="7" y1="21" x2="7" y2="3" />
+          <path d="M20 6l-3 -3l-3 3" />
+        </svg>
+      }
+      variant="ghost"
+      onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+    >
+      {title}
+    </Button>
+  );
 };
 
 const UserDashboardURLsTable = (props: UserDashboardURLsTableProps) => {
@@ -23,43 +75,104 @@ const UserDashboardURLsTable = (props: UserDashboardURLsTableProps) => {
       accessorKey: 'url',
       cell: ({ row }) => <div className="capitalize">{row.getValue('url')}</div>,
     },
+    {
+      header: 'Alias',
+      accessorKey: 'alias',
+      cell: ({ row }) => <div className="font-bold">{row.getValue('alias')}</div>,
+    },
+    {
+      accessorKey: 'clicks',
+      header: ({ column }) => {
+        return <SortableColumn column={column} title="Clicks" />;
+      },
+      cell: ({ row }) => <div className="capitalize">{row.getValue('clicks')}</div>,
+    },
+    {
+      accessorKey: 'createdAt',
+      header: ({ column }) => {
+        return <SortableColumn column={column} title="Created At" />;
+      },
+      cell: ({ row }) => <div className="capitalize">{new Date(row.getValue('createdAt')).toDateString()}</div>,
+    },
   ];
 
-  const table = useReactTable({ data: links, columns, getCoreRowModel: getCoreRowModel() });
+  const [sorting, setSorting] = useState<SortingState>([]);
+
+  const table = useReactTable({
+    data: links,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
+    initialState: {
+      pagination: {
+        pageIndex: 0,
+        pageSize: 5,
+      },
+    },
+  });
 
   return (
-    <Table>
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => {
-              return (
-                <th key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              );
-            })}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows?.length ? (
-          table.getRowModel().rows.map((row) => (
-            <tr key={row.id} data-state={row.getIsSelected() && 'selected'}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-              ))}
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan={columns.length} className="h-24 text-center">
-              No results.
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </Table>
+    <>
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className="text-neutral-900 dark:text-neutral-50">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+
+      <div className="flex w-full items-center justify-end gap-2 pt-2 md:pt-4">
+        <Button
+          className="ml-auto w-full md:w-auto"
+          variant="outline"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          className="w-full md:w-auto"
+          variant="outline"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </>
   );
 };
 

@@ -22,7 +22,9 @@ const UserDashboardURLs = async (props: UserDashboardURLsProps) => {
         and organize your URLs with ease.
       </p>
 
-      <UserDashboardURLsTable links={links} />
+      <div className="mt-2 md:mt-4">
+        <UserDashboardURLsTable links={links} />
+      </div>
     </div>
   );
 };

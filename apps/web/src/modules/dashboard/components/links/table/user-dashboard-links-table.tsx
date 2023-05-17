@@ -87,6 +87,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
             href={completeURL}
             className="hover:text-primary-400 dark:hover:text-primary-500 font-bold"
             target="_blank"
+            prefetch={false}
           >
             {row.getValue('alias')}
           </Link>

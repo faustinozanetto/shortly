@@ -1,20 +1,20 @@
 import '../styles/global.css';
 
 import React from 'react';
-import { Source_Sans_Pro } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import ToastsContainer from '@modules/toasts/components/toasts-container';
 import { ToastProvider } from '@modules/toasts/context/toasts-context';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
+import { Analytics } from '@vercel/analytics/react';
 
 import { siteConfig } from '@config/config';
 import { getSession } from '@modules/auth/lib/auth.lib';
 import AuthContext from '@modules/auth/context/auth-context';
 
-const sourceSansPro = Source_Sans_Pro({
+const sourceSansPro = Inter({
   variable: '--font-sans',
-  weight: ['400', '600', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
 });
@@ -82,6 +82,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ToastProvider>
               {children}
+              <Analytics />
               <ToastsContainer />
             </ToastProvider>
           </ThemeProvider>

@@ -34,6 +34,7 @@ export const retrieveShortenedURL = async (payload: RetrieveShortenedURLPayload)
 
 export const incrementShortenedURLClicks = async (payload: IncrementShortenedURLClicks) => {
   await prisma.link.update({ where: { alias: payload.alias }, data: { clicks: { increment: 1 } } });
+  console.log('LINK CLICK INCREMENT');
 };
 
 export const getTotalLinksShortened = async () => {

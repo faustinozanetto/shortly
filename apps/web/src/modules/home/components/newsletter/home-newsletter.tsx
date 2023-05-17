@@ -36,7 +36,7 @@ const HomeNewsletter: React.FC = () => {
           marketing. Join our newsletter for the latest trends, best practices, and optimization strategies.
         </p>
 
-        <div className="mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg bg-neutral-100 p-4 shadow-lg dark:bg-neutral-800">
+        <div className="mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg bg-neutral-100 p-4 shadow-lg dark:bg-neutral-800 md:p-6">
           <NewsletterForm onSubmitted={handleNewsletterSubmit} />
         </div>
       </div>

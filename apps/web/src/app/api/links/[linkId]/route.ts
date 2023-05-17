@@ -52,7 +52,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
       },
     });
 
-    return new NextResponse(null, { status: 200 });
+    return NextResponse.json({ message: 'Link edited successfully!' }, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 422 });
@@ -81,7 +81,7 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
       where: { id: params.linkId },
     });
 
-    return new NextResponse(null, { status: 204 });
+    return NextResponse.json({ message: 'Link deleted successfully!' }, { status: 204 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 422 });

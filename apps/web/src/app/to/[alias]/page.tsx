@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { incrementShortenedURLClicks, retrieveShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
+import { getOriginalUrlFromAlias, incrementShortenedURLClicks } from '@modules/url-shortener/lib/url-shortener-db';
 
 export const metadata: Metadata = {
   title: 'URL Page | Shortly',
@@ -16,10 +16,10 @@ export default async function UrlHashPage(props: UrlHashPageProps) {
   const { params } = props;
   const { alias } = params;
 
-  const storedUrl = await retrieveShortenedURL({ alias });
-  if (!storedUrl) return redirect('/');
+  const url = await getOriginalUrlFromAlias({ alias });
+  if (!url) return redirect('/');
 
   await incrementShortenedURLClicks({ alias });
 
-  return redirect(storedUrl.url);
+  return redirect(url);
 }

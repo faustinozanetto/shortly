@@ -61,6 +61,7 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
         content: 'Link edited successfully!',
       });
     } catch (err) {
+      setIsEditingLoading(false);
       toast({
         variant: 'error',
         content: 'An error occurred!',

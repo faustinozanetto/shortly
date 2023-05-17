@@ -44,6 +44,7 @@ const URLShortenerForm: React.FC<URLShortenerFormProps> = (props) => {
       toast({ variant: 'success', content: 'Shortened URL Copied to Clipboard!' }, 6000);
       setIsShortenLoading(false);
     } catch (error) {
+      setIsShortenLoading(false);
       toast({ variant: 'error', content: error.message });
     }
   };
@@ -90,7 +91,8 @@ const URLShortenerForm: React.FC<URLShortenerFormProps> = (props) => {
       />
       <Button
         type="submit"
-        className="h-10"
+        className="mt-2"
+        size="xl"
         disabled={isShortenLoading}
         icon={isShortenLoading ? <LoadingIcon /> : null}
       >

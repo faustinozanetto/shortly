@@ -19,9 +19,8 @@ const HomeNewsletter: React.FC = () => {
       });
 
       const data: { message: string } = await response.json();
-      console.log({ data });
     } catch (error) {
-      console.log({ error });
+
     }
   };
 

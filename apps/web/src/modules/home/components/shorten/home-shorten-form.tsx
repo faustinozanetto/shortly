@@ -43,6 +43,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
       toast({ variant: 'success', content: 'Shortened URL Copied to Clipboard!' }, 6000);
       setIsShortenLoading(false);
     } catch (error) {
+      setIsShortenLoading(false);
       toast({ variant: 'error', content: error.message });
     }
   };

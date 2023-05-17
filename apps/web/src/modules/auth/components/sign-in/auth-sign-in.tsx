@@ -5,7 +5,6 @@ import Button from '@modules/ui/components/button/button';
 
 import { BuiltInProviderType } from 'next-auth/providers';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import React from 'react';
 
 export const AUTH_SIGN_IN_OPTIONS: AuthSignInOption[] = [
@@ -82,6 +81,7 @@ const AuthSignIn: React.FC = () => {
                 aria-label={`Sign In With ${option.label}`}
                 onClick={async () => await handleAuthSignIn(option.provider)}
                 icon={option.icon}
+                size="xl"
               >
                 Sign In With {option.label}
               </Button>

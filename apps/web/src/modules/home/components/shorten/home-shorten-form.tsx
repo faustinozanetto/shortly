@@ -70,7 +70,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
       />
       <Button
         type="submit"
-        className={clsx(formState.errors.url ? 'md:mt-2' : 'md:mt-6')}
+        className={clsx(formState.errors.url ? 'md:mt-2' : 'md:mt-[26px]')}
         disabled={isShortenLoading}
         icon={isShortenLoading ? <LoadingIcon /> : null}
       >

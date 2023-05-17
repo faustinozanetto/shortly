@@ -36,8 +36,7 @@ const HomeHero: React.FC = () => {
               transition={{ delay: 0.25, duration: 0.35 }}
             >
               Make your links shorter, smarter, and shareable in a breeze!. Customize, track, and optimize your links
-              effortlessly. Boost your brand and engage your audience with shortened links that leave a lasting
-              impression.
+              effortlessly. Boost your brand and engage your audience with shortened links.
             </motion.p>
 
             {/* CTA Buttos */}

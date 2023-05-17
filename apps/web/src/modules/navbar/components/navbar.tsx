@@ -1,5 +1,4 @@
 import React from 'react';
-import NavbarLogo from './navbar-logo';
 import { NAVBAR_LINKS } from '../lib/navbar.lib';
 import NavbarLink from './navbar-link';
 import ThemeToggler from '@modules/theming/components/theme-toggler';
@@ -9,6 +8,7 @@ import Link from 'next/link';
 import { authOptions } from '@modules/auth/lib/auth.lib';
 import { getServerSession } from 'next-auth';
 import NavbarAuthSignIn from './auth/navbar-auth-signin';
+import NavbarLogo from './navbar-logo';
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);

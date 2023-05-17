@@ -4,12 +4,13 @@ const useCopyToClipboard = () => {
   const [copiedText, setCopiedText] = useState<string>('');
 
   const copyToClipboard = async (text: string) => {
-    if (!navigator.clipboard) {
-      throw new Error('Copy to clipboard is not supported!');
+    if (typeof ClipboardItem && navigator.clipboard.write) {
+      const blob = new Blob([text], { type: 'text/plain' });
+      const res = new ClipboardItem({ [blob.type]: blob });
+      navigator.clipboard.write([res]);
+    } else {
+      navigator.clipboard.writeText(text);
     }
-
-    await navigator.clipboard.writeText(text);
-    setCopiedText(text);
   };
 
   useEffect(() => {

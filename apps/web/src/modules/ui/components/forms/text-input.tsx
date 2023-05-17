@@ -3,6 +3,9 @@ import React, { InputHTMLAttributes, useEffect, useState } from 'react';
 import { InputWrapper, InputWrapperProps } from './input-wrapper';
 
 type TextInputProps = Omit<InputWrapperProps, 'onInputReseted'> & {
+  /** Optional: Additional input classnames */
+  className?: string;
+  /** Value of the input */
   value: InputHTMLAttributes<HTMLInputElement>['value'];
   /** Name of the input */
   name: string;
@@ -24,7 +27,7 @@ type TextInputProps = Omit<InputWrapperProps, 'onInputReseted'> & {
    * @returns void.
    */
   onValueChanged: (value: string) => void;
-  className?: string;
+  children?: React.ReactNode;
 };
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
@@ -43,6 +46,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     type = 'text',
     inputMode = 'text',
     className,
+    children,
     onBlur,
     onValueChanged,
   } = props;
@@ -85,6 +89,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         onChange={handleInputChange}
         onBlur={onBlur}
       />
+      {children}
     </InputWrapper>
   );
 });

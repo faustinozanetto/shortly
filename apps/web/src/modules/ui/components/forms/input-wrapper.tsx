@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { InputWrapperContent } from './input-wrapper-content';
-
 export type InputWrapperProps = {
   /** Id of the input */
   id: string;
@@ -29,9 +27,16 @@ export const InputWrapper = React.forwardRef<HTMLDivElement, InputWrapperProps>(
           {label}
         </label>
       ) : null}
-      <InputWrapperContent error={error} errorMessage={errorMessage} help={help} helpMessage={helpMessage}>
-        {children}
-      </InputWrapperContent>
+      {/* Input Wrapper Child Content */}
+      <div className="relative flex w-full text-start">{children}</div>
+      {/* Help Message */}
+      {help ? <p className="mt-0.5 text-sm text-neutral-800 dark:text-neutral-300">{helpMessage}</p> : null}
+      {/* Error Message */}
+      {error ? (
+        <p className="text-sm font-semibold text-red-600 dark:text-red-400" role="alert">
+          {errorMessage}
+        </p>
+      ) : null}
     </div>
   );
 });

@@ -14,7 +14,9 @@ const UserLinkManagementEdit: React.FC<UserLinkManagementEditProps> = (props) =>
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader>
         <DialogTitle>Edit Link</DialogTitle>
-        <DialogDescription>Make changes to your ink here. Click save when you&apos;re done.</DialogDescription>
+        <DialogDescription>
+          Make changes to your link here. Click &apos;Save Changes&apos; when you&apos;re done.
+        </DialogDescription>
       </DialogHeader>
       <UserLinkManagementEditForm link={link} />
     </DialogContent>

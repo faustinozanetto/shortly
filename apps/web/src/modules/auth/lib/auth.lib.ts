@@ -38,22 +38,12 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: 'database',
+    strategy: 'jwt',
   },
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/auth/signin',
-  },
-  callbacks: {
-    async session({ session, user }) {
-      return {
-        ...session,
-        user: {
-          ...user,
-        },
-      };
-    },
   },
 
   cookies: {

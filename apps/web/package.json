@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint --fix",
     "db:migrate:deploy": "prisma migrate deploy",
-    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:dev": "dotenv -e .env.development prisma migrate dev",
     "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
     "db:generate": "prisma generate"

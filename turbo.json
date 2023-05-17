@@ -1,20 +1,5 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "globalEnv": [
-    "NODE_ENV",
-    "NEXT_PUBLIC_URL",
-    "AUTH_GITHUB_ID",
-    "AUTH_GITHUB_SECRET",
-    "NEXTAUTH_SECRET",
-    "AUTH_DISCORD_ID",
-    "AUTH_DISCORD_SECRET",
-    "MAILCHIMP_REGION_ID",
-    "MAILCHIMP_AUDIENCE_ID",
-    "MAILCHIMP_API_KEY",
-    "UPSTASH_REDIS_REST_URL",
-    "UPSTASH_REDIS_REST_TOKEN"
-  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],

@@ -43,7 +43,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = (props) => {
             />
           )}
         />
-        <Button type="submit" className={clsx(formState.errors?.email?.message !== undefined ? 'mb-5' : '0')}>
+        <Button type="submit" className={clsx(formState.errors?.email?.message !== undefined ? 'mb-8' : '0')}>
           Subscribe
         </Button>
       </div>

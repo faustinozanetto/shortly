@@ -3,32 +3,13 @@ import { useEffect, useState } from 'react';
 const useCopyToClipboard = () => {
   const [copiedText, setCopiedText] = useState<string>('');
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = async (text: string) => {
     if (!navigator.clipboard) {
-      fallbackCopyToClipboard(text);
-      return;
+      throw new Error('Copy to clipboard is not supported!');
     }
 
-    navigator.clipboard
-      .writeText(text)
-      .then(() => setCopiedText(text))
-      .catch((error) => console.error('Failed to copy text to clipboard:', error));
-  };
-
-  const fallbackCopyToClipboard = (text: string) => {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    try {
-      document.execCommand('copy');
-      setCopiedText(text);
-    } catch (error) {
-      console.error('Failed to copy text to clipboard:', error);
-    }
-
-    document.body.removeChild(textArea);
+    await navigator.clipboard.writeText(text);
+    setCopiedText(text);
   };
 
   useEffect(() => {
@@ -41,7 +22,7 @@ const useCopyToClipboard = () => {
     };
   }, []);
 
-  return { copyToClipboard };
+  return { copyToClipboard, copiedText };
 };
 
 export default useCopyToClipboard;

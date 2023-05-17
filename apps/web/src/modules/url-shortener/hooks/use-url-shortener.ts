@@ -8,7 +8,7 @@ const useURLShortener = () => {
     const alias = payload.alias || generateRandomURLAlias(payload.url);
     const body = JSON.stringify({ url: payload.url, userId: payload.userId, alias });
 
-    const response = await fetch('/api/shorten-link', {
+    const response = await fetch('/api/links', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

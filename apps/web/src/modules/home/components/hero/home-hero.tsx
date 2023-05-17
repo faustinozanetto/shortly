@@ -1,9 +1,10 @@
 'use client';
-import Button from '@modules/ui/components/button/button';
+import Button, { buttonVariants } from '@modules/ui/components/button/button';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { cn } from '@modules/ui/lib/ui.lib';
 
 const HomeHero: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ const HomeHero: React.FC = () => {
           {/* Left */}
           <div>
             <motion.h1
-              className="leading-2 block text-4xl font-bold text-neutral-800 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl"
+              className="leading-2 block text-4xl font-extrabold text-neutral-800 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl"
               initial={{ opacity: 0, translateY: -20 }}
               viewport={{ once: true }}
               whileInView={{ opacity: 1, translateY: 0 }}
@@ -35,27 +36,22 @@ const HomeHero: React.FC = () => {
               transition={{ delay: 0.25, duration: 0.35 }}
             >
               Make your links shorter, smarter, and shareable in a breeze!. Customize, track, and optimize your links
-              effortlessly. Boost your brand and engage your audience with shortened links that leave a lasting
-              impression.
+              effortlessly. Boost your brand and engage your audience with shortened links.
             </motion.p>
 
             {/* CTA Buttos */}
             <motion.div
-              className="mt-6 grid w-full gap-4 md:inline-flex"
+              className="mt-4 grid w-full gap-4 md:inline-flex"
               initial={{ opacity: 0, translateX: -20 }}
               viewport={{ once: true }}
               whileInView={{ opacity: 1, translateX: 0 }}
               transition={{ delay: 0.25, duration: 0.35 }}
             >
-              <Link href="/shorten">
-                <Button aria-label="Goto Shortener" className="h-12 w-full" role="link">
-                  Get Started Now
-                </Button>
+              <Link href="/shorten" className={cn(buttonVariants({ size: 'xl' }))}>
+                Get Started Now
               </Link>
-              <Link href="/auth/signin">
-                <Button variant="outline" aria-label="Sign In For Free" className="h-12 w-full" role="link">
-                  Sign In for Free
-                </Button>
+              <Link href="/auth/signin" className={cn(buttonVariants({ variant: 'outline', size: 'xl' }))}>
+                Sign In for Free
               </Link>
             </motion.div>
           </div>

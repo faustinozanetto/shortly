@@ -1,40 +1,50 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 import { TextInput } from '@modules/ui/components/forms/text-input';
-import { completeUrlValidationSchema } from '@modules/url-shortener/lib/url-shortener.lib';
+
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import useCopyToClipboard from '@modules/common/hooks/use-copy-to-clipboard';
-import { useSession } from 'next-auth/react';
 import { z } from 'zod';
+import { Session } from 'next-auth';
+import { linkValidationSchema } from '@modules/validations/lib/validations-link';
+import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 
-type GenerateLinkFormData = z.infer<typeof completeUrlValidationSchema>;
+type GenerateLinkFormData = z.infer<typeof linkValidationSchema>;
 
-const URLShortenerForm: React.FC = () => {
-  const { data: session } = useSession();
+type URLShortenerFormProps = {
+  user: Session['user'] | null;
+};
+
+const URLShortenerForm: React.FC<URLShortenerFormProps> = (props) => {
+  const { user } = props;
+
   const { toast } = useToast();
   const { copyToClipboard } = useCopyToClipboard();
   const { generateShortenedURL } = useURLShortener();
 
+  const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
+
   const { handleSubmit, control } = useForm<GenerateLinkFormData>({
-    resolver: zodResolver(completeUrlValidationSchema),
+    resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
 
   const handleFormSubmit = async (data: GenerateLinkFormData) => {
-    if (!session) return;
+    if (!user) return;
 
     try {
-      const { url, alias } = data;
-      const userId = session.user.id;
-      const shortenedURL = await generateShortenedURL({ url, userId, alias });
+      setIsShortenLoading(true);
+      const shortenedURL = await generateShortenedURL({ ...data, userId: user.id });
       copyToClipboard(shortenedURL);
       toast({ variant: 'success', content: 'Shortened URL Copied to Clipboard!' }, 6000);
+      setIsShortenLoading(false);
     } catch (error) {
+      setIsShortenLoading(false);
       toast({ variant: 'error', content: error.message });
     }
   };
@@ -69,7 +79,7 @@ const URLShortenerForm: React.FC = () => {
             value={value}
             name={name}
             label="Alias"
-            placeholder="funnytwod"
+            placeholder="funny-alias325"
             error={fieldState.invalid}
             errorMessage={fieldState.error?.message!}
             help
@@ -79,7 +89,13 @@ const URLShortenerForm: React.FC = () => {
           />
         )}
       />
-      <Button type="submit" className="h-10">
+      <Button
+        type="submit"
+        className="mt-2"
+        size="xl"
+        disabled={isShortenLoading}
+        icon={isShortenLoading ? <LoadingIcon /> : null}
+      >
         Shorten
       </Button>
     </form>

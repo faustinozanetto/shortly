@@ -1,36 +1,43 @@
 import '../styles/global.css';
 
 import React from 'react';
-import { Source_Sans_Pro } from 'next/font/google';
-import Navbar from '@modules/navbar/components/navbar';
-import Footer from '@modules/footer/components/footer';
+import { Inter } from 'next/font/google';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import ToastsContainer from '@modules/toasts/components/toasts-container';
 import { ToastProvider } from '@modules/toasts/context/toasts-context';
 import { Metadata } from 'next';
-
 import { headers } from 'next/headers';
-import AuthContext from '@modules/auth/context/auth-context';
-import { getSession } from '@modules/auth/lib/auth.lib';
+import { Analytics } from '@vercel/analytics/react';
 
-const sourceSansPro = Source_Sans_Pro({
+import { siteConfig } from '@config/config';
+import { getSession } from '@modules/auth/lib/auth.lib';
+import AuthContext from '@modules/auth/context/auth-context';
+
+const sourceSansPro = Inter({
   variable: '--font-sans',
-  weight: ['400', '600', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Home | Shortly',
-    template: '%s | Shortly',
+    default: `Home | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description: 'Shortly is a free and easy to use URL Shortener webesite.',
+  description: siteConfig.description,
+  keywords: ['Shortly', 'URL Shortener', 'Links'],
+  authors: [
+    {
+      name: 'Faustino Zanetto',
+      url: 'https://www.faustinozanetto.com',
+    },
+  ],
+  creator: 'Faustino Zanetto',
   openGraph: {
-    title: 'Shortly',
-    description: 'Shortly is a free and easy to use URL Shortener webesite.',
-    url: 'https://shortlyto.vercel.app/',
-    siteName: 'Shortly',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
         url: 'https://shortlyto.vercel.app/assets/banner.webp',
@@ -40,6 +47,13 @@ export const metadata: Metadata = {
     ],
     locale: 'en-US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@faustinozanetto',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/assets/banner.webp`],
   },
   robots: {
     index: true,
@@ -52,12 +66,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  twitter: {
-    title: 'Shortly',
-    card: 'summary_large_image',
-  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
   icons: {
-    shortcut: '/favicon.ico',
+    shortcut: 'favicons/favicon.ico',
   },
 };
 
@@ -65,16 +76,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await getSession(headers().get('cookie') ?? '');
 
   return (
-    <html lang="en" className={sourceSansPro.variable}>
-      <body className="antialiased transition-colors duration-300" suppressHydrationWarning={true}>
+    <html lang="en" className={sourceSansPro.variable} suppressHydrationWarning>
+      <body className="bg-neutral-50 font-sans antialiased dark:bg-neutral-900" suppressHydrationWarning>
         <AuthContext session={session}>
-          <ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ToastProvider>
-              <main className="flex min-h-screen flex-col bg-neutral-50 dark:bg-neutral-900">
-                <Navbar />
-                <div className="flex flex-grow">{children}</div>
-                <Footer />
-              </main>
+              {children}
+              <Analytics />
               <ToastsContainer />
             </ToastProvider>
           </ThemeProvider>

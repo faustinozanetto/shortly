@@ -1,5 +1,6 @@
 'use client';
 import { AuthSignInOption } from '@modules/auth/types/auth.types';
+import { useToast } from '@modules/toasts/hooks/use-toast';
 import Button from '@modules/ui/components/button/button';
 
 import { BuiltInProviderType } from 'next-auth/providers';
@@ -51,12 +52,18 @@ export const AUTH_SIGN_IN_OPTIONS: AuthSignInOption[] = [
 ];
 
 const AuthSignIn: React.FC = () => {
+  const { toast } = useToast();
+
   const handleAuthSignIn = async (provider: BuiltInProviderType) => {
-    await signIn(provider, { redirect: true, callbackUrl: '/' });
+    try {
+      await signIn(provider, { redirect: false, callbackUrl: '/dashboard' });
+    } catch (error) {
+      toast({ variant: 'error', content: 'An error occurred while signing in!' });
+    }
   };
 
   return (
-    <div className="my-6 w-full rounded-lg bg-neutral-100 p-4 px-4 shadow-lg dark:bg-neutral-800 sm:px-6 md:my-14 md:max-w-lg md:p-6 lg:my-20">
+    <div className="rounded-lg bg-neutral-100 p-4 px-4 shadow-lg dark:bg-neutral-800 md:p-6">
       <div className="flex flex-col items-center gap-4">
         <h1 className="text-center text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl">
           Sign In
@@ -74,6 +81,7 @@ const AuthSignIn: React.FC = () => {
                 aria-label={`Sign In With ${option.label}`}
                 onClick={async () => await handleAuthSignIn(option.provider)}
                 icon={option.icon}
+                size="xl"
               >
                 Sign In With {option.label}
               </Button>

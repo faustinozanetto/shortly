@@ -1,10 +1,11 @@
-import { NextAuthOptions, Session } from 'next-auth';
+import { NextAuthOptions, Session, getServerSession } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import DiscordProvider from 'next-auth/providers/discord';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
-import { AuthSignInOption } from '../types/auth.types';
 import { prisma } from '@modules/database/lib/database.lib';
+
+const COOKIES_PREFIX = 'shortly';
 
 export const getSession = async (cookie: string): Promise<Session> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/auth/session`, {
@@ -18,7 +19,12 @@ export const getSession = async (cookie: string): Promise<Session> => {
   return Object.keys(session).length > 0 ? session : null;
 };
 
-const COOKIES_PREFIX = 'shortly';
+export const getCurrentUser = async (): Promise<Session['user'] | null> => {
+  const user = await getServerSession(authOptions);
+  if (!user) return null;
+
+  return user.user;
+};
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -36,7 +42,9 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
-
+  pages: {
+    signIn: '/auth/signin',
+  },
   callbacks: {
     async session({ session, user }) {
       return {

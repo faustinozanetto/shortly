@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         <div className="mb-4 grid grid-cols-2 gap-6 sm:grid-cols-3 md:mb-8 lg:grid-cols-4">
           {/* Logo Column */}
           <div className="col-span-full lg:col-span-1">
-            <NavbarLogo className="text-neutral-900 dark:text-neutral-50" />
+            <NavbarLogo />
           </div>
           {FOOTER_CATEGORIES.map((category) => {
             return <FooterCategory key={category.title} {...category} />;

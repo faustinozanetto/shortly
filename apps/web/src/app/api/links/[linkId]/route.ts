@@ -1,5 +1,6 @@
 import { authOptions } from '@modules/auth/lib/auth.lib';
 import { prisma } from '@modules/database/lib/database.lib';
+import { updateLinkInRedisStore } from '@modules/url-shortener/lib/url-shortener-db';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import { Link } from '@prisma/client';
 import { User, getServerSession } from 'next-auth';
@@ -43,7 +44,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
     const json = await req.json();
     const body = linkValidationSchema.parse(json);
 
-    await prisma.link.update({
+    const updatedLink = await prisma.link.update({
       where: {
         id: params.linkId,
       },
@@ -51,6 +52,8 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
         ...body,
       },
     });
+
+    await updateLinkInRedisStore({ link: updatedLink });
 
     return NextResponse.json({ message: 'Link edited successfully!' }, { status: 200 });
   } catch (error) {

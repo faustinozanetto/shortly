@@ -44,16 +44,16 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
-          <div className="flex flex-col space-y-1 leading-none">
+          <div className="flex flex-col space-y-1.5 leading-none">
             {user.name && <p className="font-semibold">{user.name}</p>}
-            {user.email && <p className="w-[200px] truncate text-sm">{user.email}</p>}
+            {user.email && <p className="w-[200px] truncate">{user.email}</p>}
           </div>
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard">
             <svg
-              className="mr-2 h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
+              className="mr-2 h-5 w-5 stroke-neutral-900 dark:stroke-neutral-50"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
@@ -78,7 +78,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           }}
         >
           <svg
-            className="mr-2 h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
+            className="mr-2 h-5 w-5 stroke-neutral-900 dark:stroke-neutral-50"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

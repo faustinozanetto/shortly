@@ -6,7 +6,7 @@ import { GenerateShortenedURLPayload } from '../types/url-shortener.types';
 const useURLShortener = () => {
   const generateShortenedURL = async (payload: GenerateShortenedURLPayload) => {
     const alias = payload.alias || generateRandomURLAlias(payload.url);
-    const body = JSON.stringify({ url: payload.url, userId: payload.userId, alias });
+    const body = JSON.stringify({ url: payload.url, userEmail: payload.userEmail, alias });
 
     const response = await fetch('/api/links', {
       method: 'POST',

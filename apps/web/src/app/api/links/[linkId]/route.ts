@@ -17,7 +17,9 @@ const getUserHasAccessToResource = async (user: User, linkId: Link['id']) => {
   const count = await prisma.link.count({
     where: {
       id: linkId,
-      userId: user.id,
+      user: {
+        email: user.email,
+      },
     },
   });
 

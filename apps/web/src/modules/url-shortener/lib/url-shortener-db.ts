@@ -16,7 +16,7 @@ export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
     data: {
       url: payload.url,
       alias: payload.alias,
-      userId: payload.userId,
+      user: payload.userEmail ? { connect: { email: payload.userEmail } } : undefined,
     },
   });
 

@@ -1,5 +1,5 @@
 export type UserDashboardPayload = {
-  userId: string;
+  userEmail: string;
 };
 
 export type UserDashboardStatsData = {
@@ -9,6 +9,6 @@ export type UserDashboardStatsData = {
 };
 
 export type DeleteUserLinkPayload = {
-  userId: string;
+  userEmail: string;
   linkId: string;
 };

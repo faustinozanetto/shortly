@@ -39,7 +39,8 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
 
     try {
       setIsShortenLoading(true);
-      const shortenedURL = await generateShortenedURL({ ...data, userId: user.id });
+
+      const shortenedURL = await generateShortenedURL({ ...data, userEmail: user?.email! });
       setShortenedURL(shortenedURL);
       setIsShortenLoading(false);
     } catch (error) {

@@ -12,9 +12,9 @@ type UserDashboardStatsProps = {
 const UserDashboardStats = async (props: UserDashboardStatsProps) => {
   const { user } = props;
 
-  const getUserStats = async (userId: string): Promise<UserDashboardStatsData> => {
-    const totalLinks = await getUserTotalLinks({ userId });
-    const totalClicks = await getUserTotalLinkClicks({ userId });
+  const getUserStats = async (userEmail: string): Promise<UserDashboardStatsData> => {
+    const totalLinks = await getUserTotalLinks({ userEmail });
+    const totalClicks = await getUserTotalLinkClicks({ userEmail });
     const cplRate = (totalClicks / totalLinks) * 100;
     return {
       totalLinks,

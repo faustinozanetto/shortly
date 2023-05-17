@@ -18,7 +18,7 @@ const shortenLinkRateLimit = new Ratelimit({
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const { url, alias, userId } = body;
+  const { url, alias, userEmail } = body;
 
   try {
     const ip = request.headers.get('x-forwarded-for') ?? '';
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       alias,
     });
 
-    const storedURL = await storeShortenedURL({ url, alias, userId });
+    const storedURL = await storeShortenedURL({ url, alias, userEmail });
     return NextResponse.json(
       { storedURL, message: `Shorted URL for alias '${alias}' created successfully!` },
       { status: 200 }

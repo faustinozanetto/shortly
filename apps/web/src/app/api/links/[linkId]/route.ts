@@ -84,11 +84,12 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
       where: { id: params.linkId },
     });
 
-    return NextResponse.json({ message: 'Link deleted successfully!' }, { status: 204 });
+    return NextResponse.json({ message: 'Link deleted successfully!' }, { status: 202 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 422 });
     }
+
     return new NextResponse('An error occurred!', { status: 500 });
   }
 }

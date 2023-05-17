@@ -14,7 +14,7 @@ const Navbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="sticky left-0 right-0 top-0 z-20 h-20 w-full border-b-2 border-b-neutral-300 bg-neutral-200/70 p-4 backdrop-blur-lg dark:border-b-neutral-800 dark:bg-neutral-800/70">
+    <div className="bg-background-200/70 dark:bg-background-800/70 sticky left-0 right-0 top-0 z-20 h-20 w-full border-b-2 border-b-neutral-300 p-4 backdrop-blur-lg dark:border-b-neutral-800">
       <div className="container mx-auto flex items-center justify-center md:justify-between">
         <Link href="/">
           <NavbarLogo />

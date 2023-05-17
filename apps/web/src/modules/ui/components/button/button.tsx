@@ -18,9 +18,9 @@ export const buttonVariants = cva(
           'bg-red-400 hover:bg-red-500 focus-visible:ring-red-400 dark:bg-red-700 dark:hover:bg-red-800 text-neutral-900 dark:text-neutral-50',
       },
       size: {
-        base: 'h-10 py-2 px-4',
-        sm: 'h-9 px-3',
-        lg: 'h-11 px-8',
+        sm: 'h-8 px-3',
+        base: 'h-10 px-4',
+        lg: 'h-12 px-8',
         xl: 'h-12 px-8 md:h-14 md:px-10 md:text-base',
       },
     },

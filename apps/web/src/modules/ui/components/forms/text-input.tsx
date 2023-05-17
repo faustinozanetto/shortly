@@ -76,7 +76,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         placeholder={placeholder}
         step={step}
         className={clsx(
-          'focus:border-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400 block w-full rounded-md border-neutral-200 px-4 py-3 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200',
+          'focus:border-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400 dark:bg-background-900 block w-full rounded-md border-neutral-200 px-4 py-3 text-sm text-neutral-900 dark:border-neutral-700 dark:text-neutral-200',
           error ? 'border-2 !border-red-600 dark:!border-red-400' : '',
           icon ? 'pl-10' : '',
           className

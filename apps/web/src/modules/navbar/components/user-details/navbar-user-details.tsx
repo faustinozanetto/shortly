@@ -28,7 +28,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           </div>
         ) : (
           <svg
-            className="h-10 w-10 rounded-full bg-neutral-300 stroke-neutral-900 p-2 dark:bg-neutral-700 dark:stroke-neutral-50"
+            className="bg-background-300 dark:bg-background-700 h-10 w-10 rounded-full stroke-neutral-900 p-2 dark:stroke-neutral-50"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

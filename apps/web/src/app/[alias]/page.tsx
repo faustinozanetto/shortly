@@ -12,6 +12,10 @@ type UrlHashPageProps = {
   };
 };
 
+export async function generateMetadata({ params }): Promise<Metadata> {
+  return { title: params.alias };
+}
+
 export default async function UrlHashPage(props: UrlHashPageProps) {
   const { params } = props;
   const { alias } = params;

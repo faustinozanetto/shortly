@@ -12,12 +12,12 @@ const HomeFeatures: React.FC = () => {
   });
 
   return (
-    <section className="w-full bg-neutral-50 dark:bg-neutral-900" id="features">
+    <section className="bg-background-50 dark:bg-background-900 w-full" id="features">
       <div className="md:my-22 relative mx-auto my-14 max-w-[85rem] px-4 sm:px-6 lg:my-32 lg:px-8">
         <div className="relative z-10 grid gap-4 md:grid-cols-2 md:items-start md:gap-8 xl:gap-20">
           {/* Left */}
           <motion.div
-            className="rounded-md bg-neutral-200 p-4 shadow-lg dark:bg-neutral-800"
+            className="bg-background-200 dark:bg-background-800 rounded-md p-4 shadow-lg"
             initial={{ opacity: 0, translateY: -20 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, translateY: 0 }}

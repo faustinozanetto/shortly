@@ -1,5 +1,5 @@
 import { Link } from '@prisma/client';
-import { generateRandomURLAlias, getCompleteShortenedURL } from '../lib/url-shortener.lib';
+import { generateRandomURLAlias } from '../lib/url-shortener.lib';
 
 import { GenerateShortenedURLPayload } from '../types/url-shortener.types';
 
@@ -25,7 +25,7 @@ const useURLShortener = () => {
       throw new Error(errorMessage);
     }
 
-    return getCompleteShortenedURL(data.storedURL.alias);
+    return data.storedURL;
   };
 
   return { generateShortenedURL };

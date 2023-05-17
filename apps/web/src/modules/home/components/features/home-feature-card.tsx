@@ -15,8 +15,8 @@ const HomeFeatureCard: React.FC<HomeFeatureCardProps> = (props) => {
   return (
     <div
       className={clsx(
-        'flex items-start gap-4 rounded-md p-2 transition-all hover:bg-neutral-200 hover:dark:bg-neutral-800 md:p-4',
-        isSelected ? ' bg-neutral-200 shadow-lg dark:bg-neutral-800' : ''
+        'hover:bg-background-200 hover:dark:bg-background-800 flex items-start gap-4 rounded-md p-2 transition-all md:p-4',
+        isSelected ? ' bg-background-200 dark:bg-background-800 shadow-lg' : ''
       )}
       role="button"
       onClick={onClick}

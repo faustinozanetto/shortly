@@ -19,13 +19,11 @@ const HomeNewsletter: React.FC = () => {
       });
 
       const data: { message: string } = await response.json();
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
   return (
-    <section className="w-full bg-neutral-50 dark:bg-neutral-900" id="features">
+    <section className="bg-background-50 dark:bg-background-900 w-full" id="features">
       <div className="md:my-22 relative mx-auto my-14 max-w-[85rem] px-4 text-center sm:px-6 lg:my-32 lg:px-8">
         <h2 className="leading-2 block text-3xl font-bold text-neutral-800 dark:text-white sm:text-4xl lg:text-5xl">
           Sign up for our <span className="text-secondary-500 dark:text-secondary-600">newsletter</span>
@@ -35,7 +33,7 @@ const HomeNewsletter: React.FC = () => {
           marketing. Join our newsletter for the latest trends, best practices, and optimization strategies.
         </p>
 
-        <div className="mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg bg-neutral-100 p-4 shadow-lg dark:bg-neutral-800 md:p-6">
+        <div className="bg-background-100 dark:bg-background-800 mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg p-4 shadow-lg md:p-6">
           <NewsletterForm onSubmitted={handleNewsletterSubmit} />
         </div>
       </div>

@@ -15,7 +15,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>((props, 
       ref={ref}
       className={clsx(
         loading
-          ? 'skeleton animate-pulse cursor-default bg-neutral-300 bg-clip-padding transition-all duration-200 dark:bg-neutral-700'
+          ? 'skeleton bg-background-300 dark:bg-background-700 animate-pulse cursor-default bg-clip-padding transition-all duration-200'
           : '',
         'z-10 w-fit rounded-lg',
         className

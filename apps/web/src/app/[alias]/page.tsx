@@ -2,10 +2,6 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getOriginalUrlFromAlias, incrementShortenedURLClicks } from '@modules/url-shortener/lib/url-shortener-db';
 
-export const metadata: Metadata = {
-  title: 'URL Page | Shortly',
-};
-
 type UrlHashPageProps = {
   params: {
     alias: string;

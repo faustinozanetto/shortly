@@ -23,7 +23,7 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
     };
   };
 
-  const userStats = await getUserStats(user.id);
+  const userStats = await getUserStats(user?.email!);
 
   const statsMap: Record<number, { stat: number; unit: string }> = {};
   statsMap[0] = {

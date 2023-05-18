@@ -9,7 +9,6 @@ import {
 } from '@modules/ui/components/dropdown-menu/dropdown-menu';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Session } from 'next-auth';
-import Link from 'next/link';
 import Image from 'next/image';
 import { signOut } from 'next-auth/react';
 
@@ -50,24 +49,6 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard">
-            <svg
-              className="mr-2 h-5 w-5 stroke-neutral-900 dark:stroke-neutral-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <line x1="4" y1="19" x2="20" y2="19" />
-              <polyline points="4 15 8 9 12 11 16 6 20 10" />
-            </svg>
-            Dashboard
-          </Link>
-        </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onSelect={(event) => {

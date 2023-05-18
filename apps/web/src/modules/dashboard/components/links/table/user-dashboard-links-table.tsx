@@ -85,7 +85,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
         return (
           <Link
             href={completeURL}
-            className="hover:text-primary-400 dark:hover:text-primary-500 font-bold"
+            className="hover:text-primary-600 dark:hover:text-primary-500 font-bold"
             target="_blank"
             prefetch={false}
           >

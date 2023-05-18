@@ -8,7 +8,7 @@ type UrlHashPageProps = {
   };
 };
 
-export async function generateMetadata({ params }): Promise<Metadata> {
+export async function generateMetadata({ params }: UrlHashPageProps): Promise<Metadata> {
   return { title: params.alias };
 }
 

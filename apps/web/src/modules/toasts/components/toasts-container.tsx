@@ -8,7 +8,7 @@ const ToastsContainer: React.FC = () => {
   const { state } = useToastContext();
 
   return (
-    <div className="pointer-events-none fixed bottom-0 left-0 right-0 z-50 flex flex-col">
+    <div className="pointer-events-none fixed bottom-0 left-0 right-0 z-[999] flex flex-col">
       <ul className="mx-auto max-w-xl">
         <AnimatePresence initial={false}>
           {state.toasts &&

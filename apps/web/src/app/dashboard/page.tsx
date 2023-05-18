@@ -3,6 +3,8 @@ import UserDashboard from '@modules/dashboard/components/user-dashboard';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'User Dashboard',
   description: 'Keep track and manage your shortened URLs in one place.',

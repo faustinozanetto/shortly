@@ -17,12 +17,12 @@ import React, { useState } from 'react';
 
 type UserLinkManagementDeleteProps = {
   link: Link;
-  showDeleteAlert: boolean;
-  setShowDeleteAlert: (show: boolean) => void;
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props) => {
-  const { link, showDeleteAlert, setShowDeleteAlert } = props;
+  const { link, isOpen, onOpenChange } = props;
 
   const router = useRouter();
   const { toast } = useToast();
@@ -44,7 +44,7 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
 
       router.refresh();
       setIsDeleteLoading(false);
-      setShowDeleteAlert(false);
+      onOpenChange(false);
 
       return toast({
         variant: 'success',
@@ -59,7 +59,7 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
   };
 
   return (
-    <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
+    <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure you want to delete this Link?</AlertDialogTitle>

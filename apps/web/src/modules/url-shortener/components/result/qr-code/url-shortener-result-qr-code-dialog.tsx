@@ -13,13 +13,13 @@ import Button from '@modules/ui/components/button/button';
 import { toPng } from 'html-to-image';
 import { Options } from 'html-to-image/lib/types';
 
-type URLShortenerResultActionsQRCodeDialogProps = {
+type URLShortenerResultQRCodeDialog = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   qrResult: string | null;
 };
 
-const URLShortenerResultActionsQRCodeDialog: React.FC<URLShortenerResultActionsQRCodeDialogProps> = (props) => {
+const URLShortenerResultQRCodeDialog: React.FC<URLShortenerResultQRCodeDialog> = (props) => {
   const { isOpen, onOpenChange, qrResult } = props;
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -58,7 +58,7 @@ const URLShortenerResultActionsQRCodeDialog: React.FC<URLShortenerResultActionsQ
           />
         ) : null}
         <DialogFooter>
-          <Button className="w-full" onClick={handleQRCodeSave}>
+          <Button className="w-full" onClick={handleQRCodeSave} aria-label="Save Image">
             Save Image
           </Button>
         </DialogFooter>
@@ -67,4 +67,4 @@ const URLShortenerResultActionsQRCodeDialog: React.FC<URLShortenerResultActionsQ
   );
 };
 
-export default URLShortenerResultActionsQRCodeDialog;
+export default URLShortenerResultQRCodeDialog;

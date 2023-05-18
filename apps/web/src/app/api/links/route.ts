@@ -44,6 +44,37 @@ export async function POST(request: NextRequest) {
       alias,
     });
 
+    // Google safe browsing api validation
+    const googleSafeBrowsingAPI = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${process.env.GOOGLE_API_KEY}`;
+
+    const requestBody = {
+      client: {
+        clientId: '947669905411',
+        clientVersion: '1.0.0',
+      },
+      threatInfo: {
+        threatTypes: [
+          'MALWARE',
+          'UNWANTED_SOFTWARE',
+          'THREAT_TYPE_UNSPECIFIED',
+          'POTENTIALLY_HARMFUL_APPLICATION',
+          'SOCIAL_ENGINEERING',
+        ],
+        platformTypes: ['ANY_PLATFORM'],
+        threatEntryTypes: ['URL'],
+        threatEntries: [{ url }],
+      },
+    };
+
+    const response = await fetch(googleSafeBrowsingAPI, {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.status !== 200) {
+      return NextResponse.json({ message: 'The url to shorten might be harmful!' }, { status: 403 });
+    }
+
     const storedURL = await storeShortenedURL({ url, alias, userEmail });
     return NextResponse.json(
       { storedURL, message: `Shorted URL for alias '${alias}' created successfully!` },

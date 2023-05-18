@@ -6,6 +6,7 @@
     "name": "Faustino Zanetto",
     "email": "zanettofaustino@gmail.com"
   },
+  "license": "GPL-3.0",
   "main": "index.js",
   "devDependencies": {
     "tailwindcss": "^3.2.4",

@@ -68,14 +68,9 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
 
   const columns: ColumnDef<PrismaLink>[] = [
     {
-      header: 'ID',
-      accessorKey: 'id',
-      cell: ({ row }) => <div className="capitalize">{row.getValue('id')}</div>,
-    },
-    {
       header: 'URL',
       accessorKey: 'url',
-      cell: ({ row }) => <div className="capitalize">{row.getValue('url')}</div>,
+      cell: ({ row }) => row.getValue('url'),
     },
     {
       accessorKey: 'alias',
@@ -99,7 +94,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
       header: ({ column }) => {
         return <SortableColumn column={column} title="Clicks" />;
       },
-      cell: ({ row }) => <div className="capitalize">{row.getValue('clicks')}</div>,
+      cell: ({ row }) => row.getValue('clicks'),
     },
     {
       accessorKey: 'createdAt',
@@ -107,6 +102,17 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
         return <SortableColumn column={column} title="Created At" />;
       },
       cell: ({ row }) => <div className="capitalize">{new Date(row.getValue('createdAt')).toDateString()}</div>,
+    },
+    {
+      accessorKey: 'expiresAt',
+      header: ({ column }) => {
+        return <SortableColumn column={column} title="Expiress At" />;
+      },
+      cell: ({ row }) => (
+        <div className="capitalize">
+          {row.getValue('expiresAt') ? new Date(row.getValue('expiresAt')).toDateString() : 'None'}
+        </div>
+      ),
     },
     {
       id: 'actions',

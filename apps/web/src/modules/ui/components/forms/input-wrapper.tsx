@@ -13,19 +13,26 @@ export type InputWrapperProps = {
   help?: boolean;
   /** Optional: Help message to display */
   helpMessage?: string;
+  required: boolean;
   /** Children */
   children?: React.ReactNode;
 };
 
 export const InputWrapper = React.forwardRef<HTMLDivElement, InputWrapperProps>((props, ref) => {
-  const { id, label, error = false, errorMessage, help = false, helpMessage, children } = props;
+  const { id, label, required = true, error = false, errorMessage, help = false, helpMessage, children } = props;
 
   return (
     <div className="flex w-full flex-col items-start gap-1" ref={ref}>
       {label ? (
-        <label htmlFor={id} className="block text-sm font-semibold text-neutral-900 dark:text-neutral-50 md:text-base">
-          {label}
-        </label>
+        <div className="flex items-center space-x-2">
+          <label
+            htmlFor={id}
+            className="block text-sm font-semibold text-neutral-900 dark:text-neutral-50 md:text-base"
+          >
+            {label}
+          </label>
+          {!required ? <span className="text-sm opacity-80">(Optional)</span> : null}
+        </div>
       ) : null}
       {/* Input Wrapper Child Content */}
       <div className="relative flex w-full text-start">{children}</div>

@@ -1,3 +1,4 @@
+'use client';
 import clsx from 'clsx';
 import React, { InputHTMLAttributes, useEffect, useState } from 'react';
 import { InputWrapper, InputWrapperProps } from './input-wrapper';
@@ -47,6 +48,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     inputMode = 'text',
     className,
     children,
+    required,
     onBlur,
     onValueChanged,
   } = props;
@@ -69,7 +71,15 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
   }, [inputValue]);
 
   return (
-    <InputWrapper id={id} label={label} error={error} errorMessage={errorMessage} help={help} helpMessage={helpMessage}>
+    <InputWrapper
+      id={id}
+      label={label}
+      required={required}
+      error={error}
+      errorMessage={errorMessage}
+      help={help}
+      helpMessage={helpMessage}
+    >
       {icon ? <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">{icon}</div> : null}
       <input
         ref={ref}

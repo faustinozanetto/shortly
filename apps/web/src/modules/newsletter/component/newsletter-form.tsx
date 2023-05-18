@@ -36,6 +36,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = (props) => {
               placeholder="youremail@mail.com"
               inputMode="email"
               type="email"
+              required
               error={fieldState.invalid}
               errorMessage={fieldState.error?.message!}
               onValueChanged={onChange}

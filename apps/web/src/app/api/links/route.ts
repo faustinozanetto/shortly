@@ -18,7 +18,7 @@ const shortenLinkRateLimit = new Ratelimit({
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const { url, alias, userEmail } = body;
+  const { url, alias, userEmail, expiresAt } = body;
 
   try {
     const ip = request.headers.get('x-forwarded-for') ?? '';
@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
     linkValidationSchema.parse({
       url,
       alias,
+      expiresAt,
     });
 
     // Google safe browsing api validation
@@ -75,7 +76,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'The url to shorten might be harmful!' }, { status: 403 });
     }
 
-    const storedURL = await storeShortenedURL({ url, alias, userEmail });
+    const storedURL = await storeShortenedURL({ url, alias, expiresAt, userEmail });
     return NextResponse.json(
       { storedURL, message: `Shorted URL for alias '${alias}' created successfully!` },
       { status: 200 }

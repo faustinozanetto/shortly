@@ -1,6 +1,11 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getOriginalUrlFromAlias, incrementShortenedURLClicks } from '@modules/url-shortener/lib/url-shortener-db';
+import {
+  getLinkFromAlias,
+  getOriginalUrlFromAlias,
+  incrementShortenedURLClicks,
+} from '@modules/url-shortener/lib/url-shortener-db';
+import { getShortenedURLIsExpired } from '@modules/url-shortener/lib/url-shortener.lib';
 
 type UrlHashPageProps = {
   params: {
@@ -18,6 +23,11 @@ export default async function UrlHashPage(props: UrlHashPageProps) {
 
   const url = await getOriginalUrlFromAlias({ alias });
   if (!url) return redirect('/');
+
+  const link = await getLinkFromAlias({ alias });
+  if (getShortenedURLIsExpired(link)) {
+    return <h1>Link is Expired</h1>;
+  }
 
   await incrementShortenedURLClicks({ alias });
 

@@ -12,6 +12,7 @@ import { linkValidationSchema } from '@modules/validations/lib/validations-link'
 import { Link } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
+import { DateInput } from '@modules/ui/components/forms/date-input';
 
 type EditLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -32,6 +33,7 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
     defaultValues: {
       alias: link.alias,
       url: link.url,
+      expiresAt: link.expiresAt ?? undefined,
     },
   });
 
@@ -81,6 +83,7 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
             value={value}
             name={name}
             label="URL"
+            required
             placeholder="https://www.youtube.com/"
             error={fieldState.invalid}
             errorMessage={fieldState.error?.message!}
@@ -100,10 +103,27 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
             name={name}
             label="Alias"
             placeholder="funny-alias325"
+            required={false}
             error={fieldState.invalid}
             errorMessage={fieldState.error?.message!}
             help
             helpMessage="Establish a custom alias for your URLs"
+            onValueChanged={onChange}
+            onBlur={onBlur}
+          />
+        )}
+      />
+      <Controller
+        name="expiresAt"
+        control={control}
+        render={({ field: { name, onBlur, value, onChange }, fieldState }) => (
+          <DateInput
+            id={name}
+            value={value}
+            required={false}
+            label="Link Expire Date"
+            error={fieldState.invalid}
+            errorMessage={fieldState.error?.message!}
             onValueChanged={onChange}
             onBlur={onBlur}
           />

@@ -18,4 +18,5 @@ export const linkValidationSchema = z.object({
       message: `Alias max lenght is ${CUSTOM_ALIAS_MAX_LENGTH}`,
     })
     .optional(),
+  expiresAt: z.coerce.date().min(new Date(), { message: 'Expires date must be in the future!' }).optional(),
 });

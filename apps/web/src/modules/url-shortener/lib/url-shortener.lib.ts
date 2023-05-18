@@ -1,3 +1,4 @@
+import { Link } from '@prisma/client';
 import { nanoid } from 'nanoid';
 import qrcode from 'qrcode';
 
@@ -10,6 +11,12 @@ export const generateRandomURLAlias = (url: string): string => {
 export const getCompleteShortenedURL = (alias: string): string => {
   const BASE_PATH = process.env.NEXT_PUBLIC_URL;
   return `${BASE_PATH}/${alias}`;
+};
+
+export const getShortenedURLIsExpired = (link: Link): boolean => {
+  if (!link.expiresAt) return false;
+
+  return Date.now() >= link.expiresAt.getTime();
 };
 
 export const URL_QR_DEFAULT_OPTIONS: qrcode.QRCodeToDataURLOptions = { margin: 1.5, scale: 60, type: 'image/webp' };

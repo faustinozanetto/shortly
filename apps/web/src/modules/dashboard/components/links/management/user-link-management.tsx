@@ -70,13 +70,11 @@ const UserLinkManagement: React.FC<UserLinkManagementProps> = (props) => {
             <EditIcon className="mr-2 stroke-blue-600 dark:stroke-blue-400" size="sm" />
             Edit
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
           {/* Delete Link */}
           <DropdownMenuItem className="cursor-pointer" onSelect={() => setShowDeleteAlert(true)}>
             <DeleteIcon className="mr-2" size="sm" />
             Delete
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
           {/* QR Code */}
           <DropdownMenuItem className="cursor-pointer" onSelect={handleQRCodeGeneration}>
             <QRIcon className="mr-2" size="sm" />

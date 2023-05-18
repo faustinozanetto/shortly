@@ -13,6 +13,7 @@ import { Session } from 'next-auth';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
+import { DateInput } from '@modules/ui/components/forms/date-input';
 
 type GenerateLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -29,7 +30,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
 
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
 
-  const { handleSubmit, control } = useForm<GenerateLinkFormData>({
+  const { handleSubmit, control, formState } = useForm<GenerateLinkFormData>({
     resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
@@ -39,7 +40,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
 
     try {
       setIsShortenLoading(true);
-      const shortenedURL = await generateShortenedURL({ ...data, userEmail: user?.email! });
+      const shortenedURL = await generateShortenedURL({ ...data, userEmail: user.email! });
       setShortenedURL(shortenedURL);
       setIsShortenLoading(false);
       toast({ variant: 'success', content: 'URL shortened successfully!' });
@@ -60,6 +61,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
             id={name}
             value={value}
             name={name}
+            required
             label="URL"
             placeholder="https://www.youtube.com/"
             error={fieldState.invalid}
@@ -78,12 +80,29 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
             id={name}
             value={value}
             name={name}
+            required={false}
             label="Alias"
             placeholder="funny-alias325"
             error={fieldState.invalid}
             errorMessage={fieldState.error?.message!}
             help
             helpMessage="Establish a custom alias for your URLs"
+            onValueChanged={onChange}
+            onBlur={onBlur}
+          />
+        )}
+      />
+      <Controller
+        name="expiresAt"
+        control={control}
+        render={({ field: { name, onBlur, value, onChange }, fieldState }) => (
+          <DateInput
+            id={name}
+            value={value}
+            required={false}
+            label="Link Expire Date"
+            error={fieldState.invalid}
+            errorMessage={fieldState.error?.message!}
             onValueChanged={onChange}
             onBlur={onBlur}
           />

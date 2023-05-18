@@ -47,6 +47,8 @@ model Link {
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
 
+  expiresAt DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -6,3 +6,6 @@
     visibility: hidden;
   }
   
+.rdp {
+  @apply bg-background-50 dark:bg-background-900 rounded-lg shadow-lg;
+}

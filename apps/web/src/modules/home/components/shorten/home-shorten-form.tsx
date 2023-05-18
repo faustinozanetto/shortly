@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import clsx from 'clsx';
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 import { TextInput } from '@modules/ui/components/forms/text-input';
@@ -60,6 +59,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
             id={name}
             value={value}
             name={name}
+            required
             label="URL"
             placeholder="https://www.youtube.com/"
             error={fieldState.invalid}

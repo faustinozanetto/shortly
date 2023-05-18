@@ -8,6 +8,7 @@ import {
 import { prisma } from '@modules/database/lib/database.lib';
 import { Redis } from '@upstash/redis';
 import { Link } from '@prisma/client';
+import { cache } from 'react';
 
 const redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL!, token: process.env.UPSTASH_REDIS_REST_TOKEN! });
 
@@ -16,6 +17,7 @@ export const storeShortenedURL = async (payload: StoreShortenedURLPayload) => {
     data: {
       url: payload.url,
       alias: payload.alias,
+      expiresAt: payload.expiresAt,
       user: payload.userEmail ? { connect: { email: payload.userEmail } } : undefined,
     },
   });
@@ -32,15 +34,15 @@ export const updateLinkInRedisStore = async (payload: { link: Link }) => {
   await redis.set(link.alias, link.url);
 };
 
-export const getOriginalUrlFromAlias = async (payload: OriginalUrlFromAliasPayload) => {
+export const getOriginalUrlFromAlias = cache(async (payload: OriginalUrlFromAliasPayload) => {
   const url: string | null = await redis.get(payload.alias);
 
   if (!url) throw new Error(`Could not find URL with alias '${payload.alias}'!`);
 
   return url;
-};
+});
 
-export const getLinkFromAlias = async (payload: RetrieveShortenedURLPayload) => {
+export const getLinkFromAlias = cache(async (payload: RetrieveShortenedURLPayload) => {
   const link = await prisma.link.findFirst({
     where: {
       alias: payload.alias,
@@ -50,7 +52,7 @@ export const getLinkFromAlias = async (payload: RetrieveShortenedURLPayload) => 
   if (!link) throw new Error(`Could not find shortened URL with alias '${payload.alias}'!`);
 
   return link;
-};
+});
 
 export const incrementShortenedURLClicks = async (payload: IncrementShortenedURLClicks) => {
   await prisma.link.update({ where: { alias: payload.alias }, data: { clicks: { increment: 1 } } });

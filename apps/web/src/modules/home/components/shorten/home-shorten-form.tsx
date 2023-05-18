@@ -41,6 +41,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
       const shortenedURL = await generateShortenedURL({ ...data });
       setShortenedURL(shortenedURL);
       setIsShortenLoading(false);
+      toast({ variant: 'success', content: 'URL shortened successfully!' });
     } catch (error) {
       setIsShortenLoading(false);
       toast({ variant: 'error', content: error.message });

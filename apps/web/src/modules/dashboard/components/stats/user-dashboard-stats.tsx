@@ -49,7 +49,7 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
       </p>
 
       {/* Stats Grid */}
-      <div className="mt-2 grid grid-cols-2 gap-4 md:mt-4 md:grid-cols-4 md:items-center md:gap-8">
+      <div className="mt-2 grid grid-cols-2 gap-4 md:mt-4 md:grid-cols-3 md:items-center md:gap-8">
         <StatsCard
           title="Total Links"
           description="Total links created"

@@ -25,7 +25,7 @@ const URLShortenerResultURL: React.FC = () => {
             href={completeURL}
             prefetch={false}
             target="_blank"
-            className="hover:text-primary-700 truncate font-medium hover:cursor-pointer dark:hover:text-purple-400"
+            className="hover:text-primary-700 max-w-[265px] truncate font-medium hover:cursor-pointer dark:hover:text-purple-400 md:max-w-none"
           >
             {completeURL}
           </Link>

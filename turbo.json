@@ -14,7 +14,8 @@
     "MAILCHIMP_AUDIENCE_ID",
     "MAILCHIMP_API_KEY",
     "UPSTASH_REDIS_REST_URL",
-    "UPSTASH_REDIS_REST_TOKEN"
+    "UPSTASH_REDIS_REST_TOKEN",
+    "GOOGLE_API_KEY"
   ],
   "pipeline": {
     "build": {

@@ -46,7 +46,7 @@ const HomeFeatures: React.FC = () => {
               These are just <span className="text-secondary-500 dark:text-secondary-600">some</span> of our features
             </motion.h2>
             {/* Features Nav */}
-            <nav className="mt-4 grid gap-2 md:mt-6 md:gap-4" role="tablist">
+            <nav className="mt-4 grid gap-2 md:mt-6 md:gap-4" role="tablist" aria-orientation="vertical">
               {HOME_FEATURES.map((feature, index) => {
                 return (
                   <motion.div
@@ -55,6 +55,7 @@ const HomeFeatures: React.FC = () => {
                     viewport={{ once: true }}
                     whileInView={{ opacity: 1, translateY: 0 }}
                     transition={{ delay: 0.15 * index + 0.35, duration: 0.35 }}
+                    role="tab"
                   >
                     <HomeFeatureCard
                       data={feature}

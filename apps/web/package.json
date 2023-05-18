@@ -43,7 +43,6 @@
     "@prisma/client": "4.14.0"
   },
   "devDependencies": {
-    "@prisma/nextjs-monorepo-workaround-plugin": "^4.14.0",
     "@shortly/tailwind-config": "*",
     "@shortly/typescript-config": "*",
     "tailwindcss-animate": "1.0.5",

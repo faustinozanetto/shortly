@@ -459,9 +459,9 @@
   integrity sha512-APqFddPVHYmWNKqc+5J5SqrLFfOghKOLZxobmguDUacxOwdEutLsbXPVhNnpFDmuQWQFbXmrTTPoRrrF6B1MWA==
 
 "@prisma/nextjs-monorepo-workaround-plugin@^4.14.0":
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/@prisma/nextjs-monorepo-workaround-plugin/-/nextjs-monorepo-workaround-plugin-4.14.0.tgz#00f7930c083629027ad8dfde67be616674a81ef3"
-  integrity sha512-mN3sr13ea8nGi2w1PqcDXb3p0MVbNQj2kgvrrzg3tdMG30UJoz8ov+AQbCh5IBv+mzpi4sP5McXy4+Zf30eU+A==
+  version "4.14.1"
+  resolved "https://registry.yarnpkg.com/@prisma/nextjs-monorepo-workaround-plugin/-/nextjs-monorepo-workaround-plugin-4.14.1.tgz#78e1c6edffff20335b6021f7dbcdb114f8889d18"
+  integrity sha512-WbK3DajKklEdeWh4Ds4ltTTBs0s+0yqXMtGVR1jFB2ma8vtrqKdRJtEi0xVNc8Sb6V+kS2fJ5sPSNP43LeMRRQ==
 
 "@radix-ui/primitive@1.0.0":
   version "1.0.0"

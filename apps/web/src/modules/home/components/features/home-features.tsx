@@ -46,7 +46,7 @@ const HomeFeatures: React.FC = () => {
               These are just <span className="text-secondary-500 dark:text-secondary-600">some</span> of our features
             </motion.h2>
             {/* Features Nav */}
-            <nav className="mt-4 grid gap-2 md:mt-6 md:gap-4" aria-label="Tabs" role="tablist">
+            <nav className="mt-4 grid gap-2 md:mt-6 md:gap-4" role="tablist">
               {HOME_FEATURES.map((feature, index) => {
                 return (
                   <motion.div

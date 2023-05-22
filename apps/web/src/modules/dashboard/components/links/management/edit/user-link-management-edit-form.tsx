@@ -10,7 +10,6 @@ import { useToast } from '@modules/toasts/hooks/use-toast';
 import { z } from 'zod';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import { Link } from '@prisma/client';
-import { useRouter } from 'next/navigation';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { DateInput } from '@modules/ui/components/forms/date-input';
 
@@ -18,11 +17,11 @@ type EditLinkFormData = z.infer<typeof linkValidationSchema>;
 
 type UserLinkManagementEditFormProps = {
   link: Link;
+  onEdited: (updatedLink: Link) => void;
 };
 
 const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (props) => {
-  const { link } = props;
-  const router = useRouter();
+  const { link, onEdited } = props;
   const { toast } = useToast();
 
   const [isEditingLoading, setIsEditingLoading] = useState<boolean>(false);
@@ -40,7 +39,7 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
   const handleFormSubmit = async (data: EditLinkFormData) => {
     try {
       setIsEditingLoading(true);
-      const editResponse = await fetch(`/api/links/${link.id}`, {
+      const editResponse = await fetch(`/api/links/${link.alias}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -49,16 +48,19 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
       });
 
       if (editResponse && !editResponse.ok) {
+        setIsEditingLoading(false);
         return toast({
           variant: 'error',
           content: 'An error occurred while editing link!',
         });
       }
 
-      router.refresh();
+      const editData = await editResponse.json();
+
+      onEdited(editData.updatedLink);
       setIsEditingLoading(false);
 
-      return toast({
+      toast({
         variant: 'success',
         content: 'Link edited successfully!',
       });

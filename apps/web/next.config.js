@@ -6,5 +6,5 @@ module.exports = {
     appDir: true,
     serverActions: true,
   },
-  images: { domains: ['cdn.discordapp.com', 'avatars.githubusercontent.com'] },
+  images: { domains: ['cdn.discordapp.com', 'faisalman.github.io', 'avatars.githubusercontent.com'] },
 };

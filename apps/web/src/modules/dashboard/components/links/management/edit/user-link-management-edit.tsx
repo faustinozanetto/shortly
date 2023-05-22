@@ -13,10 +13,11 @@ type UserLinkManagementEditProps = {
   link: Link;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
+  onEdited: (updatedLink: Link) => void;
 };
 
 const UserLinkManagementEdit: React.FC<UserLinkManagementEditProps> = (props) => {
-  const { link, isOpen, onOpenChange } = props;
+  const { link, isOpen, onOpenChange, onEdited } = props;
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -27,7 +28,7 @@ const UserLinkManagementEdit: React.FC<UserLinkManagementEditProps> = (props) =>
             Make changes to your link here. Click &apos;Save Changes&apos; when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <UserLinkManagementEditForm link={link} />
+        <UserLinkManagementEditForm link={link} onEdited={onEdited} />
       </DialogContent>
     </Dialog>
   );

@@ -9,14 +9,14 @@ import { z } from 'zod';
 
 const routeContextSchema = z.object({
   params: z.object({
-    linkId: z.string(),
+    alias: z.string(),
   }),
 });
 
-const getUserHasAccessToResource = async (user: User, linkId: Link['id']) => {
+const getUserHasAccessToResource = async (user: User, alias: Link['id']) => {
   const count = await prisma.link.count({
     where: {
-      id: linkId,
+      alias,
       user: {
         email: user.email,
       },
@@ -37,7 +37,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
     const user = session.user;
     // User does not have access to this link
-    const hasAccess = await getUserHasAccessToResource(user, params.linkId);
+    const hasAccess = await getUserHasAccessToResource(user, params.alias);
     if (!hasAccess) {
       return new NextResponse(null, { status: 403 });
     }
@@ -48,7 +48,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
     const updatedLink = await prisma.link.update({
       where: {
-        id: params.linkId,
+        alias: params.alias,
       },
       data: {
         ...body,
@@ -57,7 +57,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
     await updateLinkInRedisStore({ link: updatedLink });
 
-    return NextResponse.json({ message: 'Link edited successfully!' }, { status: 200 });
+    return NextResponse.json({ message: 'Link edited successfully!', updatedLink }, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 422 });
@@ -77,13 +77,13 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
 
     const user = session.user;
     // User does not have access to this link
-    const hasAccess = await getUserHasAccessToResource(user, params.linkId);
+    const hasAccess = await getUserHasAccessToResource(user, params.alias);
     if (!hasAccess) {
       return new NextResponse(null, { status: 403 });
     }
 
     await prisma.link.delete({
-      where: { id: params.linkId },
+      where: { alias: params.alias },
     });
 
     return NextResponse.json({ message: 'Link deleted successfully!' }, { status: 202 });

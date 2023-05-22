@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@modules/ui/components/dropdown-menu/dropdown-menu';
-import { Link } from '@prisma/client';
+import { Link as PrismaLink } from '@prisma/client';
 import React, { useState } from 'react';
 import UserLinkManagementDelete from './delete/user-link-management-delete';
 import UserLinkManagementEdit from './edit/user-link-management-edit';
@@ -18,13 +18,17 @@ import QRIcon from '@modules/ui/components/icons/qr-icon';
 import UserLinkManagementQRCode from './qr-code/user-link-management-qr-code';
 import useQRCode from '@modules/common/hooks/use-qr-code';
 import { URL_QR_DEFAULT_OPTIONS, getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type UserLinkManagementProps = {
-  link: Link;
+  link: PrismaLink;
 };
 
 const UserLinkManagement: React.FC<UserLinkManagementProps> = (props) => {
   const { link } = props;
+
+  const router = useRouter();
 
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
   const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
@@ -65,6 +69,10 @@ const UserLinkManagement: React.FC<UserLinkManagementProps> = (props) => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Link Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {/* Link Details Page */}
+          <DropdownMenuItem className="cursor-pointer" onSelect={() => setShowEditDialog(true)}>
+            <Link href={`/dashboard/${link.alias}`}>Details</Link>
+          </DropdownMenuItem>
           {/* Edit Link Trigger */}
           <DropdownMenuItem className="cursor-pointer" onSelect={() => setShowEditDialog(true)}>
             <EditIcon className="mr-2 stroke-blue-600 dark:stroke-blue-400" size="sm" />
@@ -86,7 +94,12 @@ const UserLinkManagement: React.FC<UserLinkManagementProps> = (props) => {
       {/* QR Code Dialog */}
       <UserLinkManagementQRCode isOpen={showQRDialog} onOpenChange={setShowQRDialog} encodedQR={encodedQR} />
       {/* Edit Dialog  */}
-      <UserLinkManagementEdit isOpen={showEditDialog} onOpenChange={setShowEditDialog} link={link} />
+      <UserLinkManagementEdit
+        isOpen={showEditDialog}
+        onOpenChange={setShowEditDialog}
+        link={link}
+        onEdited={() => router.refresh()}
+      />
       {/* Delete Alert Dialog */}
       <UserLinkManagementDelete isOpen={showDeleteAlert} onOpenChange={setShowDeleteAlert} link={link} />
     </>

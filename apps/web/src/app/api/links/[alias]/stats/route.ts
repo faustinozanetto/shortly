@@ -1,0 +1,28 @@
+import { ANALYTICS_BASE_URL } from '@modules/analytics/lib/analytics.lib';
+import { AnalyticsDataType } from '@modules/analytics/types/analytics.types';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(req: NextRequest) {
+  try {
+    const alias = req.nextUrl.pathname.split('/')[3];
+    const stat = req.nextUrl.searchParams.get('stat') as AnalyticsDataType;
+
+    const url = new URL(`${ANALYTICS_BASE_URL}pipes/link_${stat}.json`);
+
+    url.searchParams.append('alias', alias);
+    console.log(url);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.TINYBIRD_API_TOKEN}`,
+      },
+    });
+
+    const { data } = await response.json();
+
+    return NextResponse.json({ data }, { status: 200 });
+  } catch (error) {
+    return new NextResponse('An error occurred!', { status: 500 });
+  }
+}

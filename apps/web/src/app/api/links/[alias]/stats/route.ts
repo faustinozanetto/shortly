@@ -1,5 +1,5 @@
 import { ANALYTICS_BASE_URL } from '@modules/analytics/lib/analytics.lib';
-import { AnalyticsDataType } from '@modules/analytics/types/analytics.types';
+import { AnalyticsDataType, LinkStatsResponse } from '@modules/analytics/types/analytics.types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
@@ -10,7 +10,6 @@ export async function GET(req: NextRequest) {
     const url = new URL(`${ANALYTICS_BASE_URL}pipes/link_${stat}.json`);
 
     url.searchParams.append('alias', alias);
-    console.log(url);
 
     const response = await fetch(url, {
       method: 'GET',
@@ -19,7 +18,7 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    const { data } = await response.json();
+    const { data }: { data: LinkStatsResponse<unknown> } = await response.json();
 
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {

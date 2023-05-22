@@ -1,12 +1,12 @@
 import React from 'react';
 
-type UserLinkDetailsStatsEntryProps = {
+type UserLinkStatsEntryProps = {
   label: string;
   count: number;
   renderIcon: () => JSX.Element;
 };
 
-const UserLinkDetailsStatsEntry: React.FC<UserLinkDetailsStatsEntryProps> = (props) => {
+const UserLinkStatsEntry: React.FC<UserLinkStatsEntryProps> = (props) => {
   const { label, count, renderIcon } = props;
 
   const capitalized = label.charAt(0).toUpperCase() + label.slice(1);
@@ -22,4 +22,4 @@ const UserLinkDetailsStatsEntry: React.FC<UserLinkDetailsStatsEntryProps> = (pro
   );
 };
 
-export default UserLinkDetailsStatsEntry;
+export default UserLinkStatsEntry;

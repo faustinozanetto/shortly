@@ -19,10 +19,11 @@ type UserLinkManagementDeleteProps = {
   link: Link;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
+  onDeleted: () => void;
 };
 
 const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props) => {
-  const { link, isOpen, onOpenChange } = props;
+  const { link, isOpen, onOpenChange, onDeleted } = props;
 
   const router = useRouter();
   const { toast } = useToast();
@@ -31,18 +32,20 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
   const handleUserLinkDelete = async () => {
     try {
       setIsDeleteLoading(true);
-      const deleteResponse = await fetch(`/api/links/${link.id}`, {
+      const deleteResponse = await fetch(`/api/links/${link.alias}`, {
         method: 'DELETE',
       });
 
       if (deleteResponse && !deleteResponse.ok) {
+        setIsDeleteLoading(false);
+        onOpenChange(false);
         return toast({
           variant: 'error',
           content: 'An error occurred while deleting link!',
         });
       }
 
-      router.refresh();
+      onDeleted();
       setIsDeleteLoading(false);
       onOpenChange(false);
 
@@ -51,6 +54,8 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
         content: 'Link deleted successfully!',
       });
     } catch (error) {
+      setIsDeleteLoading(false);
+      onOpenChange(false);
       toast({
         variant: 'error',
         content: 'An error occurred!',

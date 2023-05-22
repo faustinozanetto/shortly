@@ -1,5 +1,5 @@
 'use client';
-import React, { InputHTMLAttributes, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputWrapper, InputWrapperProps } from './input-wrapper';
 import { Popover, PopoverContent, PopoverTrigger } from '../popover/popover';
 import { cn } from '@modules/ui/lib/ui.lib';
@@ -35,7 +35,6 @@ export const DateInput: React.FC<DateInputProps> = (props, ref) => {
     help = false,
     helpMessage,
     icon,
-    className,
     onBlur,
     required,
     onValueChanged,
@@ -85,7 +84,7 @@ export const DateInput: React.FC<DateInputProps> = (props, ref) => {
               <line x1="11" y1="15" x2="12" y2="15" />
               <line x1="12" y1="15" x2="12" y2="18" />
             </svg>
-            {inputValue ? format(inputValue, 'PPP') : <span>Pick a date</span>}
+            {inputValue ? format(new Date(inputValue), 'PPP') : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">

@@ -5,10 +5,6 @@ export const FOOTER_CATEGORIES: FooterCategoryProps[] = [
     title: 'Company',
     links: [
       {
-        label: 'About Us',
-        href: '/about',
-      },
-      {
         label: 'Terms',
         href: '/terms',
       },

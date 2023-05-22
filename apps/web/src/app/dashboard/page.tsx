@@ -1,5 +1,5 @@
 import { getCurrentUser } from '@modules/auth/lib/auth.lib';
-import UserDashboard from '@modules/dashboard/components/user-dashboard';
+import UserDashboard from '@modules/dashboard/components/general/user-dashboard';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 

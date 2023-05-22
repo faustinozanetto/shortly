@@ -4,7 +4,12 @@ import { useTheme } from 'next-themes';
 import IconButton from '@modules/ui/components/icon-button/icon-button';
 import Button from '@modules/ui/components/button/button';
 
-const ThemeToggler: React.FC = () => {
+type ThemeTogglerProps = {
+  children?: React.ReactNode;
+};
+
+const ThemeToggler: React.FC<ThemeTogglerProps> = (props) => {
+  const { children } = props;
   const { theme, setTheme } = useTheme();
 
   const handleThemeChange = () => {
@@ -13,10 +18,10 @@ const ThemeToggler: React.FC = () => {
   };
 
   return (
-    <Button aria-label="Toggle Theme" className="h-10 w-10 px-2" variant="ghost" onClick={handleThemeChange}>
+    <button aria-label="Toggle Theme" className="flex w-fit gap-2" onClick={handleThemeChange}>
       {/* Sun Icon */}
       <svg
-        className="h-6 w-6 rotate-0 scale-100 stroke-neutral-900 transition-all dark:scale-0"
+        className="block h-6 w-6 stroke-neutral-900 dark:hidden"
         xmlns="http://www.w3.org/2000/svg"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -32,7 +37,7 @@ const ThemeToggler: React.FC = () => {
       </svg>
       {/* Moon Icon */}
       <svg
-        className="absolute h-6 w-6 scale-0 stroke-neutral-50 transition-all dark:scale-100"
+        className="hidden h-6 w-6 stroke-neutral-50 dark:block"
         xmlns="http://www.w3.org/2000/svg"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -45,7 +50,8 @@ const ThemeToggler: React.FC = () => {
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
       </svg>
-    </Button>
+      {children}
+    </button>
   );
 };
 

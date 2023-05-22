@@ -4,38 +4,34 @@ import UserLinkDetailsStatsEntry from './common/user-link-details-stats-entry';
 import UserLinkDetailsStatsCategory from './common/user-link-details-stats-category';
 import { LinkStatsResponse } from '@modules/analytics/types/analytics.types';
 
-type UserLinkDetailsStatsDevicesProps = {
+type UserLinkDetailsStatsCountriesProps = {
   alias: string;
 };
 
-const UserLinkDetailsStatsDevices = (props: UserLinkDetailsStatsDevicesProps) => {
+const UserLinkDetailsStatsCountries = (props: UserLinkDetailsStatsCountriesProps) => {
   const { alias } = props;
 
   return (
     <>
       {/* @ts-expect-error Server Component */}
       <UserLinkDetailsStatsCategory
-        category="Devices"
+        category="Countries"
         alias={alias}
-        dataType="device"
+        dataType="country"
         renderContent={(data: LinkStatsResponse<string>) => {
           return (
             <>
-              {data.map((device) => {
+              {data.map((country) => {
                 return (
                   <UserLinkDetailsStatsEntry
-                    key={device.entry}
-                    label={device.entry}
-                    count={device.count}
+                    key={country.entry}
+                    label={country.entry}
+                    count={country.count}
                     renderIcon={() => {
                       return (
                         <Image
-                          src={
-                            device.entry === 'Desktop'
-                              ? `https://faisalman.github.io/ua-parser-js/images/types/default.png`
-                              : `https://faisalman.github.io/ua-parser-js/images/types/${device.entry.toLowerCase()}.png`
-                          }
-                          alt={device.entry}
+                          src={`https://flag.vercel.app/m/${country.entry}.svg`}
+                          alt={country.entry}
                           width={20}
                           height={20}
                         />
@@ -52,4 +48,4 @@ const UserLinkDetailsStatsDevices = (props: UserLinkDetailsStatsDevicesProps) =>
   );
 };
 
-export default UserLinkDetailsStatsDevices;
+export default UserLinkDetailsStatsCountries;

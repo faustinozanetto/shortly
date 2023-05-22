@@ -33,7 +33,7 @@ export const trackLinkUserDetails = async (req: NextRequest, domain: string) => 
   });
 
   return await Promise.allSettled([
-    fetch('https://api.us-east.tinybird.co/v0/events?name=click_events&wait=true', {
+    fetch(`${ANALYTICS_BASE_URL}events?name=click_events&wait=true`, {
       method: 'POST',
       body,
       headers: {

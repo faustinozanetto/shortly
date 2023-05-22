@@ -19,9 +19,9 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import React, { useState } from 'react';
-import UserLinkManagement from '../management/user-link-management';
 import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 import Link from 'next/link';
+import UserDashboardLinksTableEntry from './user-dashboard-links-table-entry';
 
 type UserDashboardURLsTableProps = {
   links: PrismaLink[];
@@ -118,9 +118,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
       id: 'actions',
       enableHiding: false,
       cell: ({ row }) => {
-        const link = row.original;
-
-        return <UserLinkManagement link={link} />;
+        return <UserDashboardLinksTableEntry link={row.original} />;
       },
     },
   ];

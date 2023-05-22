@@ -23,6 +23,7 @@ const UserLinkDetailsManagement = (props: UserLinkDetailsProps) => {
 
   const handleOnEdited = async (data: Link) => {
     router.replace(`/dashboard/${data.alias}`);
+    setShowEditDialog(false);
   };
 
   return (

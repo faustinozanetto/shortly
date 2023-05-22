@@ -2,6 +2,7 @@ import React from 'react';
 import UserLinkDetailsStatsBrowsers from './user-link-details-stats-browsers';
 import UserLinkDetailsStatsOS from './user-link-details-stats-os';
 import UserLinkDetailsStatsDevices from './user-link-details-stats-devices';
+import UserLinkDetailsStatsCountries from './user-link-details-stats-countries';
 
 type UserLinkDetailsStatsProps = {
   alias: string;
@@ -15,6 +16,7 @@ const UserLinkDetailsStats = async (props: UserLinkDetailsStatsProps) => {
       <UserLinkDetailsStatsBrowsers alias={alias} />
       <UserLinkDetailsStatsOS alias={alias} />
       <UserLinkDetailsStatsDevices alias={alias} />
+      <UserLinkDetailsStatsCountries alias={alias} />
     </div>
   );
 };

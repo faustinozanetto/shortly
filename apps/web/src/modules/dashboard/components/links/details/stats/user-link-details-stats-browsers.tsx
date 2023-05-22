@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import UserLinkDetailsStatsEntry from './user-link-details-stats-entry';
-import UserLinkDetailsStatsCategory from './user-link-details-stats-category';
+import UserLinkDetailsStatsEntry from './common/user-link-details-stats-entry';
+import UserLinkDetailsStatsCategory from './common/user-link-details-stats-category';
 import { LinkStatsResponse } from '@modules/analytics/types/analytics.types';
 
 type UserLinkDetailsStatsBrowsersProps = {

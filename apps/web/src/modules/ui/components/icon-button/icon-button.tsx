@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@modules/ui/lib/ui.lib';
 import { VariantProps, cva } from 'class-variance-authority';
 
-const iconButtonVariants = cva(
+export const iconButtonVariants = cva(
   'inline-flex appearance-none items-center justify-center relative whitespace-nowrap rounded-lg font-semibold focus-visible:outline-none focus-visible:ring-4 transition-colors text-neutral-900 dark:text-neutral-50 disabled:cursor-not-allowed shadow-sm',
   {
     variants: {

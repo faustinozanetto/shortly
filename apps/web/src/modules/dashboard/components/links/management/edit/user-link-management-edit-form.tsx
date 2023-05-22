@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 
 import Button from '@modules/ui/components/button/button';
-import { TextInput } from '@modules/ui/components/forms/text-input';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import { z } from 'zod';
@@ -12,6 +11,16 @@ import { linkValidationSchema } from '@modules/validations/lib/validations-link'
 import { Link } from '@prisma/client';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { DateInput } from '@modules/ui/components/forms/date-input';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@modules/ui/components/forms/forms';
+import { Input } from '@modules/ui/components/forms/input';
 
 type EditLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -26,7 +35,7 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
 
   const [isEditingLoading, setIsEditingLoading] = useState<boolean>(false);
 
-  const { handleSubmit, control } = useForm<EditLinkFormData>({
+  const form = useForm<EditLinkFormData>({
     resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
     defaultValues: {
@@ -74,72 +83,61 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
   };
 
   return (
-    <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleFormSubmit)}>
-      <Controller
-        name="url"
-        control={control}
-        render={({ field: { name, ref, onBlur, value, onChange }, fieldState }) => (
-          <TextInput
-            ref={ref}
-            id={name}
-            value={value}
-            name={name}
-            label="URL"
-            required
-            placeholder="https://www.youtube.com/"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Controller
-        name="alias"
-        control={control}
-        render={({ field: { name, ref, onBlur, value, onChange }, fieldState }) => (
-          <TextInput
-            ref={ref}
-            id={name}
-            value={value}
-            name={name}
-            label="Alias"
-            placeholder="funny-alias325"
-            required={false}
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            help
-            helpMessage="Establish a custom alias for your URLs"
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Controller
-        name="expiresAt"
-        control={control}
-        render={({ field: { name, onBlur, value, onChange }, fieldState }) => (
-          <DateInput
-            id={name}
-            value={value}
-            required={false}
-            label="Link Expire Date"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Button
-        type="submit"
-        className="h-10"
-        disabled={isEditingLoading}
-        icon={isEditingLoading ? <LoadingIcon /> : null}
-      >
-        Save Changes
-      </Button>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="url"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://www.youtube.com" {...field} />
+              </FormControl>
+              <FormDescription>The URL to shorten</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="alias"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Alias</FormLabel>
+              <FormControl>
+                <Input placeholder="custom-alias" {...field} />
+              </FormControl>
+              <FormDescription>Custom alias for the link</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="expiresAt"
+          render={({ field }) => (
+            <DateInput
+              value={field.value ? new Date(field.value) : undefined}
+              onChange={field.onChange}
+              label="Expires At"
+              description="Pick a expire date for the link"
+            />
+          )}
+        />
+
+        <Button
+          type="submit"
+          className="mt-2 w-full"
+          disabled={isEditingLoading}
+          icon={isEditingLoading ? <LoadingIcon /> : null}
+        >
+          Save Changes
+        </Button>
+      </form>
+    </Form>
   );
 };
 

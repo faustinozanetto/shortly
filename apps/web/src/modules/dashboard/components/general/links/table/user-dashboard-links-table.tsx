@@ -70,6 +70,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
     {
       header: 'URL',
       accessorKey: 'url',
+
       cell: ({ row }) => row.getValue('url'),
     },
     {

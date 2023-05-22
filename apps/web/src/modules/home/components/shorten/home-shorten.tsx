@@ -2,18 +2,10 @@
 import React from 'react';
 import HomeShortenForm from '@modules/home/components/shorten/home-shorten-form';
 import { motion } from 'framer-motion';
-import { Session } from 'next-auth';
 import URLShortenerProvider from '@modules/url-shortener/context/url-shortener-context';
-import URLShortenerResult from '@modules/url-shortener/components/result/url-shortener-result';
 import URLShortenerResultURL from '@modules/url-shortener/components/result/url-shortener-result-url';
 
-type HomeShortenProps = {
-  user: Session['user'] | null;
-};
-
-const HomeShorten: React.FC<HomeShortenProps> = (props) => {
-  const { user } = props;
-
+const HomeShorten: React.FC = () => {
   return (
     <URLShortenerProvider>
       <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
@@ -52,8 +44,7 @@ const HomeShorten: React.FC<HomeShortenProps> = (props) => {
               whileInView={{ opacity: 1, translateX: 0 }}
               transition={{ delay: 0.25, duration: 0.35 }}
             >
-              <HomeShortenForm user={user} />
-
+              <HomeShortenForm />
               <URLShortenerResultURL />
             </motion.div>
           </div>

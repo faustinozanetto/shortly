@@ -2,26 +2,30 @@
 import React, { useState } from 'react';
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
-import { TextInput } from '@modules/ui/components/forms/text-input';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 
 import { z } from 'zod';
-import { Session } from 'next-auth';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@modules/ui/components/forms/forms';
+import { Input } from '@modules/ui/components/forms/input';
 
 type HomeShortenLinkFormData = z.infer<typeof linkValidationSchema>;
 
-type HomeShortenFormProps = {
-  user: Session['user'] | null;
-};
-
-const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
-  const { user } = props;
+const HomeShortenForm: React.FC = (props) => {
+  const {} = props;
 
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
 
@@ -29,7 +33,7 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
   const { setShortenedURL } = useURLShortenerContext();
   const { generateShortenedURL } = useURLShortener();
 
-  const { handleSubmit, control, formState } = useForm<HomeShortenLinkFormData>({
+  const form = useForm<HomeShortenLinkFormData>({
     resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
@@ -48,37 +52,39 @@ const HomeShortenForm: React.FC<HomeShortenFormProps> = (props) => {
   };
 
   return (
-    <form className="flex flex-col gap-2 md:flex-row md:items-center" onSubmit={handleSubmit(handleFormSubmit)}>
-      <Controller
-        name="url"
-        control={control}
-        render={({ field: { name, ref, onBlur, value, onChange }, fieldState }) => (
-          <TextInput
-            ref={ref}
-            className="rounded-r-none"
-            id={name}
-            value={value}
-            name={name}
-            required
-            label="URL"
-            placeholder="https://www.youtube.com/"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          >
-            <Button
-              type="submit"
-              className="h-12 rounded-l-none"
-              disabled={isShortenLoading}
-              icon={isShortenLoading ? <LoadingIcon /> : null}
-            >
-              Shorten
-            </Button>
-          </TextInput>
-        )}
-      />
-    </form>
+    <div className="bg-background-100 dark:bg-background-900 rounded-lg p-4 shadow-lg">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleFormSubmit)}
+          className="flex flex-col gap-2 md:flex-row md:items-center"
+        >
+          <FormField
+            control={form.control}
+            name="url"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>URL</FormLabel>
+                <div className="flex">
+                  <FormControl>
+                    <Input className="rounded-r-none" placeholder="https://www.youtube.com" {...field} />
+                  </FormControl>
+                  <Button
+                    type="submit"
+                    className="rounded-l-none"
+                    disabled={isShortenLoading}
+                    icon={isShortenLoading ? <LoadingIcon /> : null}
+                  >
+                    Shorten
+                  </Button>
+                </div>
+                <FormDescription>The URL to shorten</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    </div>
   );
 };
 

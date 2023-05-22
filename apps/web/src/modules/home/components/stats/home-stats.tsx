@@ -31,8 +31,8 @@ const HomeStats: React.FC<HomeStatsProps> = (props) => {
   statsMap[3] = { stat: getFormattedNumberIntoThousands(uptimeServer)[0], unit: '%' };
 
   return (
-    <section className="bg-primary-300 dark:bg-primary-900 w-full" id="shorten">
-      <div className="relative mx-auto my-8 max-w-[85rem] px-4 sm:px-6 md:my-16 lg:my-20 lg:px-8">
+    <section className="bg-primary-300 dark:bg-primary-900 w-full" id="stats">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-20 md:py-24">
         <motion.h2
           className="mb-4 text-start text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl"
           initial={{ opacity: 0, translateY: -20 }}

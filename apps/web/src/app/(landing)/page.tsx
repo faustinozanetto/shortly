@@ -1,4 +1,3 @@
-import { getCurrentUser } from '@modules/auth/lib/auth.lib';
 import HomeFeatures from '@modules/home/components/features/home-features';
 import HomeHero from '@modules/home/components/hero/home-hero';
 import HomeNewsletter from '@modules/home/components/newsletter/home-newsletter';
@@ -12,8 +11,6 @@ import {
 } from '@modules/url-shortener/lib/url-shortener-db';
 
 export default async function HomePage() {
-  const user = await getCurrentUser();
-
   const getHomeStatsData = async (): Promise<HomeStatsData> => {
     const totalLinksShortened = await getTotalLinksShortened();
     const totalActiveUsers = await getTotalActiveUsers();
@@ -32,7 +29,7 @@ export default async function HomePage() {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <HomeHero />
-      <HomeShorten user={user} />
+      <HomeShorten />
       <HomeFeatures />
       <HomeStats stats={statsData} />
       <HomeNewsletter />

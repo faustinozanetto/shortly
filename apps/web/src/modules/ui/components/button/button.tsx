@@ -22,7 +22,7 @@ export const buttonVariants = cva(
         sm: 'h-8 px-3',
         base: 'h-10 px-4',
         lg: 'h-12 px-8',
-        xl: 'h-12 px-8 md:h-14 md:px-10 md:text-base',
+        xl: 'h-12 px-8 md:h-14 md:px-10',
       },
     },
     defaultVariants: {

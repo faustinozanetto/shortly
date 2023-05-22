@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 
 import Button from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
-import { TextInput } from '@modules/ui/components/forms/text-input';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import { z } from 'zod';
@@ -14,6 +13,16 @@ import { linkValidationSchema } from '@modules/validations/lib/validations-link'
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
 import { DateInput } from '@modules/ui/components/forms/date-input';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@modules/ui/components/forms/forms';
+import { Input } from '@modules/ui/components/forms/input';
 
 type GenerateLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -30,7 +39,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
 
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
 
-  const { handleSubmit, control, formState } = useForm<GenerateLinkFormData>({
+  const form = useForm<GenerateLinkFormData>({
     resolver: zodResolver(linkValidationSchema),
     mode: 'onTouched',
   });
@@ -51,73 +60,61 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
   };
 
   return (
-    <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleFormSubmit)}>
-      <Controller
-        name="url"
-        control={control}
-        render={({ field: { name, ref, onBlur, value, onChange }, fieldState }) => (
-          <TextInput
-            ref={ref}
-            id={name}
-            value={value}
-            name={name}
-            required
-            label="URL"
-            placeholder="https://www.youtube.com/"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Controller
-        name="alias"
-        control={control}
-        render={({ field: { name, ref, onBlur, value, onChange }, fieldState }) => (
-          <TextInput
-            ref={ref}
-            id={name}
-            value={value}
-            name={name}
-            required={false}
-            label="Alias"
-            placeholder="funny-alias325"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            help
-            helpMessage="Establish a custom alias for your URLs"
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Controller
-        name="expiresAt"
-        control={control}
-        render={({ field: { name, onBlur, value, onChange }, fieldState }) => (
-          <DateInput
-            id={name}
-            value={value}
-            required={false}
-            label="Link Expire Date"
-            error={fieldState.invalid}
-            errorMessage={fieldState.error?.message!}
-            onValueChanged={onChange}
-            onBlur={onBlur}
-          />
-        )}
-      />
-      <Button
-        type="submit"
-        className="mt-2"
-        size="lg"
-        disabled={isShortenLoading}
-        icon={isShortenLoading ? <LoadingIcon /> : null}
-      >
-        Shorten
-      </Button>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="url"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://www.youtube.com" {...field} />
+              </FormControl>
+              <FormDescription>The URL to shorten</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="alias"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Alias</FormLabel>
+              <FormControl>
+                <Input placeholder="custom-alias" {...field} />
+              </FormControl>
+              <FormDescription>Custom alias for the link</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="expiresAt"
+          render={({ field }) => (
+            <DateInput
+              value={field.value}
+              onChange={field.onChange}
+              label="Expires At"
+              description="Pick a expire date for the link"
+            />
+          )}
+        />
+
+        <Button
+          type="submit"
+          className="mt-2 w-full"
+          disabled={isShortenLoading}
+          icon={isShortenLoading ? <LoadingIcon /> : null}
+        >
+          Shorten
+        </Button>
+      </form>
+    </Form>
   );
 };
 

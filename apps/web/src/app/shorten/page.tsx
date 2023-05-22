@@ -17,10 +17,10 @@ export default async function URLShortenerPage() {
   }
 
   return (
-    <div className="container my-4 md:my-14 lg:my-20">
-      <URLShortenerProvider>
+    <URLShortenerProvider>
+      <div className="container my-4 md:my-14 lg:my-20">
         <URLShortener user={user} />
-      </URLShortenerProvider>
-    </div>
+      </div>
+    </URLShortenerProvider>
   );
 }

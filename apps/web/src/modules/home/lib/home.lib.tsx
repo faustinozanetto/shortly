@@ -1,12 +1,13 @@
 import { StatsCardProps } from '@modules/common/components/stats/stats-card';
 import { HomeFeatureData } from '../types/home.types';
+import QRIcon from '@modules/ui/components/icons/qr-icon';
 
 export const HOME_FEATURES: HomeFeatureData[] = [
   {
     image: 'assets/feature-1.svg',
     title: 'Personalized Links',
     content:
-      'Create unique and meaningful short URLs with Shortly. Customize your links by choosing a memorable name or keyword to make them more brand-friendly and easy to remember.',
+      'Create unique and meaningful short URLs with Shortly. Customize your links by choosing a memorable keyword.',
     icon: (
       <svg
         className="h-5 w-5 stroke-black dark:stroke-white"
@@ -28,7 +29,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
     image: 'assets/feature-2.svg',
     title: 'Analytics and Click Tracking',
     content:
-      'Gain insights into your shortened links with Shortly detailed analytics. Track the number of clicks, geographic locations, and referring websites to measure the performance of your links.',
+      'Gain insights into your shortened links with Shortly detailed analytics. Track the number of clicks, geographic locations.',
     icon: (
       <svg
         className="h-5 w-5 stroke-black dark:stroke-white"
@@ -47,9 +48,9 @@ export const HOME_FEATURES: HomeFeatureData[] = [
   },
   {
     image: 'assets/hero-picture.svg',
-    title: 'Link Expiration and Password Protection',
+    title: 'Link Password Protection',
     content:
-      'Ensure control and security over your shared content with Shortly. Set expiration dates for your links and add password protection, allowing only authorized individuals to access your content.',
+      'Ensure control and security over your shared content with Shortly. Set expiration dates for your links and add password protection.',
     icon: (
       <svg
         className="h-5 w-5 stroke-black dark:stroke-white"
@@ -66,20 +67,47 @@ export const HOME_FEATURES: HomeFeatureData[] = [
       </svg>
     ),
   },
+  {
+    image: 'assets/hero-picture.svg',
+    title: 'QR Code Generation',
+    content: 'Improve your shortened links with out qr code generation tool to unleash the full potentail!',
+    icon: <QRIcon />,
+  },
+  {
+    image: 'assets/hero-picture.svg',
+    title: 'User Dashboard',
+    content: 'Manage and keep track of your generated URLs in one place, the dashboard.',
+    icon: (
+      <svg
+        className="h-5 w-5 stroke-black dark:stroke-white"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="13" r="2" />
+        <line x1="13.45" y1="11.55" x2="15.5" y2="9.5" />
+        <path d="M6.4 20a9 9 0 1 1 11.2 0z" />
+      </svg>
+    ),
+  },
 ];
 
 export const HOME_STATS: Omit<StatsCardProps, 'stat' | 'unit'>[] = [
   {
     title: 'Active Users',
-    description: 'Alltime users registered',
+    description: 'Total Users',
   },
   {
     title: 'Links Shortened',
-    description: 'Sum of all links shortened',
+    description: 'Total Links',
   },
   {
     title: 'Links Clicked',
-    description: 'The amount of clicks',
+    description: 'Total Clicks',
   },
   {
     title: 'Uptime Server',

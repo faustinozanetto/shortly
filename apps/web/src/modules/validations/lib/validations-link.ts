@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const linkValidationSchema = z.object({
   url: z
-    .string()
+    .string({ required_error: 'URL is required!' })
     .trim()
     .url({ message: 'The URL provided is invalid!' })
     .refine((value) => value.startsWith('https'), { message: 'URL must use https protocol!' }),

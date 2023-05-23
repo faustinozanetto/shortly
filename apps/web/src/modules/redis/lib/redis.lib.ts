@@ -10,7 +10,7 @@ export const redis = new Redis({
 export const setLinkInRedis = async (payload: { link: Link }) => {
   const { link } = payload;
   const password = link.password !== null;
-  const exat = link.expiresAt ? new Date(link.expiresAt).getTime() / 1000 : undefined;
+  const exat = link.expiresAt ? new Date(link.expiresAt).getTime() / 1000 : null;
 
   await redis.set<StoreURLRedis>(
     link.alias,
@@ -20,7 +20,7 @@ export const setLinkInRedis = async (payload: { link: Link }) => {
     },
     {
       // @ts-ignore
-      exat,
+      ...(exat && { exat }),
       // @ts-ignore
       nx: true,
     }

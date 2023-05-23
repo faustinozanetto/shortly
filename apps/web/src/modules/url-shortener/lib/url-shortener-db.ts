@@ -47,3 +47,7 @@ export const getTotalLinksClicked = async () => {
   const result = await prisma.link.aggregate({ _sum: { clicks: true } });
   return result._sum.clicks ?? 0;
 };
+
+export const getAllLinks = async () => {
+  return await prisma.link.findMany();
+};

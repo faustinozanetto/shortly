@@ -58,7 +58,12 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
 
   return (
     <URLShortenerBaseForm
-      initialData={{ alias: link.alias, url: link.url, expiresAt: link.expiresAt ?? undefined }}
+      initialData={{
+        alias: link.alias,
+        url: link.url,
+        expiresAt: link.expiresAt ?? undefined,
+        password: link.password ?? undefined,
+      }}
       renderButton={() => {
         return (
           <Button

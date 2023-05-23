@@ -18,11 +18,9 @@ export const setLinkInRedis = async (payload: { link: Link }) => {
       url: link.url,
       password,
     },
+    // @ts-ignore
     {
-      // @ts-ignore
       ...(exat && { exat }),
-      // @ts-ignore
-      nx: true,
     }
   );
 };

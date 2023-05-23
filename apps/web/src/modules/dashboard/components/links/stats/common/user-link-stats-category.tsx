@@ -4,7 +4,7 @@ import { useUserDashboardLinkContext } from '@modules/dashboard/hooks/use-user-d
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import React, { useMemo } from 'react';
 
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 type UserLinkStatsCategoryProps = {
   category: string;
@@ -44,10 +44,10 @@ const UserLinkStatsCategory = (props: UserLinkStatsCategoryProps) => {
 
   return (
     <div className="bg-background-100 dark:bg-background-800 flex flex-col gap-4 rounded-lg p-4 shadow-lg md:p-6">
-      <Skeleton loading={isLoading || !link}>
+      <Skeleton loading={isLoading && !link}>
         <h2 className="text-xl font-semibold">{category}</h2>
       </Skeleton>
-      <Skeleton className="w-full" loading={isLoading || !link}>
+      <Skeleton className="w-full" loading={isLoading && !link}>
         <div className="grid gap-2">
           {data && data.length > 0 ? (
             renderContent(data, total)

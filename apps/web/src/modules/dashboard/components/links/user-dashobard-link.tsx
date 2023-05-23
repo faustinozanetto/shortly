@@ -2,9 +2,9 @@
 import { useUserDashboardLinkContext } from '@modules/dashboard/hooks/use-user-dashboard-link-context';
 import { Link } from '@prisma/client';
 import React, { useEffect } from 'react';
-import { useQuery } from 'react-query';
 import UserLinkDetails from './details/user-link-details';
 import UserLinkStats from './stats/user-link-stats';
+import { useQuery } from '@tanstack/react-query';
 
 type UserLinkDetailsProps = {
   alias: string;
@@ -15,7 +15,7 @@ const UserDashboardLink = (props: UserLinkDetailsProps) => {
 
   const { setLink, setLoading } = useUserDashboardLinkContext();
 
-  const { data, error, isLoading } = useQuery<Link>(alias, {
+  const { data, error, isLoading } = useQuery<Link>([alias], {
     queryFn: async () => {
       const url = new URL(`/api/links/${encodeURIComponent(alias)}`, process.env.NEXT_PUBLIC_URL);
       const response = await fetch(url, {

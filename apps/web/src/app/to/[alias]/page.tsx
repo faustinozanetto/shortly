@@ -21,11 +21,6 @@ export default async function UrlHashPage(props: UrlHashPageProps) {
   const link = await getLinkFromAlias({ alias });
   if (!link) return redirect('/');
 
-  //const link = await getLinkFromAlias({ alias });
-  // if (getShortenedURLIsExpired(link)) {
-  //   return <h1>Link is Expired</h1>;
-  // }
-
   await incrementShortenedURLClicks({ alias });
 
   return redirect(link.url);

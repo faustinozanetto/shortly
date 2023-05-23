@@ -1,6 +1,7 @@
 import { authOptions } from '@modules/auth/lib/auth.lib';
 import { prisma } from '@modules/database/lib/database.lib';
 import { removeLinkFromRedis, setLinkInRedis } from '@modules/redis/lib/redis.lib';
+import { getLinkFromDatabase } from '@modules/url-shortener/lib/url-shortener-db';
 
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import { Link } from '@prisma/client';
@@ -26,6 +27,16 @@ const getUserHasAccessToResource = async (user: User, alias: Link['id']) => {
 
   return count > 0;
 };
+
+export async function GET(req: NextRequest) {
+  try {
+    const alias = req.nextUrl.pathname.split('/')[3];
+    const link = await getLinkFromDatabase({ alias });
+    return NextResponse.json({ link }, { status: 200 });
+  } catch (error) {
+    return new NextResponse('An error occurred!', { status: 500 });
+  }
+}
 
 export async function PATCH(req: NextRequest, context: z.infer<typeof routeContextSchema>) {
   try {

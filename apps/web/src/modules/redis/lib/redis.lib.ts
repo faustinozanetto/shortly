@@ -12,8 +12,6 @@ export const setLinkInRedis = async (payload: { link: Link }) => {
   const password = link.password !== null;
   const exat = link.expiresAt ? new Date(link.expiresAt).getTime() / 1000 : undefined;
 
-  console.log({ link, password, exat });
-
   await redis.set<StoreURLRedis>(
     link.alias,
     {

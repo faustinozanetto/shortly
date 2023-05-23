@@ -3,6 +3,16 @@ import { IncrementShortenedURLClicks, StoreLinkPayload } from '@modules/url-shor
 import { prisma } from '@modules/database/lib/database.lib';
 import { setLinkInRedis } from '@modules/redis/lib/redis.lib';
 
+export const getLinkFromDatabase = async (payload: { alias: string }) => {
+  const link = await prisma.link.findUnique({
+    where: { alias: payload.alias },
+  });
+
+  if (!link) throw new Error('Could not create shortened URL!');
+
+  return link;
+};
+
 export const storeLinkInDatabase = async (payload: StoreLinkPayload) => {
   const link = await prisma.link.create({
     data: {

@@ -18,6 +18,7 @@ export const iconButtonVariants = cva(
           'bg-red-300 hover:bg-red-500/90 focus-visible:ring-red-400 dark:bg-red-700 dark:hover:bg-red-900/90 text-white',
       },
       size: {
+        xs: 'p-1',
         sm: 'p-2',
         base: 'p-2.5',
         lg: 'p-3',

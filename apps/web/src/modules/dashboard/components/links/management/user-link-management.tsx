@@ -21,7 +21,11 @@ const UserLinkManagement = () => {
   const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
 
   const handleOnEdited = async (data: Link) => {
-    router.replace(`/dashboard/${data.alias}`);
+    if (data.alias === link?.alias) {
+      router.refresh();
+    } else {
+      router.replace(`/dashboard/${data.alias}`);
+    }
     setShowEditDialog(false);
   };
 

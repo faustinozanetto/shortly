@@ -5,10 +5,13 @@ import { Redis } from '@upstash/redis';
 
 import { Prisma } from '@prisma/client';
 
+import bcrypt from 'bcrypt';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import { storeLinkInDatabase } from '@modules/url-shortener/lib/url-shortener-db';
+import { log } from 'util';
 
 const shortenLinkRateLimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -77,7 +80,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'The url to shorten might be harmful!' }, { status: 403 });
     }
 
-    const storedLink = await storeLinkInDatabase({ url, alias, expiresAt, userEmail, password });
+    let hashedPassword: string | undefined = undefined;
+    // Hash password
+    if (password) hashedPassword = await bcrypt.hash(password, 10);
+
+    const storedLink = await storeLinkInDatabase({ url, alias, expiresAt, userEmail, password: hashedPassword });
 
     return NextResponse.json(
       { storedLink, message: `Shorted URL for alias '${alias}' created successfully!` },

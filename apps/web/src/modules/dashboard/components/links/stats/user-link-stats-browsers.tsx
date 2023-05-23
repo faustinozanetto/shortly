@@ -10,7 +10,7 @@ const UserLinkStatsBrowsers = () => {
     <UserLinkStatsCategory
       category="Browsers"
       dataType="browser"
-      renderContent={(data: LinkStatsResponse<string>) => {
+      renderContent={(data: LinkStatsResponse<string>, total) => {
         return (
           <>
             {data.map((browser) => {
@@ -19,6 +19,7 @@ const UserLinkStatsBrowsers = () => {
                   key={browser.entry}
                   label={browser.entry}
                   count={browser.count}
+                  total={total}
                   renderIcon={() => {
                     return (
                       <Image

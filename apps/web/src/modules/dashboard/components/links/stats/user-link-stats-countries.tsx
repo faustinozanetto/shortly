@@ -10,7 +10,7 @@ const UserLinkStatsCountries = () => {
     <UserLinkStatsCategory
       category="Countries"
       dataType="country"
-      renderContent={(data: LinkStatsResponse<string>) => {
+      renderContent={(data: LinkStatsResponse<string>, total) => {
         return (
           <>
             {data.map((country) => {
@@ -19,6 +19,7 @@ const UserLinkStatsCountries = () => {
                   key={country.entry}
                   label={country.entry}
                   count={country.count}
+                  total={total}
                   renderIcon={() => {
                     return (
                       <Image

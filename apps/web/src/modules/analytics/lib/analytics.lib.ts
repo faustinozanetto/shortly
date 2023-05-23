@@ -32,13 +32,14 @@ export const trackLinkUserDetails = async (req: NextRequest, domain: string) => 
     referer: referer ?? '(direct)',
   });
 
-  return await Promise.allSettled([
-    fetch(`${ANALYTICS_BASE_URL}events?name=click_events&wait=true`, {
-      method: 'POST',
-      body,
-      headers: {
-        Authorization: `Bearer ${process.env.TINYBIRD_API_TOKEN}`,
-      },
-    }).then((res) => res.json()),
-  ]);
+  const response = await fetch(`${ANALYTICS_BASE_URL}events?name=click_events&wait=true`, {
+    method: 'POST',
+    body,
+    headers: {
+      Authorization: `Bearer ${process.env.TINYBIRD_API_TOKEN}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
 };

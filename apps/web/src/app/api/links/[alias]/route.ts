@@ -1,6 +1,7 @@
 import { authOptions } from '@modules/auth/lib/auth.lib';
 import { prisma } from '@modules/database/lib/database.lib';
-import { getLinkFromAlias, updateLinkInRedisStore } from '@modules/url-shortener/lib/url-shortener-db';
+import { removeLinkFromRedis, setLinkInRedis } from '@modules/redis/lib/redis.lib';
+
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import { Link } from '@prisma/client';
 import { User, getServerSession } from 'next-auth';
@@ -25,18 +26,6 @@ const getUserHasAccessToResource = async (user: User, alias: Link['id']) => {
 
   return count > 0;
 };
-
-export async function GET(req: NextRequest) {
-  try {
-    const alias = req.nextUrl.pathname.split('/')[3];
-
-    const link = await getLinkFromAlias({ alias });
-
-    return NextResponse.json({ link }, { status: 200 });
-  } catch (error) {
-    return new NextResponse('An error occurred!', { status: 500 });
-  }
-}
 
 export async function PATCH(req: NextRequest, context: z.infer<typeof routeContextSchema>) {
   try {
@@ -67,7 +56,7 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
       },
     });
 
-    await updateLinkInRedisStore({ link: updatedLink });
+    await setLinkInRedis({ link: updatedLink });
 
     return NextResponse.json({ message: 'Link edited successfully!', updatedLink }, { status: 200 });
   } catch (error) {
@@ -97,6 +86,8 @@ export async function DELETE(req: NextRequest, context: z.infer<typeof routeCont
     await prisma.link.delete({
       where: { alias: params.alias },
     });
+
+    await removeLinkFromRedis({ alias: params.alias });
 
     return NextResponse.json({ message: 'Link deleted successfully!' }, { status: 202 });
   } catch (error) {

@@ -9,7 +9,7 @@ import IconButton from '@modules/ui/components/icon-button/icon-button';
 import { cn } from '@modules/ui/lib/ui.lib';
 
 type NavbarMobileProps = {
-  user: User;
+  user: User | null;
 };
 
 const NavbarMobile: React.FC<NavbarMobileProps> = (props) => {

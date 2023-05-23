@@ -10,7 +10,7 @@ const UserLinkStatsDevices = () => {
     <UserLinkStatsCategory
       category="Devices"
       dataType="device"
-      renderContent={(data: LinkStatsResponse<string>) => {
+      renderContent={(data: LinkStatsResponse<string>, total) => {
         return (
           <>
             {data.map((device) => {
@@ -19,6 +19,7 @@ const UserLinkStatsDevices = () => {
                   key={device.entry}
                   label={device.entry}
                   count={device.count}
+                  total={total}
                   renderIcon={() => {
                     return (
                       <Image

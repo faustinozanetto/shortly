@@ -1,4 +1,6 @@
 import { trackLinkUserDetails } from '@modules/analytics/lib/analytics.lib';
+import { getLinkFromAlias } from '@modules/redis/lib/redis.lib';
+
 import { NextRequest, NextFetchEvent, NextResponse } from 'next/server';
 
 export const config = {
@@ -20,8 +22,17 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
   let domain = req.headers.get('host') as string;
   domain = domain.replace('www.', '');
 
+  // If the path is not a link, continue.
   if (!path.startsWith('/to')) return NextResponse.next();
 
+  const alias = decodeURIComponent(path.split('/')[2]);
+  const link = await getLinkFromAlias({ alias });
+
+  // Track link
   ev.waitUntil(trackLinkUserDetails(req, domain));
-  console.log({ path });
+
+  // If has password, redirect to auth page
+  if (link.password) {
+    return NextResponse.rewrite(new URL(`/protection/${alias}`, req.url));
+  }
 }

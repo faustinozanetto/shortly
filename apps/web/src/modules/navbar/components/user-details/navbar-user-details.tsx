@@ -41,7 +41,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           </svg>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent className="z-[1000]" align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1.5 leading-none">
             {user.name && <p className="font-semibold">{user.name}</p>}

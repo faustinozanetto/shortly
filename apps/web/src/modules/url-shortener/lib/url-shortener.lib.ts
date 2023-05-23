@@ -1,11 +1,13 @@
 import { Link } from '@prisma/client';
 import { nanoid } from 'nanoid';
-import { NextRequest, userAgent } from 'next/server';
+
 import qrcode from 'qrcode';
 
 export const CUSTOM_ALIAS_MAX_LENGTH = 14;
+export const URL_PASSWORD_MIN_LEGNTH = 8;
+export const URL_PASSWORD_MAX_LEGNTH = 32;
 
-export const generateRandomURLAlias = (url: string): string => {
+export const generateRandomURLAlias = (): string => {
   return nanoid(CUSTOM_ALIAS_MAX_LENGTH);
 };
 
@@ -16,7 +18,6 @@ export const getCompleteShortenedURL = (alias: string): string => {
 
 export const getShortenedURLIsExpired = (link: Link): boolean => {
   if (!link.expiresAt) return false;
-
   return Date.now() >= link.expiresAt.getTime();
 };
 

@@ -5,12 +5,13 @@ import { GenerateShortenedURLPayload } from '../types/url-shortener.types';
 
 const useURLShortener = () => {
   const generateShortenedURL = async (payload: GenerateShortenedURLPayload) => {
-    const alias = payload.alias || generateRandomURLAlias(payload.url);
+    const alias = payload.alias || generateRandomURLAlias();
     const body = JSON.stringify({
       url: payload.url,
       userEmail: payload.userEmail,
       alias,
       expiresAt: payload.expiresAt,
+      password: payload.password,
     });
 
     const response = await fetch('/api/links', {
@@ -22,7 +23,7 @@ const useURLShortener = () => {
       body,
     });
 
-    const data: { storedURL: Link; message: string } = await response.json();
+    const data: { storedLink: Link; message: string } = await response.json();
 
     // Error handling
     if (!response.ok) {
@@ -30,7 +31,7 @@ const useURLShortener = () => {
       throw new Error(errorMessage);
     }
 
-    return data.storedURL;
+    return data.storedLink;
   };
 
   return { generateShortenedURL };

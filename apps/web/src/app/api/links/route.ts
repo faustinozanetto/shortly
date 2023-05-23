@@ -1,4 +1,3 @@
-import { storeShortenedURL } from '@modules/url-shortener/lib/url-shortener-db';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 
 import { Ratelimit } from '@upstash/ratelimit';
@@ -9,6 +8,7 @@ import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
+import { storeLinkInDatabase } from '@modules/url-shortener/lib/url-shortener-db';
 
 const shortenLinkRateLimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -18,7 +18,7 @@ const shortenLinkRateLimit = new Ratelimit({
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const { url, alias, userEmail, expiresAt } = body;
+  const { url, alias, userEmail, expiresAt, password } = body;
 
   try {
     const ip = request.headers.get('x-forwarded-for') ?? '';
@@ -38,11 +38,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate body input
+    // Validate body input again
     linkValidationSchema.parse({
       url,
       alias,
       expiresAt,
+      password,
     });
 
     // Google safe browsing api validation
@@ -76,9 +77,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'The url to shorten might be harmful!' }, { status: 403 });
     }
 
-    const storedURL = await storeShortenedURL({ url, alias, expiresAt, userEmail });
+    const storedLink = await storeLinkInDatabase({ url, alias, expiresAt, userEmail, password });
+
     return NextResponse.json(
-      { storedURL, message: `Shorted URL for alias '${alias}' created successfully!` },
+      { storedLink, message: `Shorted URL for alias '${alias}' created successfully!` },
       { status: 200 }
     );
   } catch (error) {

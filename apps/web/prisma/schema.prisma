@@ -42,6 +42,8 @@ model Link {
   url   String
   alias String @unique
 
+  password String?
+
   clicks Int @default(0)
 
   user   User?   @relation(fields: [userId], references: [id])

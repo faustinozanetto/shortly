@@ -10,7 +10,7 @@ const UserLinkStatsOS = () => {
     <UserLinkStatsCategory
       category="Operative System"
       dataType="os"
-      renderContent={(data: LinkStatsResponse<string>) => {
+      renderContent={(data: LinkStatsResponse<string>, total) => {
         return (
           <>
             {data.map((os) => {
@@ -19,6 +19,7 @@ const UserLinkStatsOS = () => {
                   key={os.entry}
                   label={os.entry}
                   count={os.count}
+                  total={total}
                   renderIcon={() => {
                     return (
                       <Image

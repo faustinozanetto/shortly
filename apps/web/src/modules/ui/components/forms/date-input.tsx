@@ -27,7 +27,7 @@ export const DateInput: React.FC<DateInputProps> = (props, ref) => {
               variant={'outline'}
               className={cn('w-full pl-3 text-left font-normal', !value && 'text-muted-foreground')}
             >
-              {value ? format(value, 'PPP') : <span>Pick a date</span>}
+              {value ? format(new Date(value), 'PPP') : <span>Pick a date</span>}
               <svg
                 className="ml-auto h-5 w-5 stroke-neutral-900 dark:stroke-neutral-50"
                 xmlns="http://www.w3.org/2000/svg"

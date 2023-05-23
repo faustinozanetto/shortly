@@ -7,6 +7,7 @@ import { useToast } from '@modules/toasts/hooks/use-toast';
 import { Link } from '@prisma/client';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import URLShortenerBaseForm, { URLBaseFormData } from '@modules/url-shortener/components/forms/url-shortener-base-form';
+import bcrypt from 'bcrypt';
 
 type UserLinkManagementEditFormProps = {
   link: Link;
@@ -62,7 +63,6 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
         alias: link.alias,
         url: link.url,
         expiresAt: link.expiresAt ?? undefined,
-        password: link.password ?? undefined,
       }}
       renderButton={() => {
         return (

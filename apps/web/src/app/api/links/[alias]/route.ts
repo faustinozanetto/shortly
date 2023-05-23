@@ -8,6 +8,7 @@ import { Link } from '@prisma/client';
 import { User, getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import bcrypt from 'bcrypt';
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -56,14 +57,21 @@ export async function PATCH(req: NextRequest, context: z.infer<typeof routeConte
 
     // Parse body.
     const json = await req.json();
-    const body = linkValidationSchema.parse(json);
+    const { alias, url, expiresAt, password } = linkValidationSchema.parse(json);
+
+    let hashedPassword: string | undefined = undefined;
+    // Hash password
+    if (password) hashedPassword = await bcrypt.hash(password, 10);
 
     const updatedLink = await prisma.link.update({
       where: {
         alias: params.alias,
       },
       data: {
-        ...body,
+        alias,
+        url,
+        expiresAt,
+        password: hashedPassword,
       },
     });
 

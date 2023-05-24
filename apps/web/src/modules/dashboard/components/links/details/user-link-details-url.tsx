@@ -16,7 +16,7 @@ const UserLinkDetailsURL = () => {
             <Skeleton loading={loading || !link}>
               <Link
                 href={link?.url ?? '/'}
-                className="truncate text-sm font-medium text-neutral-700 dark:text-neutral-200"
+                className="block max-w-[240px] truncate text-sm font-medium text-neutral-700 dark:text-neutral-200 sm:max-w-full"
                 target="_blank"
               >
                 {link?.url ?? 'Default URL'}

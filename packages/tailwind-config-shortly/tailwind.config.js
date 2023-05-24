@@ -30,10 +30,19 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+        rotate: {
+          '0%, 100%': {
+            transform: 'translateX(-80px) translateY(40px) rotate(25deg)',
+          },
+          '50%': {
+            transform: 'translateX(0) translateY(0) rotate(0)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'hero-background': 'rotate 10s linear infinite',
       },
     },
   },

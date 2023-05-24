@@ -10,7 +10,7 @@ const HomeHero: React.FC = () => {
   return (
     <section className="relative w-full overflow-hidden" id="hero">
       {/* Gradients */}
-      <div aria-hidden="true" className="absolute inset-0 left-1/2 -translate-x-1/2 transform">
+      <div aria-hidden="true" className="animate-hero-background absolute inset-0 left-1/2 -translate-x-1/2 transform">
         <div className="rounded-fulls dark:from-primary-500/50 dark:via-secondary-600/50 dark:to-primary-400/40 from-primary-300 via-primary-100 to-secondary-200 h-[50rem] w-[90rem] origin-top-left -translate-x-[15rem] -rotate-12 bg-gradient-to-tl blur-3xl "></div>
       </div>
       {/* Content */}

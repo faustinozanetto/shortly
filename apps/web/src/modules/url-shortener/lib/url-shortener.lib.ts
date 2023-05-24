@@ -21,4 +21,4 @@ export const getShortenedURLIsExpired = (link: Link): boolean => {
   return Date.now() >= link.expiresAt.getTime();
 };
 
-export const URL_QR_DEFAULT_OPTIONS: qrcode.QRCodeToDataURLOptions = { margin: 1.5, scale: 60, type: 'image/webp' };
+export const URL_QR_DEFAULT_OPTIONS: qrcode.QRCodeToDataURLOptions = { margin: 1.5, scale: 5, type: 'image/webp' };

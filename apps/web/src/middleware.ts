@@ -33,6 +33,6 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
 
   // If has password, redirect to auth page
   if (link.password) {
-    return NextResponse.rewrite(new URL(`/protection/${alias}`, req.url));
+    return NextResponse.rewrite(new URL(`/access/${alias}`, req.url));
   }
 }

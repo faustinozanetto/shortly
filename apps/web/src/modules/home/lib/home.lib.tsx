@@ -4,7 +4,7 @@ import QRIcon from '@modules/ui/components/icons/qr-icon';
 
 export const HOME_FEATURES: HomeFeatureData[] = [
   {
-    image: 'assets/feature-1.svg',
+    image: 'assets/home-features-1.svg',
     title: 'Personalized Links',
     content:
       'Create unique and meaningful short URLs with Shortly. Customize your links by choosing a memorable keyword.',
@@ -26,7 +26,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
     ),
   },
   {
-    image: 'assets/feature-2.svg',
+    image: 'assets//home-features-2.svg',
     title: 'Analytics and Click Tracking',
     content:
       'Gain insights into your shortened links with Shortly detailed analytics. Track the number of clicks, geographic locations.',
@@ -47,7 +47,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
     ),
   },
   {
-    image: 'assets/hero-picture.svg',
+    image: 'assets//home-features-3.svg',
     title: 'Link Password Protection',
     content:
       'Ensure control and security over your shared content with Shortly. Set expiration dates for your links and add password protection.',
@@ -68,13 +68,13 @@ export const HOME_FEATURES: HomeFeatureData[] = [
     ),
   },
   {
-    image: 'assets/hero-picture.svg',
+    image: 'assets/home-features-4.svg',
     title: 'QR Code Generation',
     content: 'Improve your shortened links with out qr code generation tool to unleash the full potentail!',
     icon: <QRIcon />,
   },
   {
-    image: 'assets/hero-picture.svg',
+    image: 'assets/home-features-5.svg',
     title: 'User Dashboard',
     content: 'Manage and keep track of your generated URLs in one place, the dashboard.',
     icon: (

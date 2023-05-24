@@ -28,8 +28,6 @@ const URLShortenerQRCodeDialog: React.FC<URLShortenerQRCodeDialog> = (props) => 
     if (!imageRef.current) return;
 
     const options: Options = {
-      pixelRatio: 2.5,
-      quality: 1,
       skipFonts: true,
     };
 

@@ -52,7 +52,7 @@ const HomeFeatures: React.FC = () => {
 
             {/* Feature Image */}
             <motion.div
-              className="md:p-6 lg:col-span-2"
+              className="flex items-center justify-center md:p-6 lg:col-span-2"
               initial={{ opacity: 0, translateY: -20 }}
               viewport={{ once: true }}
               whileInView={{ opacity: 1, translateY: 0 }}
@@ -78,7 +78,7 @@ const HomeFeatures: React.FC = () => {
                           stiffness: 150,
                           damping: 10,
                         }}
-                        className="bg-background-100 dark:bg-background-900 w-full overflow-hidden rounded-lg shadow-lg md:h-full"
+                        className="bg-background-100 dark:bg-background-900 w-full overflow-hidden rounded-lg p-4 shadow-lg"
                       >
                         <Image
                           className="aspect-video w-full rounded-md"

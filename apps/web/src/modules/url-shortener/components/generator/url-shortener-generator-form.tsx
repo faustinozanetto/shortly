@@ -9,6 +9,7 @@ import { Session } from 'next-auth';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
 import URLShortenerBaseForm, { URLBaseFormData } from '../forms/url-shortener-base-form';
+import { useRouter } from 'next/navigation';
 
 type URLShortenerGeneratorFormProps = {
   user: Session['user'] | null;
@@ -16,6 +17,8 @@ type URLShortenerGeneratorFormProps = {
 
 const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (props) => {
   const { user } = props;
+
+  const router = useRouter();
 
   const { toast } = useToast();
   const { setShortenedURL } = useURLShortenerContext();
@@ -33,6 +36,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
       setShortenedURL(shortenedURL);
       setIsShortenLoading(false);
       toast({ variant: 'success', content: 'URL shortened successfully!' });
+      router.push(`/dashboard/${shortenedURL.alias}`);
     } catch (error) {
       setIsShortenLoading(false);
       toast({ variant: 'error', content: error.message });

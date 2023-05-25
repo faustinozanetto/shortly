@@ -75,12 +75,9 @@ const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
         />
 
         <Accordion type="multiple" className="w-full">
-          <AccordionItem
-            value="expiration"
-            className="overflow-hidden border-b border-neutral-300 py-2 last:border-none dark:border-neutral-700"
-          >
+          <AccordionItem value="expiration" className="overflow-hidden border-b py-2 last:border-none">
             <AccordionTrigger className="group flex w-full items-center justify-between">Expiration</AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="px-1">
               <FormField
                 control={form.control}
                 name="expiresAt"
@@ -95,12 +92,9 @@ const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
               />
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem
-            value="protection"
-            className="overflow-hidden border-b border-neutral-300 py-3 last:border-none dark:border-neutral-800"
-          >
+          <AccordionItem value="protection" className="overflow-hidden border-b py-3 last:border-none">
             <AccordionTrigger className="group flex w-full items-center justify-between">Protection</AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="px-1">
               <FormField
                 control={form.control}
                 name="password"

@@ -10,7 +10,7 @@ const DialogTrigger = DialogPrimitive.Trigger;
 
 const DialogPortal = ({ className, children, ...props }: DialogPrimitive.DialogPortalProps) => (
   <DialogPrimitive.Portal className={cn(className)} {...props}>
-    <div className="fixed inset-0 z-50 flex items-center justify-center">{children}</div>
+    <div className="fixed inset-0 z-50 flex items-start justify-center sm:items-center">{children}</div>
   </DialogPrimitive.Portal>
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
@@ -22,7 +22,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in bg-background-50/80 dark:bg-background-900/80 fixed inset-0 z-50 backdrop-blur-sm',
+      'bg-background/80 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in fixed inset-0 z-50 backdrop-blur-sm transition-all duration-100',
       className
     )}
     {...props}
@@ -39,13 +39,13 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 bg-background-50 dark:bg-background-900 fixed z-50 grid w-full gap-4 rounded-b-lg border-2 border-neutral-300 p-6 shadow-lg dark:border-neutral-800 sm:max-w-lg sm:rounded-lg',
+        'bg-background animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-b-lg border p-6 shadow-lg sm:max-w-lg sm:rounded-lg',
         className
       )}
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="ring-background-300 dark:ring-background-700 focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
+      <DialogPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
         <svg
           className="h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
           xmlns="http://www.w3.org/2000/svg"

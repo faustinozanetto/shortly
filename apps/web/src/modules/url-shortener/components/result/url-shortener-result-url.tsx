@@ -16,7 +16,7 @@ const URLShortenerResultURL: React.FC = () => {
     <AnimatePresence>
       {shortenedURL ? (
         <motion.div
-          className="bg-background-100 dark:bg-background-900 border-background-300 dark:border-background-800 mt-2 flex items-center justify-between gap-2 rounded-lg border-2 p-2 shadow-lg"
+          className="bg-background mt-2 flex items-center justify-between gap-2 rounded-lg border p-2 shadow-lg"
           initial={{ opacity: 0, translateY: -20 }}
           animate={{ opacity: 1, translateY: 0 }}
           exit={{ opacity: 0, translateY: -20 }}

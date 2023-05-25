@@ -23,7 +23,7 @@ const HomeNewsletter: React.FC = () => {
   };
 
   return (
-    <section className="bg-background-50 dark:bg-background-900 w-full" id="stats">
+    <section className="w-full" id="stats">
       <div className="mx-auto w-full max-w-screen-xl px-4 py-10 md:px-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="leading-2 block text-3xl font-bold text-neutral-800 dark:text-white sm:text-4xl lg:text-5xl">
@@ -35,7 +35,7 @@ const HomeNewsletter: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-background-100 dark:bg-background-800 mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg p-4 shadow-lg md:p-6">
+        <div className="bg-foreground mx-auto mt-4 flex w-full max-w-screen-sm flex-col gap-2 rounded-lg border p-4 shadow-lg md:p-6">
           <NewsletterForm onSubmitted={handleNewsletterSubmit} />
         </div>
       </div>

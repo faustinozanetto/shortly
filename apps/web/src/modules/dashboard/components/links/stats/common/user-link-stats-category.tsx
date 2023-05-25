@@ -18,7 +18,7 @@ const UserLinkStatsCategory = (props: UserLinkStatsCategoryProps) => {
   const { link } = useUserDashboardLinkContext();
 
   const { data, isLoading } = useQuery<LinkStatsResponse<unknown>>([category], {
-    enabled: false,
+    enabled: process.env.NODE_ENV === 'production',
     queryFn: async () => {
       const url = new URL(`/api/links/${encodeURIComponent(link?.alias!)}/stats`, process.env.NEXT_PUBLIC_URL);
       url.searchParams.append('stat', dataType);
@@ -43,7 +43,7 @@ const UserLinkStatsCategory = (props: UserLinkStatsCategoryProps) => {
   }, [data]);
 
   return (
-    <div className="bg-background-100 dark:bg-background-800 flex flex-col gap-4 rounded-lg p-4 shadow-lg md:p-6">
+    <div className="bg-foreground flex flex-col gap-4 rounded-lg border p-4 shadow-lg md:p-6">
       <Skeleton loading={isLoading && !link}>
         <h2 className="text-xl font-semibold">{category}</h2>
       </Skeleton>

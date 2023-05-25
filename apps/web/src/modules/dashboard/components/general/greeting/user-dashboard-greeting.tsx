@@ -9,7 +9,7 @@ const UserDashboardGreeting: React.FC<UserDashboardGreetingProps> = (props) => {
   const { user } = props;
 
   return (
-    <div className="bg-background-100 dark:bg-background-800 rounded-lg p-4 shadow-lg md:p-6">
+    <div className="bg-foreground rounded-lg border p-4 shadow-lg md:p-6">
       <h1 className="leading-2 block text-2xl font-bold text-neutral-800 dark:text-white md:text-3xl lg:text-4xl">
         👋 Welcome Back {user.name}
       </h1>

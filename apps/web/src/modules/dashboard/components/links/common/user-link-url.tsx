@@ -1,13 +1,17 @@
 'use client';
 import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@modules/ui/components/tooltip/tooltip';
-import { useUserDashboardLinkContext } from '@modules/dashboard/hooks/use-user-dashboard-link-context';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import Link from 'next/link';
-import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
+import { Link as PrismaLink } from '@prisma/client';
 
-const UserLinkDetailsAlias = () => {
-  const { link, loading } = useUserDashboardLinkContext();
+type UserLinkURLProps = {
+  link: PrismaLink | null;
+  loading?: boolean;
+};
+
+const UserLinkURL: React.FC<UserLinkURLProps> = (props) => {
+  const { link, loading = false } = props;
 
   return (
     <TooltipProvider>
@@ -16,19 +20,21 @@ const UserLinkDetailsAlias = () => {
           <div className="hover:cursor-pointer">
             <Skeleton loading={loading || !link}>
               <Link
-                href={getCompleteShortenedURL(link?.alias!)}
-                className="text-primary-600 w-24 truncate font-semibold dark:text-purple-400 md:text-lg"
+                href={(link && link.url) ?? '/'}
+                className="block max-w-[170px] truncate text-sm font-medium text-neutral-700 dark:text-neutral-200 sm:max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-full"
                 target="_blank"
-              >{`@${link?.alias}`}</Link>
+              >
+                {link?.url ?? 'Default URL'}
+              </Link>
             </Skeleton>
           </div>
         </TooltipTrigger>
         <TooltipContent className="font-semibold">
-          <p>Link Alias</p>
+          <p>Link URL</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
 };
 
-export default UserLinkDetailsAlias;
+export default UserLinkURL;

@@ -2,10 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-.skeleton * {
-    visibility: hidden;
+@layer base {
+  :root {
+    --background: 0, 0%, 98%;
+    --foreground: 240, 5%, 96%;
+    --skeleton: 240, 6%, 90%;
+
+    --muted: 240, 6%, 90%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 213, 27%, 84%;
+    --input: 213, 27%, 84%;
+
+    --accent: 240, 6%, 90%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --ring: 215 20.2% 65.1%;
+
   }
-  
-.rdp {
-  @apply bg-background-50 dark:bg-background-900 rounded-lg shadow-lg;
+
+  .dark {
+    --background: 240, 6%, 10%;
+    --foreground: 240, 4%, 16%;
+    --skeleton: 240, 5%, 26%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 240, 4%, 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 240, 6%, 10%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 240, 5%, 26%;
+    --input: 240, 5%, 26%;
+
+    --ring: 240, 4%, 16%;
+  }
+}
+
+.skeleton * {
+  visibility: hidden;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }

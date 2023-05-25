@@ -13,7 +13,7 @@ export const getUserTotalLinkClicks = async (payload: UserDashboardPayload) => {
 export const getUserLinks = async (payload: UserDashboardPayload) => {
   const links = await prisma.link.findMany({
     where: { user: { email: payload.userEmail } },
-    orderBy: { createdAt: 'asc' },
+    orderBy: { createdAt: 'desc' },
   });
 
   return links;

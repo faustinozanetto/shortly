@@ -52,7 +52,7 @@ const HomeShortenForm: React.FC = (props) => {
   };
 
   return (
-    <div className="bg-background-100 dark:bg-background-900 rounded-lg p-4 shadow-lg">
+    <div className="bg-background rounded-lg border p-4 shadow-lg">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleFormSubmit)}

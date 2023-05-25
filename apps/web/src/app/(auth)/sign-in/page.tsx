@@ -1,5 +1,6 @@
 import AuthSignIn from '@modules/auth/components/sign-in/auth-sign-in';
-import Button, { buttonVariants } from '@modules/ui/components/button/button';
+import ThemeToggler from '@modules/theming/components/theme-toggler';
+import { buttonVariants } from '@modules/ui/components/button/button';
 import { cn } from '@modules/ui/lib/ui.lib';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -29,6 +30,9 @@ export default function AuthSignInPage() {
         </svg>
         Go Back
       </Link>
+      <div className="absolute right-4 top-4">
+        <ThemeToggler />
+      </div>
       <AuthSignIn />
     </div>
   );

@@ -1,5 +1,4 @@
 import { cn } from '@modules/ui/lib/ui.lib';
-import clsx from 'clsx';
 import React from 'react';
 
 type SkeletonProps = {
@@ -15,9 +14,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>((props, 
     <div
       ref={ref}
       className={cn(
-        loading
-          ? 'skeleton bg-background-300 dark:bg-background-700 animate-pulse cursor-default bg-clip-padding transition-all duration-200'
-          : '',
+        loading ? 'skeleton bg-skeleton animate-pulse cursor-default bg-clip-padding transition-all duration-200' : '',
         'z-10 w-fit rounded-lg',
         className
       )}

@@ -52,7 +52,7 @@ const URLShortenerQRCodeDialog: React.FC<URLShortenerQRCodeDialog> = (props) => 
             alt="QR Code"
             width={250}
             height={250}
-            className="mx-auto rounded-lg border-2 border-neutral-300 dark:border-neutral-800"
+            className="mx-auto rounded-lg border"
           />
         ) : null}
         <DialogFooter>

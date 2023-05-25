@@ -14,9 +14,25 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: colors.zinc,
         primary: colors.purple,
         secondary: colors.fuchsia,
+        border: 'hsl(var(--border))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        skeleton: 'hsl(var(--skeleton))',
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)'],

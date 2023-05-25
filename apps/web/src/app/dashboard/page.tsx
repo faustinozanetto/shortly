@@ -16,6 +16,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="container my-4 md:my-8 ">
+      {/* @ts-expect-error Server Component */}
       <UserDashboard user={user} />
     </div>
   );

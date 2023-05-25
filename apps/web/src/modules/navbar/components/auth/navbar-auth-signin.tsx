@@ -7,7 +7,7 @@ import { cn } from '@modules/ui/lib/ui.lib';
 
 const NavbarAuthSignIn: React.FC = () => {
   return (
-    <Link href="/auth/signin" className={cn(buttonVariants({}))}>
+    <Link href="/sign-in" className={cn(buttonVariants({}))}>
       Sign In
     </Link>
   );

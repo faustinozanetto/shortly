@@ -12,11 +12,7 @@ const HomeFeatureCard: React.FC<HomeFeatureCardProps> = (props) => {
   const { title, content, icon } = data;
 
   return (
-    <AccordionItem
-      key={title}
-      value={String(index)}
-      className="overflow-hidden border-b border-neutral-300 py-3 last:border-none dark:border-neutral-700"
-    >
+    <AccordionItem key={title} value={String(index)} className="overflow-hidden border-b py-3 last:border-none">
       <AccordionTrigger className="group flex w-full items-center justify-between">
         <div className="flex items-center space-x-2">
           {icon}

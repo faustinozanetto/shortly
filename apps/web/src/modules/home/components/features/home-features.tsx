@@ -10,7 +10,7 @@ const HomeFeatures: React.FC = () => {
   const [selectedFeature, setSelectedFeature] = useState<number>(0);
 
   return (
-    <section className="bg-background-50 dark:bg-background-900 w-full" id="stats">
+    <section className="w-full" id="stats">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-20 md:py-24">
         {/* Text and Title */}
         <div className="mx-auto max-w-2xl text-center">
@@ -31,7 +31,7 @@ const HomeFeatures: React.FC = () => {
         </div>
 
         {/* Featues */}
-        <div className="border-background-200 dark:border-background-800 relative z-20 my-10 w-full overflow-hidden rounded-lg border bg-white/20 shadow-lg dark:bg-black/20">
+        <div className="relative z-20 my-10 w-full overflow-hidden rounded-lg border bg-white/20 shadow-lg dark:bg-black/20">
           {/* Gradients */}
           <div aria-hidden="true" className="absolute inset-0 left-1/2 -translate-x-1/2 transform">
             <div className="rounded-fulls dark:from-primary-500/50 dark:via-secondary-600/50 dark:to-primary-400/40 from-primary-300 via-primary-100 to-secondary-200 h-[50rem] w-[90rem] origin-top-left -translate-x-[15rem] -rotate-12 bg-gradient-to-tl blur-3xl "></div>
@@ -78,7 +78,7 @@ const HomeFeatures: React.FC = () => {
                           stiffness: 150,
                           damping: 10,
                         }}
-                        className="bg-background-100 dark:bg-background-900 w-full overflow-hidden rounded-lg p-4 shadow-lg"
+                        className="bg-foreground w-full overflow-hidden rounded-lg p-4 shadow-lg"
                       >
                         <Image
                           className="aspect-video w-full rounded-md"

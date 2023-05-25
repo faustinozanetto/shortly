@@ -11,7 +11,7 @@ export const buttonVariants = cva(
         default:
           'bg-primary-400 hover:bg-primary-500 focus-visible:ring-primary-400 dark:bg-primary-700 dark:hover:bg-primary-800 text-neutral-900 dark:text-neutral-50',
         outline:
-          'border-2 border-primary-300 dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500',
+          'border border-primary-300 dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500 text-neutral-900 dark:text-neutral-50',
         ghost:
           'dark:border-primary-600 hover:bg-primary-300/70 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800/70 dark:focus-visible:ring-primary-500',
         danger:
@@ -20,7 +20,7 @@ export const buttonVariants = cva(
       },
       size: {
         sm: 'h-8 px-3',
-        base: 'h-10 px-4',
+        base: 'h-9 md:h-10 px-4',
         lg: 'h-12 px-8',
         xl: 'h-12 px-8 md:h-14 md:px-10',
       },

@@ -1,19 +1,27 @@
-import { getUserLinks } from '@modules/dashboard/lib/dashboard.lib';
-import { Session } from 'next-auth';
-import React from 'react';
-import UserDashboardLinksTable from './table/user-dashboard-links-table';
+'use client';
+import React, { useEffect } from 'react';
+import UserDashboardLinksList from './list/user-dashboard-links-list';
+import UserDashboardLinksFiltering from './filtering/user-dashboard-links-filtering';
+import { Link } from '@prisma/client';
+import { useUserDashboardLinksContext } from '@modules/dashboard/hooks/use-user-dashboard-links-context';
+import { UserDashboardLinksType } from '@modules/dashboard/context/links/reducer/types';
+import UserDashboardLinksSorting from './sorting/user-dashboard-links-sorting';
 
 type UserDashboardLinksProps = {
-  user: Session['user'];
+  links: Link[];
 };
 
-const UserDashboardLinks = async (props: UserDashboardLinksProps) => {
-  const { user } = props;
+const UserDashboardLinks: React.FC<UserDashboardLinksProps> = (props) => {
+  const { links } = props;
 
-  const links = await getUserLinks({ userEmail: user?.email! });
+  const { dispatch } = useUserDashboardLinksContext();
+
+  useEffect(() => {
+    dispatch({ type: UserDashboardLinksType.SET_LINKS, payload: { links } });
+  }, [links]);
 
   return (
-    <div className="bg-background-100 dark:bg-background-800 rounded-lg p-4 shadow-lg md:p-6">
+    <div className="bg-foreground rounded-lg border p-4 shadow-lg md:p-6">
       <h2 className="leading-2 block text-2xl font-bold text-neutral-800 dark:text-white md:text-3xl lg:text-4xl">
         Generated URLs
       </h2>
@@ -22,8 +30,14 @@ const UserDashboardLinks = async (props: UserDashboardLinksProps) => {
         and organize your URLs with ease.
       </p>
 
-      <div className="mt-2 md:mt-4">
-        <UserDashboardLinksTable links={links} />
+      <div className="mt-4 flex flex-col gap-4 md:mt-6 lg:flex-row">
+        {/* Desktop Filtering and Sorting */}
+        <div className="scrollbar-hide col-span-2 grid max-h-[calc(100vh-350px)] grid-rows-2 gap-4 overflow-auto md:grid-cols-2 md:grid-rows-1 lg:sticky lg:top-24 lg:min-w-[300px] lg:grid-cols-1 lg:grid-rows-2 lg:self-start">
+          <UserDashboardLinksFiltering />
+          <UserDashboardLinksSorting />
+        </div>
+        {/* Links List */}
+        <UserDashboardLinksList />
       </div>
     </div>
   );

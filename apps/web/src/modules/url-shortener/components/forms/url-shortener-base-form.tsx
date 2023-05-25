@@ -104,7 +104,7 @@ const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
                     <FormControl>
                       <PasswordInput placeholder="secure-password" {...field} />
                     </FormControl>
-                    <FormDescription>Secure your url</FormDescription>
+                    <FormDescription>Secure your link with a private password</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

@@ -24,7 +24,7 @@ export const DateInput: React.FC<DateInputProps> = (props, ref) => {
         <PopoverTrigger asChild>
           <FormControl>
             <Button
-              variant={'outline'}
+              variant="outline"
               className={cn('w-full pl-3 text-left font-normal', !value && 'text-muted-foreground')}
             >
               {value ? format(new Date(value), 'PPP') : <span>Pick a date</span>}

@@ -50,7 +50,7 @@ const HomeHero: React.FC = () => {
               <Link href="/shorten" className={cn(buttonVariants({ size: 'xl' }))}>
                 Get Started Now
               </Link>
-              <Link href="/auth/signin" className={cn(buttonVariants({ variant: 'outline', size: 'xl' }))}>
+              <Link href="/sign-in" className={cn(buttonVariants({ variant: 'outline', size: 'xl' }))}>
                 Sign In for Free
               </Link>
             </motion.div>

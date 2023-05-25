@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  if (!user) return redirect('/auth/signin');
+  if (!user) return redirect('/sign-in');
 
   return (
     <div className="container my-4 md:my-8 ">

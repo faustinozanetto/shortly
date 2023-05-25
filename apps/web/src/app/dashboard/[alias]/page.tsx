@@ -20,7 +20,7 @@ export default async function DashboardLinkPage(props: DashboardLinkPageProps) {
   const { alias } = params;
 
   const user = await getCurrentUser();
-  if (!user) return redirect('/auth/signin');
+  if (!user) return redirect('/sign-in');
 
   return (
     <UserDashboardLinkProvider>

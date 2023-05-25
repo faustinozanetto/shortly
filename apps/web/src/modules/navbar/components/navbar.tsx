@@ -1,7 +1,4 @@
 import React from 'react';
-import { NAVBAR_LINKS } from '../lib/navbar.lib';
-import NavbarLink from './navbar-link';
-import ThemeToggler from '@modules/theming/components/theme-toggler';
 
 import NavbarUserDetails from '@modules/navbar/components/user-details/navbar-user-details';
 import Link from 'next/link';

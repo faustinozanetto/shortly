@@ -35,7 +35,7 @@ const UserLinkManagement = () => {
 
   return (
     <>
-      <div className="flex flex-row gap-2 md:flex-col">
+      <div className="flex flex-row items-center gap-2 md:flex-col">
         <Skeleton className="w-full" loading={loading || !link}>
           <Button
             aria-label="Edit Link"

@@ -16,7 +16,7 @@ const UserLinkCreatedAt: React.FC<UserLinkCreatedAtProps> = (props) => {
     <Skeleton loading={loading || !link}>
       <div className="flex items-center gap-1 text-sm font-medium text-neutral-700 dark:text-neutral-200">
         <CalendarIcon />
-        <span>{link ? new Date(link.createdAt).toLocaleDateString() : 'Created At'}</span>
+        <span>{link ? new Date(link.createdAt).toDateString() : 'Created At'}</span>
       </div>
     </Skeleton>
   );

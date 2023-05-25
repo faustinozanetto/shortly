@@ -9,7 +9,6 @@ import QRIcon from '@modules/ui/components/icons/qr-icon';
 import URLShortenerCopyLink from '@modules/url-shortener/components/copy/url-shortener-copy-link';
 import URLShortenerQRCode from '@modules/url-shortener/components/qr-code/url-shortener-qr-code';
 import { buttonVariants } from '@modules/ui/components/button/button';
-import { cn } from '@modules/ui/lib/ui.lib';
 import UserLinkAlias from '@modules/dashboard/components/links/common/user-link-alias';
 import UserLinkCreatedAt from '@modules/dashboard/components/links/common/user-link-created-at';
 import UserLinkURL from '@modules/dashboard/components/links/common/user-link-url';
@@ -54,7 +53,11 @@ const UserDashboardLinkCard = (props: UserDashboardLinkCardProps) => {
       </div>
 
       <div className="absolute right-4 top-1/2 -translate-y-1/2">
-        <Link className={buttonVariants({ variant: 'ghost' })} href={`/dashboard/${link.alias}`} title="Link Details">
+        <Link
+          className={buttonVariants({ variant: 'ghost', size: 'xs' })}
+          href={`/dashboard/${link.alias}`}
+          title="Link Details"
+        >
           Details
         </Link>
       </div>

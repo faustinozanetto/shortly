@@ -17,7 +17,7 @@ const UserLinkStatsCategory = (props: UserLinkStatsCategoryProps) => {
 
   const { link } = useUserDashboardLinkContext();
 
-  const { data, isLoading } = useQuery<LinkStatsResponse<unknown>>([category], {
+  const { data, isLoading } = useQuery<LinkStatsResponse<unknown>>([`${category}-${link?.alias}`], {
     enabled: process.env.NODE_ENV === 'production',
     queryFn: async () => {
       const url = new URL(`/api/links/${encodeURIComponent(link?.alias!)}/stats`, process.env.NEXT_PUBLIC_URL);

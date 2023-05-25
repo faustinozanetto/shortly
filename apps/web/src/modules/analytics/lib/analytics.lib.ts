@@ -32,6 +32,8 @@ export const trackLinkUserDetails = async (req: NextRequest, domain: string) => 
     referer: referer ?? '(direct)',
   });
 
+  console.log({ body });
+
   const response = await fetch(`${ANALYTICS_BASE_URL}events?name=click_events&wait=true`, {
     method: 'POST',
     body,

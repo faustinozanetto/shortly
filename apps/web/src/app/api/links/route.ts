@@ -11,12 +11,51 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import { storeLinkInDatabase } from '@modules/url-shortener/lib/url-shortener-db';
-import { log } from 'util';
+import { prisma } from '@modules/database/lib/database.lib';
+import { authOptions } from '@modules/auth/lib/auth.lib';
+import { getServerSession } from 'next-auth';
 
 const shortenLinkRateLimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(1, '10 s'),
 });
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const page = Number(searchParams.get('page') ?? 0);
+
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return new NextResponse('Unauthorized', { status: 403 });
+    }
+
+    const PAGE_SIZE = 6;
+    const skip = PAGE_SIZE * page;
+
+    const totalCount = await prisma.link.count({
+      where: {
+        user: { email: session.user.email },
+      },
+    });
+
+    const links = await prisma.link.findMany({
+      where: {
+        user: { email: session.user.email },
+      },
+      take: PAGE_SIZE,
+      skip: skip,
+      orderBy: { createdAt: 'desc' },
+    });
+
+    const totalPages = Math.ceil(totalCount / PAGE_SIZE) - 1;
+    const hasMore = page < totalPages;
+
+    return NextResponse.json({ links, totalCount, totalPages, currentPage: page, hasMore }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: error.message }, { status: 400 });
+  }
+}
 
 export async function POST(request: NextRequest) {
   const body = await request.json();

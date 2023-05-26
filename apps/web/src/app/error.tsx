@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="mx-4 flex w-full flex-col items-center md:mx-0">
-      <div className="bg-background my-6 w-full rounded-lg p-4 px-4 shadow-lg sm:px-6 md:my-14 md:max-w-lg md:p-6 lg:my-20">
+      <div className="bg-foreground my-6 w-full rounded-lg border p-4 px-4 shadow-lg sm:px-6 md:my-14 md:max-w-lg md:p-6 lg:my-20">
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-center text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl">
             An error occurred!

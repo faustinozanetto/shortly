@@ -23,7 +23,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
       <DropdownMenuTrigger className="flex items-center justify-center">
         {user && user.image ? (
           <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-            <Image src={user.image} alt={`${user.name} Avatar`} width={200} height={200} />
+            <Image src={user.image} alt={`${user.name} Avatar`} width={100} height={100} />
           </div>
         ) : (
           <svg

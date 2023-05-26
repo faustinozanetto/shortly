@@ -3,16 +3,18 @@ import React from 'react';
 const UserDashboardLinkCardPlaceholder = () => {
   return (
     <li className="bg-background relative flex flex-col items-start gap-2 rounded-lg border p-4 shadow-lg">
-      <div className="mb-1 flex w-full items-center gap-2">
+      <div className="flex w-full items-center gap-2">
         {/* Alias */}
-        <span className="skeleton bg-foreground h-5 w-40 animate-pulse rounded-md"></span>
+        <div className="skeleton bg-skeleton h-5 w-40 animate-pulse rounded-md" />
         {/* QR Code */}
-        <span className="skeleton bg-foreground h-5 w-5 animate-pulse rounded-md"></span>
+        <div className="skeleton bg-skeleton h-5 w-5 animate-pulse rounded-md" />
         {/* Copy */}
-        <span className="skeleton bg-foreground h-5 w-5 animate-pulse rounded-md"></span>
+        <div className="skeleton bg-skeleton h-5 w-5 animate-pulse rounded-md" />
       </div>
+      {/* Date */}
+      <div className="skeleton bg-skeleton h-5 w-20 animate-pulse rounded-md" />
       {/* URL */}
-      <span className="skeleton bg-foreground h-5 w-60 animate-pulse rounded-md"></span>
+      <div className="skeleton bg-skeleton h-5 w-60 animate-pulse rounded-md" />
     </li>
   );
 };

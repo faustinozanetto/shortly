@@ -13,7 +13,7 @@ const Navbar = async () => {
 
   return (
     <div className="bg-background/70 dark:bg-background/70 sticky left-0 right-0 top-0 z-[999] h-20 w-full border-b p-4 backdrop-blur-lg">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="mx-auto flex items-center justify-between sm:container">
         {/* Mobile Nav */}
         <NavbarMobile user={user} />
         {/* Logo */}
@@ -22,7 +22,6 @@ const Navbar = async () => {
         </Link>
         {/* Desktop Nav */}
         <NavbarDesktop user={user} />
-
         {/* Auth */}
         <div className="md:ml-4">{user ? <NavbarUserDetails user={user} /> : <NavbarAuthSignIn />}</div>
       </div>

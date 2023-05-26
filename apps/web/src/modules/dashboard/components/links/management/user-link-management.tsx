@@ -13,20 +13,16 @@ import { useUserDashboardLinkContext } from '@modules/dashboard/hooks/use-user-d
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
 const UserLinkManagement = () => {
-  const { link, loading } = useUserDashboardLinkContext();
-
   const router = useRouter();
+  const { link, loading } = useUserDashboardLinkContext();
 
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
   const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
 
   const handleOnEdited = async (data: Link) => {
-    if (data.alias === link?.alias) {
-      router.refresh();
-    } else {
-      router.replace(`/dashboard/${data.alias}`);
-    }
-    setShowEditDialog(false);
+    // If we did not modify the alias refresh page, else push to new alias rout
+    if (data.alias === link?.alias) router.refresh();
+    else router.replace(`/dashboard/${data.alias}`);
   };
 
   const handleOnDeleted = () => {
@@ -35,7 +31,7 @@ const UserLinkManagement = () => {
 
   return (
     <>
-      <div className="flex flex-row items-center gap-2 md:flex-col">
+      <div className="flex flex-row items-center justify-center gap-2 md:flex-col">
         <Skeleton className="w-full" loading={loading || !link}>
           <Button
             aria-label="Edit Link"

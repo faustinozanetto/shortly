@@ -2,6 +2,12 @@ import { UserDashboardLinksActions, UserDashboardLinksState, UserDashboardLinksT
 
 export const reducer = (state: UserDashboardLinksState, action: UserDashboardLinksActions): UserDashboardLinksState => {
   switch (action.type) {
+    case UserDashboardLinksType.SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+      };
+    }
     case UserDashboardLinksType.SET_LINKS: {
       return {
         ...state,
@@ -9,7 +15,6 @@ export const reducer = (state: UserDashboardLinksState, action: UserDashboardLin
         links: action.payload.links,
       };
     }
-
     case UserDashboardLinksType.SET_FILTER_BY: {
       return {
         ...state,

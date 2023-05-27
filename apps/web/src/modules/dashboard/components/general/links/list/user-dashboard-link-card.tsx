@@ -57,6 +57,7 @@ const UserDashboardLinkCard = (props: UserDashboardLinkCardProps) => {
           className={buttonVariants({ variant: 'ghost', size: 'xs' })}
           href={`/dashboard/${link.alias}`}
           title="Link Details"
+          prefetch={false}
         >
           Details
         </Link>

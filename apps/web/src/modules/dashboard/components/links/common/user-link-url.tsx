@@ -23,6 +23,7 @@ const UserLinkURL: React.FC<UserLinkURLProps> = (props) => {
                 href={(link && link.url) ?? '/'}
                 className="block max-w-[170px] truncate text-sm font-medium text-neutral-700 dark:text-neutral-200 sm:max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-full"
                 target="_blank"
+                prefetch={false}
               >
                 {link?.url ?? 'Default URL'}
               </Link>

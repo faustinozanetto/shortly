@@ -19,6 +19,7 @@ export type UserDashboardLinksFilterBy = {
 export type UserDashboardLinksSortBy = 'none' | 'alias' | 'createdAt';
 
 export type UserDashboardLinksState = {
+  isLoading: boolean;
   links: Link[];
   filteredLinks: Link[];
   filterBy: UserDashboardLinksFilterBy;
@@ -31,16 +32,19 @@ export type UserDashboardLinksContextState = {
 };
 
 export enum UserDashboardLinksType {
+  SET_IS_LOADING,
   SET_LINKS,
   SET_FILTER_BY,
   SET_SORT_BY,
 }
 
 type UserDashboardLinksPayload = {
+  [UserDashboardLinksType.SET_IS_LOADING]: {
+    isLoading: boolean;
+  };
   [UserDashboardLinksType.SET_LINKS]: {
     links: Link[];
   };
-
   [UserDashboardLinksType.SET_FILTER_BY]: {
     filterBy: UserDashboardLinksFilterBy;
   };

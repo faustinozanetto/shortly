@@ -23,6 +23,7 @@ const UserLinkAlias: React.FC<UserLinkAliasProps> = (props) => {
               <Link
                 href={link ? getCompleteShortenedURL(link.alias!) : '/'}
                 className="text-primary-600 block truncate font-semibold dark:text-purple-400 md:text-lg"
+                prefetch={false}
                 target="_blank"
               >{`@${link ? link.alias : 'Alias'}`}</Link>
             </Skeleton>

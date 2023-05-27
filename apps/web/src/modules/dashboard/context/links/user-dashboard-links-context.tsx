@@ -4,7 +4,13 @@ import { UserDashboardLinksContextState } from './reducer/types';
 import { reducer } from './reducer';
 
 const initialState: UserDashboardLinksContextState = {
-  state: { links: [], filteredLinks: [], sortBy: 'createdAt', filterBy: { type: 'alias', value: '' } },
+  state: {
+    isLoading: false,
+    links: [],
+    filteredLinks: [],
+    sortBy: 'createdAt',
+    filterBy: { type: 'alias', value: '' },
+  },
   dispatch: () => {},
 };
 

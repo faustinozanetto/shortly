@@ -9,8 +9,8 @@ const UserDashboardLinksList = () => {
 
   return (
     <ul className="flex flex-1 flex-col gap-2 md:gap-4">
-      {state.links.length > 0
-        ? state.filteredLinks.map((link, index) => {
+      {!state.isLoading
+        ? state.filteredLinks.map((link) => {
             return <UserDashboardLinkCard key={link.alias} link={link} />;
           })
         : Array.from({ length: 6 }).map((_, index) => {

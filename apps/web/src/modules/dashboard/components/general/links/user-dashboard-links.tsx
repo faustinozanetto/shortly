@@ -8,6 +8,7 @@ import { UserDashboardLinksType } from '@modules/dashboard/context/links/reducer
 import UserDashboardLinksSorting from './sorting/user-dashboard-links-sorting';
 import { useQuery } from '@tanstack/react-query';
 import Button from '@modules/ui/components/button/button';
+import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
 type UserLinksAPIResponse = {
   links: Link[];
@@ -38,10 +39,6 @@ const UserDashboardLinks: React.FC = () => {
     }
   );
 
-  useEffect(() => {
-    if (data && data.links) dispatch({ type: UserDashboardLinksType.SET_LINKS, payload: { links: data.links } });
-  }, [data]);
-
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
@@ -51,6 +48,14 @@ const UserDashboardLinks: React.FC = () => {
       setCurrentPage((prev) => prev + 1);
     }
   };
+
+  useEffect(() => {
+    dispatch({ type: UserDashboardLinksType.SET_IS_LOADING, payload: { isLoading: isFetching } });
+  }, [isFetching]);
+
+  useEffect(() => {
+    if (data && data.links) dispatch({ type: UserDashboardLinksType.SET_LINKS, payload: { links: data.links } });
+  }, [data]);
 
   return (
     <div className="bg-foreground rounded-lg border p-4 shadow-lg md:p-6">
@@ -67,17 +72,29 @@ const UserDashboardLinks: React.FC = () => {
           <UserDashboardLinksFiltering />
           <UserDashboardLinksSorting />
         </div>
-        <UserDashboardLinksList />
-      </div>
-
-      <div className="mt-2 flex justify-end gap-4 md:mt-4">
-        <div className="flex gap-2">
-          <Button aria-label="Previous Page" disabled={currentPage === 0} onClick={handlePrevPage}>
-            Prev Page
-          </Button>
-          <Button aria-label="Next Page" disabled={isPreviousData || !data?.hasMore} onClick={handleNextPage}>
-            Next Page
-          </Button>
+        <div className="flex w-full flex-col gap-4">
+          <UserDashboardLinksList />
+          {/* Pagination Details */}
+          <div className="grid items-center justify-between gap-2 sm:grid-flow-col md:gap-4">
+            <Skeleton loading={isFetching}>
+              <p className="text-sm text-neutral-900 dark:text-neutral-50 md:text-base">
+                Showing page <strong>{currentPage + 1}</strong> of <strong>{(data?.totalPages ?? 1) + 1}</strong>
+              </p>
+            </Skeleton>
+            <div className="flex gap-2">
+              <Button aria-label="Previous Page" disabled={currentPage === 0} onClick={handlePrevPage} size="sm">
+                Prev Page
+              </Button>
+              <Button
+                aria-label="Next Page"
+                disabled={isPreviousData || !data?.hasMore}
+                onClick={handleNextPage}
+                size="sm"
+              >
+                Next Page
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

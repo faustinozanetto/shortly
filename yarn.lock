@@ -513,13 +513,6 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-accordion@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.1.1.tgz#fa1ab1b5c6a29aa75aefaf306a9e72fe3a482dbc"
-  integrity sha512-TQtyyRubYe8DD6DYCovNLTjd2D+TFrNCpr99T5M3cYUbR7BsRxWsxfInjbQ1nHsdy2uPTcnJS5npyXPVfP0piw==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
 "@radix-ui/react-accordion@1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.1.2.tgz#738441f7343e5142273cdef94d12054c3287966f"
@@ -536,18 +529,18 @@
     "@radix-ui/react-primitive" "1.0.3"
     "@radix-ui/react-use-controllable-state" "1.0.1"
 
-"@radix-ui/react-alert-dialog@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-alert-dialog/-/react-alert-dialog-1.0.4.tgz#709d7625efadac503c6276d9e92d3449184f5e68"
-  integrity sha512-jbfBCRlKYlhbitueOAv7z74PXYeIQmWpKwm3jllsdkw7fGWNkxqP3v0nY9WmOzcPqpQuoorNtvViBgL46n5gVg==
+"@radix-ui/react-alert-dialog@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-alert-dialog/-/react-alert-dialog-1.0.3.tgz#892726f4e4441622535e68a632ec833211b46988"
+  integrity sha512-QXFy7+bhGi0u+paF2QbJeSCHZs4gLMJIPm6sajUamyW0fro6g1CaSGc5zmc4QmK2NlSGUrq8m+UsUqJYtzvXow==
   dependencies:
     "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.1"
-    "@radix-ui/react-compose-refs" "1.0.1"
-    "@radix-ui/react-context" "1.0.1"
-    "@radix-ui/react-dialog" "1.0.4"
-    "@radix-ui/react-primitive" "1.0.3"
-    "@radix-ui/react-slot" "1.0.2"
+    "@radix-ui/primitive" "1.0.0"
+    "@radix-ui/react-compose-refs" "1.0.0"
+    "@radix-ui/react-context" "1.0.0"
+    "@radix-ui/react-dialog" "1.0.3"
+    "@radix-ui/react-primitive" "1.0.2"
+    "@radix-ui/react-slot" "1.0.1"
 
 "@radix-ui/react-arrow@1.0.2":
   version "1.0.2"
@@ -1264,16 +1257,16 @@
     "@types/node" "*"
 
 "@types/react-dom@^18.2.4":
-  version "18.2.4"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.4.tgz#13f25bfbf4e404d26f62ac6e406591451acba9e0"
-  integrity sha512-G2mHoTMTL4yoydITgOGwWdWMVd8sNgyEP85xVmMKAPUBwQWm9wBPQUmvbeF4V3WBY1P7mmL4BkjQ0SqUpf1snw==
+  version "18.2.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.7.tgz#67222a08c0a6ae0a0da33c3532348277c70abb63"
+  integrity sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==
   dependencies:
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^18.2.5":
-  version "18.2.6"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.6.tgz#5cd53ee0d30ffc193b159d3516c8c8ad2f19d571"
-  integrity sha512-wRZClXn//zxCFW+ye/D2qY65UsYP1Fpex2YXorHc8awoNamkMZSvBxwxdYVInsHOZZd2Ppq8isnSzJL5Mpf8OA==
+  version "18.2.15"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.15.tgz#14792b35df676c20ec3cf595b262f8c615a73066"
+  integrity sha512-oEjE7TQt1fFTFSbf8kkNuc798ahTUzn3Le67/PWjE8MAfYAD/qB7O8hSTcromLFqHCt9bcdOg5GXMokzTjJ5SA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"

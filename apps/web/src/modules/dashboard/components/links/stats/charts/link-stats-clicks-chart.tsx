@@ -7,7 +7,7 @@ import BarChart from '@modules/charts/components/bar-chart';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
 const LinkStatsClicksChart: React.FC = () => {
-  const { link, setStatsCategory } = useUserDashboardLinkStore();
+  const { link } = useUserDashboardLinkStore();
 
   const { data, isLoading } = useQuery<LinkGroupedClicksResponse>([`clicks-grouped-${link?.alias}`], {
     enabled: !!link,
@@ -22,9 +22,6 @@ const LinkStatsClicksChart: React.FC = () => {
       const { data }: { data: LinkGroupedClicksResponse } = await response.json();
 
       return data;
-    },
-    onSuccess(data) {
-      console.log({ data });
     },
   });
 
@@ -43,7 +40,6 @@ const LinkStatsClicksChart: React.FC = () => {
   return (
     <div className="flex flex-col rounded border p-4 shadow">
       <h2 className="text-lg font-semibold">Clicks</h2>
-      <p>Visualize the clicks of your shortened url grouped by dates.</p>
 
       {data && data.length > 0 ? (
         <BarChart

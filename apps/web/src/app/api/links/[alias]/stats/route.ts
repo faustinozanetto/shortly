@@ -1,11 +1,11 @@
 import { TINYBIRD_BASE_URL } from '@modules/analytics/lib/analytics.constants';
-import { AnalyticsDataType, LinkStatsResponse } from '@modules/analytics/types/analytics.types';
+import { AnalyticsCategoryType, LinkStatsResponse } from '@modules/analytics/types/analytics.types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
     const alias = req.nextUrl.pathname.split('/')[3];
-    const stat = req.nextUrl.searchParams.get('stat') as AnalyticsDataType;
+    const stat = req.nextUrl.searchParams.get('stat') as AnalyticsCategoryType;
 
     const url = new URL(`${TINYBIRD_BASE_URL}pipes/link_${stat}.json`);
 

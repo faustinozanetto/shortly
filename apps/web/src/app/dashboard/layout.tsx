@@ -7,7 +7,6 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <QueriesProvider>
       <div className="flex min-h-screen flex-col">
-        {/* @ts-expect-error Server Component */}
         <Navbar />
         <div className="flex w-full flex-1 flex-col items-center">{children}</div>
         <Footer />

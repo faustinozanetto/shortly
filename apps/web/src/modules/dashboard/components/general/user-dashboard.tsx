@@ -14,7 +14,6 @@ const UserDashboard: React.FC<UserDashboardProps> = (props) => {
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <UserDashboardGreeting user={user} />
-      {/* @ts-expect-error Server Component */}
       <UserDashboardStats user={user} />
       <UserDashboardURLs />
     </div>

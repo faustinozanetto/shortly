@@ -6,12 +6,12 @@
     "name": "Faustino Zanetto",
     "email": "zanettofaustino@gmail.com"
   },
+  "repository": {
+    "url": "https://github.com/faustinozanetto/shortly",
+    "type": "git"
+  },
   "license": "GPL-3.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "prisma": {
     "schema": "packages/database-shortly/prisma/schema.prisma"
   },
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
+    "@commitlint/types": "18.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
@@ -34,7 +35,11 @@
     "turbo": "^1.9.5"
   },
   "lint-staged": {
-    "extends": "./lint-staged.config.js"
+    "extends": "./lint-staged.config.ts"
   },
-  "packageManager": "^yarn@1.22.19"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }

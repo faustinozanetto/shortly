@@ -60,7 +60,7 @@
   "devDependencies": {
     "@shortly/tailwind-config": "*",
     "@shortly/typescript-config": "*",
-    "tailwindcss-animate": "1.0.5",
+    "tailwindcss-animate": "1.0.7",
     "prisma": "4.14.1",
     "@types/node": "^18.11.17",
     "@types/qrcode": "1.5.0",

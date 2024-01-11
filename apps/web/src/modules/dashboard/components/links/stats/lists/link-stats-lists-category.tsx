@@ -10,17 +10,17 @@ import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboa
 import { DISABLE_LINK_TRACKING } from '@modules/analytics/lib/analytics.constants';
 
 export type LinkStatsListsCategoryProps = {
-  category: string;
+  title: string;
   categoryType: AnalyticsCategoryType;
   renderContent: (data: LinkStatsResponse<unknown>, totalCount: number) => React.ReactElement;
 };
 
 const LinkStatsListsCategory: React.FC<LinkStatsListsCategoryProps> = (props) => {
-  const { category, categoryType, renderContent } = props;
+  const { title, categoryType, renderContent } = props;
 
-  const { link, setStatsCategory } = useUserDashboardLinkStore();
+  const { link, stats, statsIsLoading, setStatsCategory, setStatsCategoryIsLoading } = useUserDashboardLinkStore();
 
-  const { data, isLoading } = useQuery<LinkStatsResponse<unknown>>([`${category}-${link?.alias}`], {
+  useQuery<LinkStatsResponse<unknown>>([`${title}-${link?.alias}`], {
     enabled: !!link,
     queryFn: async () => {
       if (!link || DISABLE_LINK_TRACKING) return [];
@@ -38,29 +38,34 @@ const LinkStatsListsCategory: React.FC<LinkStatsListsCategoryProps> = (props) =>
     },
     onSuccess(data) {
       setStatsCategory(categoryType, data);
+      setStatsCategoryIsLoading(categoryType, false);
     },
   });
 
   const totalCount = useMemo(() => {
-    if (!data) return 0;
+    if (!stats[categoryType]) return 0;
 
-    return data.reduce((prev, curr) => {
+    return stats[categoryType].reduce((prev, curr) => {
       return prev + curr.count;
     }, 0);
-  }, [data]);
+  }, [stats[categoryType]]);
 
   return (
-    <div className="flex flex-col gap-2 rounded border p-4 shadow">
-      {isLoading ? <Skeleton className="h-5 w-40" /> : <h2 className="text-xl font-semibold">{category}</h2>}
+    <div className="flex flex-col gap-1 rounded border p-4 shadow">
+      {statsIsLoading[categoryType] ? (
+        <Skeleton className="h-5 w-40" />
+      ) : (
+        <h2 className="text-lg font-semibold">{title}</h2>
+      )}
       <div className="grid auto-rows-min gap-1">
-        {data && data.length > 0 ? renderContent(data, totalCount) : null}
-        {isLoading
+        {stats[categoryType] && stats[categoryType].length > 0 ? renderContent(stats[categoryType], totalCount) : null}
+        {statsIsLoading[categoryType]
           ? Array.from({ length: 3 }).map((_, index) => {
               return <LinkStatsListsEntryPlaceholder key={`entry-placeholder-${index}`} />;
             })
           : null}
       </div>
-      {!isLoading && data && data.length === 0 ? (
+      {!statsIsLoading[categoryType] && stats[categoryType] && stats[categoryType].length === 0 ? (
         <p className="text-sm">Not enough data to display information!</p>
       ) : null}
     </div>

@@ -17,6 +17,7 @@ const sourceSansPro = Inter({
   variable: '--font-sans',
   subsets: ['latin'],
   display: 'swap',
+  fallback: ['system-ui'],
 });
 
 export const metadata: Metadata = {

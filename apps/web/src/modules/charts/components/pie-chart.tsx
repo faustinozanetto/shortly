@@ -8,7 +8,7 @@ import { BaseChartProps } from '../lib/charts-lib';
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
-type PieChartProps = BaseChartProps & {
+export type PieChartProps = BaseChartProps & {
   colors?: {
     background: string[];
     border: string[];

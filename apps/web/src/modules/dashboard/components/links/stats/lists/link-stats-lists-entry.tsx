@@ -20,7 +20,6 @@ const LinkStatsListsEntry: React.FC<LinkStatsListsEntryProps> = (props) => {
       <div className="z-10 flex w-full px-2">
         {renderIcon()}
         <p className="ml-2 text-sm font-semibold">{capitalized}</p>
-
         <span className="ml-auto text-sm font-bold">{count}</span>
       </div>
 

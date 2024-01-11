@@ -5,13 +5,13 @@ import Image from 'next/image';
 import UserLinkStatsCategory, { LinkStatsListsCategoryProps } from './link-stats-lists-category';
 import LinkStatsListsEntry from './link-stats-lists-entry';
 
-type LinkStatsListsCategory = Pick<LinkStatsListsCategoryProps, 'category' | 'categoryType'> & {
+type LinkStatsListsCategory = Pick<LinkStatsListsCategoryProps, 'title' | 'categoryType'> & {
   renderIcon: (entry: unknown) => JSX.Element;
 };
 
 const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
   {
-    category: 'Browsers',
+    title: 'Browsers',
     categoryType: 'browser',
     renderIcon: (entry: string) => {
       return (
@@ -25,14 +25,14 @@ const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
     },
   },
   {
-    category: 'Countries',
+    title: 'Countries',
     categoryType: 'country',
     renderIcon: (entry: string) => {
       return <Image src={`https://flag.vercel.app/m/${entry}.svg`} alt={entry} width={20} height={20} />;
     },
   },
   {
-    category: 'Devices',
+    title: 'Devices',
     categoryType: 'device',
     renderIcon: (entry: string) => {
       return (
@@ -50,7 +50,7 @@ const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
     },
   },
   {
-    category: 'Operative System',
+    title: 'Operative System',
     categoryType: 'os',
     renderIcon: (entry: string) => {
       return (
@@ -71,8 +71,8 @@ const LinkStatsLists: React.FC = () => {
       {LINK_STATS_LISTS.map((stats) => {
         return (
           <UserLinkStatsCategory
-            key={stats.category}
-            category={stats.category}
+            key={stats.title}
+            title={stats.title}
             categoryType={stats.categoryType}
             renderContent={(data, total) => {
               return (

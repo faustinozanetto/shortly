@@ -65,7 +65,7 @@
     "tailwindcss-animate": "1.0.7",
     "prisma": "5.8.0",
     "@types/node": "^18.11.17",
-    "@types/qrcode": "1.5.0",
+    "@types/qrcode": "1.5.5",
     "@types/redis": "4.0.11",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",

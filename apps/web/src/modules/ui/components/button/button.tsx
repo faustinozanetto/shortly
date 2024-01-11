@@ -1,54 +1,46 @@
-import React from 'react';
-
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@modules/ui/lib/ui.lib';
-import { VariantProps, cva } from 'class-variance-authority';
 
-export const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 ring-offset-background disabled:hover:cursor-not-allowed',
+const buttonVariants = cva(
+  'inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default:
-          'bg-primary-400 hover:bg-primary-500 focus-visible:ring-primary-400 dark:bg-primary-700 dark:hover:bg-primary-800 text-neutral-900 dark:text-neutral-50',
-        outline:
-          'border border-primary-300 dark:border-primary-600 hover:bg-primary-500 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800 dark:focus-visible:ring-primary-500 text-neutral-900 dark:text-neutral-50',
-        ghost:
-          'dark:border-primary-600 hover:bg-primary-300/70 hover:border-primary-400 focus-visible:ring-primary-300 dark:hover:bg-primary-800/70 dark:focus-visible:ring-primary-500',
-        danger:
-          'bg-red-300 hover:bg-red-400 focus-visible:ring-red-400 dark:bg-red-600 dark:hover:bg-red-700 text-neutral-900 dark:text-neutral-50',
-        unstyled: '',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
-        xs: 'text-xs h-6 px-2 md:text-sm',
-        sm: 'h-8 px-3',
-        base: 'h-9 md:h-10 px-4',
-        lg: 'h-12 px-8',
-        xl: 'h-12 px-8 md:h-14 md:px-10',
+        default: 'h-10 px-4 py-2',
+        sm: 'h-9 rounded px-3',
+        lg: 'h-11 rounded px-8',
+        icon: 'h-10 w-10',
       },
     },
     defaultVariants: {
       variant: 'default',
-      size: 'base',
+      size: 'default',
     },
   }
 );
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants> & {
-    icon?: JSX.Element | null;
-  };
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, type = 'button', icon, children, variant, size, ...props }, ref) => {
-    return (
-      <button className={cn(buttonVariants({ variant, size, className }))} ref={ref} type={type} {...props}>
-        {icon ? <span className="mr-2">{icon}</span> : null}
-        {children}
-      </button>
-    );
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
+    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
   }
 );
-
 Button.displayName = 'Button';
 
-export default Button;
+export { Button, buttonVariants };

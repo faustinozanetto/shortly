@@ -1,4 +1,4 @@
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,11 +11,11 @@ import { Link as PrismaLink } from '@prisma/client';
 import Link from 'next/link';
 import React from 'react';
 
-type UserDhasboardLinksTableEntryProps = {
+type UserDhasboardLinksTableActionsProps = {
   link: PrismaLink;
 };
 
-const UserDashboardLinksTableEntry: React.FC<UserDhasboardLinksTableEntryProps> = (props) => {
+const UserDashboardLinksTableActions: React.FC<UserDhasboardLinksTableActionsProps> = (props) => {
   const { link } = props;
 
   return (
@@ -24,7 +24,7 @@ const UserDashboardLinksTableEntry: React.FC<UserDhasboardLinksTableEntryProps> 
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Open actions menu</span>
           <svg
-            className="h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
+            className="h-4 w-4 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -44,7 +44,7 @@ const UserDashboardLinksTableEntry: React.FC<UserDhasboardLinksTableEntryProps> 
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
           <svg
-            className="mr-2 h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
+            className="mr-2 h-4 w-4 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -67,4 +67,4 @@ const UserDashboardLinksTableEntry: React.FC<UserDhasboardLinksTableEntryProps> 
   );
 };
 
-export default UserDashboardLinksTableEntry;
+export default UserDashboardLinksTableActions;

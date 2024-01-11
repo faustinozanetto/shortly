@@ -1,13 +1,14 @@
 'use client';
-import IconButton from '@modules/ui/components/icon-button/icon-button';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
-import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
+
 import React from 'react';
 import URLShortenerCopyLink from '../../copy/url-shortener-copy-link';
 import CopyIcon from '@modules/ui/components/icons/copy-icon';
+import { Button } from '@modules/ui/components/button/button';
+import { useUrlShortenerStore } from '@modules/url-shortener/state/url-shortener.slice';
 
 const URLShortenerResultActionsCopy: React.FC = () => {
-  const { shortenedURL } = useURLShortenerContext();
+  const { shortenedURL } = useUrlShortenerStore();
 
   if (!shortenedURL) return null;
 
@@ -15,11 +16,9 @@ const URLShortenerResultActionsCopy: React.FC = () => {
     <URLShortenerCopyLink
       link={shortenedURL}
       renderButton={(onClick, isCopyingLoading) => (
-        <IconButton
-          aria-label="Copy Shortened URL"
-          onClick={onClick}
-          icon={isCopyingLoading ? <LoadingIcon /> : <CopyIcon />}
-        />
+        <Button aria-label="Copy Shortened URL" onClick={onClick} size="icon">
+          {isCopyingLoading ? <LoadingIcon className="stroke-current" /> : <CopyIcon className="stroke-current" />}
+        </Button>
       )}
     />
   );

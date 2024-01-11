@@ -27,7 +27,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           </div>
         ) : (
           <svg
-            className="bg-background h-10 w-10 rounded-full stroke-neutral-900 p-2 dark:stroke-neutral-50"
+            className="bg-background h-10 w-10 rounded-full stroke-current p-2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -59,7 +59,7 @@ const NavbarUserDetails: React.FC<NavbarUserDetailsProps> = (props) => {
           }}
         >
           <svg
-            className="mr-2 h-5 w-5 stroke-neutral-900 dark:stroke-neutral-50"
+            className="mr-2 h-5 w-5 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,14 +13,28 @@ module.exports = {
       },
     },
     extend: {
+      borderRadius: {
+        DEFAULT: defaultTheme.borderRadius.lg,
+      },
       colors: {
-        primary: colors.purple,
-        secondary: colors.fuchsia,
         border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
+        'background-alternate': 'hsl(var(--background-alternate))',
         foreground: 'hsl(var(--foreground))',
-        skeleton: 'hsl(var(--skeleton))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+          foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
+        },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
@@ -32,6 +46,10 @@ module.exports = {
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
       },
       fontFamily: {

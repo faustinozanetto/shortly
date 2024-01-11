@@ -16,11 +16,11 @@ const HomeFeatureCard: React.FC<HomeFeatureCardProps> = (props) => {
       <AccordionTrigger className="group flex w-full items-center justify-between">
         <div className="flex items-center space-x-2">
           {icon}
-          <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">{title}</h3>
+          <h3 className="text-base font-semibold">{title}</h3>
         </div>
       </AccordionTrigger>
       <AccordionContent>
-        <p className="text-sm text-neutral-700 dark:text-neutral-200">{content}</p>
+        <p className="text-sm">{content}</p>
       </AccordionContent>
     </AccordionItem>
   );

@@ -9,7 +9,7 @@ import {
 } from '@modules/ui/components/dialog/dialog';
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import { toPng } from 'html-to-image';
 import { Options } from 'html-to-image/lib/types';
 
@@ -52,7 +52,7 @@ const URLShortenerQRCodeDialog: React.FC<URLShortenerQRCodeDialog> = (props) => 
             alt="QR Code"
             width={250}
             height={250}
-            className="mx-auto rounded-lg border"
+            className="mx-auto rounded border"
           />
         ) : null}
         <DialogFooter>

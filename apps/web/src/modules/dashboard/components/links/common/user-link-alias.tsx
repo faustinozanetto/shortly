@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@modules/ui/components/tooltip/tooltip';
-import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import Link from 'next/link';
 import { Link as PrismaLink } from '@prisma/client';
 import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
@@ -19,14 +18,12 @@ const UserLinkAlias: React.FC<UserLinkAliasProps> = (props) => {
       <Tooltip delayDuration={0.25}>
         <TooltipTrigger asChild>
           <div className="hover:cursor-pointer">
-            <Skeleton loading={loading || !link}>
-              <Link
-                href={link ? getCompleteShortenedURL(link.alias!) : '/'}
-                className="text-primary-600 block truncate font-semibold dark:text-purple-400 md:text-lg"
-                prefetch={false}
-                target="_blank"
-              >{`@${link ? link.alias : 'Alias'}`}</Link>
-            </Skeleton>
+            <Link
+              href={link ? getCompleteShortenedURL(link.alias!) : '/'}
+              className="text-primary block truncate font-semibold md:text-lg"
+              prefetch={false}
+              target="_blank"
+            >{`@${link ? link.alias : 'Alias'}`}</Link>
           </div>
         </TooltipTrigger>
         <TooltipContent className="font-semibold">

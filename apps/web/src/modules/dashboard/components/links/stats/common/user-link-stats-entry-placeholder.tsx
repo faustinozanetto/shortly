@@ -1,11 +1,11 @@
-'use client';
 import React from 'react';
+import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
 const UserLinkStatsEntryPlaceholder: React.FC = () => {
   return (
-    <div className="flex w-full gap-2">
-      <div className="skeleton bg-skeleton h-6 w-6 animate-pulse rounded-md" />
-      <div className="skeleton bg-skeleton h-6 w-full animate-pulse rounded-md" />
+    <div className="flex w-full gap-1">
+      <Skeleton className="h-5 w-5" />
+      <Skeleton className="h-5 w-full" />
     </div>
   );
 };

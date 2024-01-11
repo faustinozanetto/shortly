@@ -15,7 +15,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(({ 
     <div className="relative">
       <input
         className={cn(
-          'border-input ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-700',
+          'border-input ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded border border-neutral-300 bg-transparent px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-700',
           className
         )}
         ref={ref}

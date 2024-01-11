@@ -3,8 +3,8 @@ import { nanoid } from 'nanoid';
 
 import qrcode from 'qrcode';
 
-export const CUSTOM_ALIAS_MAX_LENGTH = 14;
-export const URL_PASSWORD_MIN_LEGNTH = 8;
+export const CUSTOM_ALIAS_MAX_LENGTH = 24;
+export const URL_PASSWORD_MIN_LEGNTH = 6;
 export const URL_PASSWORD_MAX_LEGNTH = 32;
 
 export const generateRandomURLAlias = (): string => {

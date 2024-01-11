@@ -15,15 +15,15 @@ const HomeFeatures: React.FC = () => {
         {/* Text and Title */}
         <div className="mx-auto max-w-2xl text-center">
           <motion.h2
-            className="font-display text-4xl font-extrabold leading-tight text-neutral-900 dark:text-neutral-50 sm:text-5xl sm:leading-tight"
+            className="font-display text-4xl font-extrabold leading-tight sm:text-5xl sm:leading-tight"
             initial={{ opacity: 0, translateX: 20 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ delay: 0.25, duration: 0.35 }}
           >
-            These are just <span className="text-secondary-500 dark:text-secondary-600">some</span> of our features
+            These are just <span className="text-primary">some</span> of <br /> our features
           </motion.h2>
-          <p className="mt-4 text-neutral-600 dark:text-neutral-200 sm:text-lg">
+          <p className="mt-4 sm:text-lg">
             Shortly is packed with a wide array of features to explore and utilize. From robust analytics for gaining
             valuable insights to intuitive task management tools for staying organized, Shortly has something for
             everyone.
@@ -31,10 +31,10 @@ const HomeFeatures: React.FC = () => {
         </div>
 
         {/* Featues */}
-        <div className="relative z-20 my-10 w-full overflow-hidden rounded-lg border bg-white/20 shadow-lg dark:bg-black/20">
+        <div className="bg-background/20 relative z-20 my-10 w-full overflow-hidden rounded border shadow">
           {/* Gradients */}
           <div aria-hidden="true" className="absolute inset-0 left-1/2 -translate-x-1/2 transform">
-            <div className="rounded-fulls dark:from-primary-500/50 dark:via-secondary-600/50 dark:to-primary-400/40 from-primary-300 via-primary-100 to-secondary-200 h-[50rem] w-[90rem] origin-top-left -translate-x-[15rem] -rotate-12 bg-gradient-to-tl blur-3xl "></div>
+            <div className="rounded-fulls h-[50rem] w-[90rem] origin-top-left -translate-x-[15rem] -rotate-12 bg-gradient-to-tl from-purple-300 via-purple-100 to-violet-200 blur-3xl dark:from-purple-500/50 dark:via-violet-600/50 dark:to-purple-400/40 "></div>
           </div>
 
           <div className="relative z-30 grid grid-cols-1 gap-10 p-6 backdrop-blur-lg lg:grid-cols-3">
@@ -78,10 +78,10 @@ const HomeFeatures: React.FC = () => {
                           stiffness: 150,
                           damping: 10,
                         }}
-                        className="bg-foreground w-full overflow-hidden rounded-lg p-4 shadow-lg"
+                        className="w-full overflow-hidden"
                       >
                         <Image
-                          className="aspect-video w-full rounded-md"
+                          className="aspect-video w-full rounded"
                           src={feature.image}
                           alt="Image Description"
                           title="Hero Picture"

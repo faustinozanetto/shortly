@@ -12,7 +12,7 @@ const FooterLink: React.FC<FooterLinkProps> = (props) => {
   return (
     <li>
       <Link href={href}>
-        <span className="font-medium text-neutral-900 dark:text-neutral-50">{label}</span>
+        <span className="font-medium">{label}</span>
       </Link>
     </li>
   );

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import { Link } from '@prisma/client';
@@ -65,12 +65,8 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
       }}
       renderButton={() => {
         return (
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isEditingLoading}
-            icon={isEditingLoading ? <LoadingIcon /> : null}
-          >
+          <Button type="submit" className="w-full" disabled={isEditingLoading}>
+            {isEditingLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
             Save Changes
           </Button>
         );

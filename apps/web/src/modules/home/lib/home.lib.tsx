@@ -10,7 +10,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
       'Create unique and meaningful short URLs with Shortly. Customize your links by choosing a memorable keyword.',
     icon: (
       <svg
-        className="h-5 w-5 stroke-black dark:stroke-white"
+        className="h-5 w-5 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -32,7 +32,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
       'Gain insights into your shortened links with Shortly detailed analytics. Track the number of clicks, geographic locations.',
     icon: (
       <svg
-        className="h-5 w-5 stroke-black dark:stroke-white"
+        className="h-5 w-5 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -53,7 +53,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
       'Ensure control and security over your shared content with Shortly. Set expiration dates for your links and add password protection.',
     icon: (
       <svg
-        className="h-5 w-5 stroke-black dark:stroke-white"
+        className="h-5 w-5 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -79,7 +79,7 @@ export const HOME_FEATURES: HomeFeatureData[] = [
     content: 'Manage and keep track of your generated URLs in one place, the dashboard.',
     icon: (
       <svg
-        className="h-5 w-5 stroke-black dark:stroke-white"
+        className="h-5 w-5 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"

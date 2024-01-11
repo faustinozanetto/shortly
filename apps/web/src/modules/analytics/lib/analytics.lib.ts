@@ -1,14 +1,13 @@
 import { NextRequest, userAgent } from 'next/server';
+import { TINYBIRD_BASE_URL, URL_CLICK_EVENT } from './analytics.constants';
 
-export const ANALYTICS_BASE_URL = 'https://api.us-east.tinybird.co/v0/';
+export const trackShortenedUrlClick = async (request: NextRequest, domain: string) => {
+  const geoLocation = request.geo;
 
-export const trackLinkUserDetails = async (req: NextRequest, domain: string) => {
-  const geoLocation = req.geo;
+  const linkAlias = request.nextUrl.pathname.slice(4);
 
-  const linkAlias = req.nextUrl.pathname.slice(4);
-
-  const reqUserAgent = userAgent(req);
-  const referer = req.headers.get('referer');
+  const reqUserAgent = userAgent(request);
+  const referer = request.headers.get('referer');
 
   const body = JSON.stringify({
     alias: linkAlias,
@@ -32,7 +31,7 @@ export const trackLinkUserDetails = async (req: NextRequest, domain: string) => 
     referer: referer ?? '(direct)',
   });
 
-  const response = await fetch(`${ANALYTICS_BASE_URL}events?name=click_events&wait=true`, {
+  const response = await fetch(`${TINYBIRD_BASE_URL}events?name=${URL_CLICK_EVENT}&wait=true`, {
     method: 'POST',
     body,
     headers: {

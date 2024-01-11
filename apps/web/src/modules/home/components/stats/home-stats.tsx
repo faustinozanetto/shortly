@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { HomeStatsData } from '@modules/home/types/home.types';
@@ -11,30 +11,35 @@ type HomeStatsProps = {
   stats: HomeStatsData;
 };
 
+type StatsMapRecord = Record<number, { stat: number; unit: string }>;
+
 const HomeStats: React.FC<HomeStatsProps> = (props) => {
   const { stats } = props;
   const { activeUsers, linksShortened, linksClicked, uptimeServer } = stats;
 
-  const statsMap: Record<number, { stat: number; unit: string }> = {};
-  statsMap[0] = {
-    stat: getFormattedNumberIntoThousands(activeUsers)[0],
-    unit: getFormattedNumberIntoThousands(activeUsers)[1],
-  };
-  statsMap[1] = {
-    stat: getFormattedNumberIntoThousands(linksShortened)[0],
-    unit: getFormattedNumberIntoThousands(linksShortened)[1],
-  };
-  statsMap[2] = {
-    stat: getFormattedNumberIntoThousands(linksClicked)[0],
-    unit: getFormattedNumberIntoThousands(linksClicked)[1],
-  };
-  statsMap[3] = { stat: getFormattedNumberIntoThousands(uptimeServer)[0], unit: '%' };
+  const [statsMap, setStatsMap] = useState<StatsMapRecord>(() => {
+    const map: StatsMapRecord = {};
+    map[0] = {
+      stat: getFormattedNumberIntoThousands(activeUsers)[0],
+      unit: getFormattedNumberIntoThousands(activeUsers)[1],
+    };
+    map[1] = {
+      stat: getFormattedNumberIntoThousands(linksShortened)[0],
+      unit: getFormattedNumberIntoThousands(linksShortened)[1],
+    };
+    map[2] = {
+      stat: getFormattedNumberIntoThousands(linksClicked)[0],
+      unit: getFormattedNumberIntoThousands(linksClicked)[1],
+    };
+    map[3] = { stat: getFormattedNumberIntoThousands(uptimeServer)[0], unit: '%' };
+    return map;
+  });
 
   return (
-    <section className="bg-primary-300 dark:bg-primary-900 w-full" id="stats">
+    <section className="bg-primary/70 w-full" id="stats">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-20 md:py-24">
         <motion.h2
-          className="mb-4 text-start text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl"
+          className="mb-4 text-start text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
           initial={{ opacity: 0, translateY: -20 }}
           viewport={{ once: true }}
           whileInView={{ opacity: 1, translateY: 0 }}
@@ -44,7 +49,7 @@ const HomeStats: React.FC<HomeStatsProps> = (props) => {
         </motion.h2>
 
         <motion.p
-          className="mb-4 text-neutral-800 dark:text-neutral-100 md:mb-8 md:text-lg"
+          className="mb-4 md:mb-8 md:text-lg"
           initial={{ opacity: 0, translateX: -20 }}
           viewport={{ once: true }}
           whileInView={{ opacity: 1, translateX: 0 }}
@@ -55,7 +60,7 @@ const HomeStats: React.FC<HomeStatsProps> = (props) => {
         </motion.p>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:items-center md:gap-8">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
           {HOME_STATS.map((stat, index) => {
             return (
               <motion.div

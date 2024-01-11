@@ -3,7 +3,7 @@ import React from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '../popover/popover';
 import { cn } from '@modules/ui/lib/ui.lib';
 import { format } from 'date-fns';
-import Button from '../button/button';
+import { Button } from '../button/button';
 import Calendar from '../calendar/calendar';
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from './forms';
 

@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
 import { useTheme } from 'next-themes';
-import IconButton from '@modules/ui/components/icon-button/icon-button';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 
 type ThemeTogglerProps = {
   children?: React.ReactNode;

@@ -1,7 +1,8 @@
 'use client';
+import React, { useState } from 'react';
+
 import useQRCode from '@modules/common/hooks/use-qr-code';
 import { URL_QR_DEFAULT_OPTIONS, getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
-import React, { useState } from 'react';
 
 import { Link } from '@prisma/client';
 import URLShortenerQRCodeDialog from './url-shortener-qr-code-dialog';

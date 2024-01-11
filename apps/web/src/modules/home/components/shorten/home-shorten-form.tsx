@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,6 @@ import { useToast } from '@modules/toasts/hooks/use-toast';
 import { z } from 'zod';
 import { linkValidationSchema } from '@modules/validations/lib/validations-link';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
-import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
 import {
   Form,
   FormControl,
@@ -21,6 +20,7 @@ import {
   FormMessage,
 } from '@modules/ui/components/forms/forms';
 import { Input } from '@modules/ui/components/forms/input';
+import { useUrlShortenerStore } from '@modules/url-shortener/state/url-shortener.slice';
 
 type HomeShortenLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -30,7 +30,7 @@ const HomeShortenForm: React.FC = (props) => {
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
 
   const { toast } = useToast();
-  const { setShortenedURL } = useURLShortenerContext();
+  const { setShortenedURL } = useUrlShortenerStore();
   const { generateShortenedURL } = useURLShortener();
 
   const form = useForm<HomeShortenLinkFormData>({
@@ -52,7 +52,7 @@ const HomeShortenForm: React.FC = (props) => {
   };
 
   return (
-    <div className="bg-background rounded-lg border p-4 shadow-lg">
+    <div className="bg-background rounded border p-4 shadow">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleFormSubmit)}
@@ -68,12 +68,8 @@ const HomeShortenForm: React.FC = (props) => {
                   <FormControl>
                     <Input className="rounded-r-none" placeholder="https://www.youtube.com" {...field} />
                   </FormControl>
-                  <Button
-                    type="submit"
-                    className="rounded-l-none"
-                    disabled={isShortenLoading}
-                    icon={isShortenLoading ? <LoadingIcon /> : null}
-                  >
+                  <Button type="submit" className="rounded-l-none" disabled={isShortenLoading}>
+                    {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
                     Shorten
                   </Button>
                 </div>

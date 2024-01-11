@@ -14,7 +14,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       case 'info': {
         return (
           <svg
-            className="h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50"
+            className="h-5 w-5 stroke-current"
             fill="none"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -34,7 +34,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       case 'success': {
         return (
           <svg
-            className="h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50"
+            className="h-5 w-5 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -51,7 +51,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       case 'error': {
         return (
           <svg
-            className="h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50"
+            className="h-5 w-5 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -90,9 +90,9 @@ const Toast: React.FC<ToastProps> = (props) => {
     >
       <div
         className={clsx(
-          'flex items-center overflow-hidden rounded-md p-4 text-neutral-900 shadow-md dark:text-neutral-50',
+          'flex items-center overflow-hidden rounded p-4 shadow',
           toast.variant === 'success' && 'bg-green-300 dark:bg-green-700',
-          toast.variant === 'error' && 'bg-red-300 dark:bg-red-700',
+          toast.variant === 'error' && 'bg-destructive',
           toast.variant === 'info' && 'bg-blue-300 dark:bg-blue-700'
         )}
       >

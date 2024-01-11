@@ -77,9 +77,9 @@ const UserLinkManagementDelete: React.FC<UserLinkManagementDeleteProps> = (props
               event.preventDefault();
               await handleUserLinkDelete();
             }}
-            variant="danger"
+            variant="destructive"
           >
-            {isDeleteLoading ? <LoadingIcon className="mr-2" /> : null}
+            {isDeleteLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
             <span>Delete</span>
           </AlertDialogAction>
         </AlertDialogFooter>

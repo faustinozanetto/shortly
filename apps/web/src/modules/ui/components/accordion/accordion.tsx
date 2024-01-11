@@ -29,7 +29,7 @@ const AccordionTrigger = React.forwardRef<
     >
       {children}
       <svg
-        className='"h-4 w-4 stroke-neutral-900 transition-transform duration-200 dark:stroke-neutral-50'
+        className="h-4 w-4 stroke-current transition-transform duration-200"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"

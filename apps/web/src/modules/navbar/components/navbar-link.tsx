@@ -11,9 +11,7 @@ const NavbarLink: React.FC<NavbarLinkProps> = (props) => {
 
   return (
     <Link href={href}>
-      <span className="hover:text-primary-800 dark:hover:text-primary-500 font-medium text-neutral-900 dark:text-neutral-50">
-        {label}
-      </span>
+      <span className="hover:text-primary font-medium">{label}</span>
     </Link>
   );
 };

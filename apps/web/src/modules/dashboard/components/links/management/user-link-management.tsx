@@ -1,5 +1,5 @@
 'use client';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import DeleteIcon from '@modules/ui/components/icons/delete-icon';
 import EditIcon from '@modules/ui/components/icons/edit-icon';
 
@@ -9,12 +9,12 @@ import { Link } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import UserLinkManagementDelete from './delete/user-link-management-delete';
 import UserLinkManagementEdit from './edit/user-link-management-edit';
-import { useUserDashboardLinkContext } from '@modules/dashboard/hooks/use-user-dashboard-link-context';
-import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
-const UserLinkManagement = () => {
+import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboard-link.slice';
+
+const UserLinkManagement: React.FC = () => {
   const router = useRouter();
-  const { link, loading } = useUserDashboardLinkContext();
+  const { link } = useUserDashboardLinkStore();
 
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
   const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
@@ -32,31 +32,22 @@ const UserLinkManagement = () => {
   return (
     <>
       <div className="flex flex-row items-center justify-center gap-2 md:flex-col">
-        <Skeleton className="w-full" loading={loading || !link}>
-          <Button
-            aria-label="Edit Link"
-            className="w-full"
-            icon={<EditIcon className="stroke-neutral-900 dark:stroke-neutral-50" size="sm" />}
-            onClick={() => setShowEditDialog(true)}
-          >
-            Edit
-          </Button>
-        </Skeleton>
-        <Skeleton className="w-full" loading={loading || !link}>
-          <Button
-            aria-label="Delete Link"
-            className="w-full"
-            variant="danger"
-            icon={<DeleteIcon className="!stroke-neutral-900 dark:!stroke-neutral-50" size="sm" />}
-            onClick={() => setShowDeleteAlert(true)}
-          >
-            Delete
-          </Button>
-        </Skeleton>
+        <Button aria-label="Edit Link" className="w-full" onClick={() => setShowEditDialog(true)}>
+          <EditIcon className="mr-2 stroke-current" size="sm" />
+          Edit
+        </Button>
+        <Button
+          aria-label="Delete Link"
+          className="w-full"
+          variant="destructive"
+          onClick={() => setShowDeleteAlert(true)}
+        >
+          <DeleteIcon className="mr-2 stroke-current" size="sm" />
+          Delete
+        </Button>
       </div>
 
-      {/* Edit Dialog  */}
-
+      {/* Dialogs  */}
       {link ? (
         <>
           <UserLinkManagementEdit

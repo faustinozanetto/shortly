@@ -1,15 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import useURLShortener from '@modules/url-shortener/hooks/use-url-shortener';
 
 import { useToast } from '@modules/toasts/hooks/use-toast';
 import { Session } from 'next-auth';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
-import { useURLShortenerContext } from '@modules/url-shortener/hooks/use-url-shortener-context';
+
 import URLShortenerBaseForm, { URLBaseFormData } from '../forms/url-shortener-base-form';
 import { useRouter } from 'next/navigation';
+import { useUrlShortenerStore } from '@modules/url-shortener/state/url-shortener.slice';
 
 type URLShortenerGeneratorFormProps = {
   user: Session['user'] | null;
@@ -21,7 +22,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
   const router = useRouter();
 
   const { toast } = useToast();
-  const { setShortenedURL } = useURLShortenerContext();
+  const { setShortenedURL } = useUrlShortenerStore();
   const { generateShortenedURL } = useURLShortener();
 
   const [isShortenLoading, setIsShortenLoading] = useState<boolean>(false);
@@ -47,13 +48,9 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
     <URLShortenerBaseForm
       renderButton={() => {
         return (
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isShortenLoading}
-            icon={isShortenLoading ? <LoadingIcon /> : null}
-          >
-            Shorten
+          <Button type="submit" className="w-full" disabled={isShortenLoading}>
+            {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
+            Shorten Now
           </Button>
         );
       }}

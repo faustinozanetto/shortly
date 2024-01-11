@@ -43,12 +43,12 @@ const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmitted)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmitted)}>
         <FormField
           control={form.control}
           name="url"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="mb-2">
               <FormLabel>URL</FormLabel>
               <FormControl>
                 <Input placeholder="https://www.youtube.com" {...field} />

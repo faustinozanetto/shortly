@@ -1,9 +1,9 @@
+import React, { useEffect, useRef, useState } from 'react';
 import useDebounce from '@modules/common/hooks/use-debounce';
 import { Input } from '@modules/ui/components/forms/input';
 import { Label } from '@modules/ui/components/forms/label';
-import IconButton from '@modules/ui/components/icon-button/icon-button';
 import DeleteIcon from '@modules/ui/components/icons/delete-icon';
-import React, { useEffect, useRef, useState } from 'react';
+import { Button } from '@modules/ui/components/button/button';
 
 type UserDashboardLinksFilteringProps = {
   onChange: (value: string) => void;
@@ -34,19 +34,21 @@ const UserDashboardLinksFilteringAlias = (props: UserDashboardLinksFilteringProp
       <div className="flex items-center justify-between">
         <Label>Alias</Label>
         {value !== '' ? (
-          <IconButton
-            variant="ghost"
-            size="xs"
+          <Button
+            variant="destructive"
+            size="icon"
             aria-label="Clear Alias"
-            icon={<DeleteIcon size="sm" className="stroke-neutral-900 dark:stroke-neutral-50" />}
+            className="h-6 w-6"
             onClick={handleClearFilter}
-          />
+          >
+            <DeleteIcon size="sm" className="stroke-current" />
+          </Button>
         ) : null}
       </div>
       <div className="relative">
         <div className="absolute inset-y-0 right-0 flex items-center pr-2">
           <svg
-            className="h-5 w-5 stroke-neutral-700 dark:stroke-neutral-200"
+            className="h-5 w-5 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

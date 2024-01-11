@@ -14,6 +14,7 @@ import { storeLinkInDatabase } from '@modules/url-shortener/lib/url-shortener-db
 import { prisma } from '@modules/database/lib/database.lib';
 import { authOptions } from '@modules/auth/lib/auth.lib';
 import { getServerSession } from 'next-auth';
+import { DASHBOARD_LINKS_PAGE_SIZE } from '@modules/dashboard/lib/dashboard.constants';
 
 const shortenLinkRateLimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -30,8 +31,7 @@ export async function GET(request: Request) {
       return new NextResponse('Unauthorized', { status: 403 });
     }
 
-    const PAGE_SIZE = 6;
-    const skip = PAGE_SIZE * page;
+    const skip = DASHBOARD_LINKS_PAGE_SIZE * page;
 
     const totalCount = await prisma.link.count({
       where: {
@@ -43,12 +43,12 @@ export async function GET(request: Request) {
       where: {
         user: { email: session.user.email },
       },
-      take: PAGE_SIZE,
+      take: DASHBOARD_LINKS_PAGE_SIZE,
       skip: skip,
       orderBy: { createdAt: 'desc' },
     });
 
-    const totalPages = Math.ceil(totalCount / PAGE_SIZE) - 1;
+    const totalPages = Math.ceil(totalCount / DASHBOARD_LINKS_PAGE_SIZE) - 1;
     const hasMore = page < totalPages;
 
     return NextResponse.json({ links, totalCount, totalPages, currentPage: page, hasMore }, { status: 200 });
@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
   const { url, alias, userEmail, expiresAt, password } = body;
 
   try {
+    // Check for rate limiting based on ip.
     const ip = request.headers.get('x-forwarded-for') ?? '';
     const { success, reset } = await shortenLinkRateLimit.limit(ip);
 
@@ -70,7 +71,7 @@ export async function POST(request: NextRequest) {
       const now = Date.now();
       const retryAfterSeconds = Math.floor((reset - now) / 1000);
       return NextResponse.json(
-        { message: 'Too Many Requests' },
+        { message: 'Slow down, you are trying too fast!' },
         {
           status: 429,
           headers: {
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
       expiresAt,
       password,
     });
-
+    /*
     // Google safe browsing api validation
     const googleSafeBrowsingAPI = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${process.env.GOOGLE_API_KEY}`;
 
@@ -117,7 +118,7 @@ export async function POST(request: NextRequest) {
 
     if (response.status !== 200) {
       return NextResponse.json({ message: 'The url to shorten might be harmful!' }, { status: 403 });
-    }
+    }*/
 
     let hashedPassword: string | undefined = undefined;
     // Hash password
@@ -135,10 +136,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: `The alias '${alias}' is already taken!` }, { status: 400 });
     }
 
+    // Validation errors
     if (error instanceof ZodError) {
       const validationError = fromZodError(error);
       if (validationError.details.length > 0)
         return NextResponse.json({ message: validationError.details[0].message }, { status: 400 });
     }
+
+    return NextResponse.json({ message: 'Could not generate shortened URL!' }, { status: 400 });
   }
 }

@@ -1,20 +1,21 @@
+import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import React from 'react';
 
-const UserDashboardLinkCardPlaceholder = () => {
+const UserDashboardLinkCardPlaceholder: React.FC = () => {
   return (
-    <li className="bg-background relative flex flex-col items-start gap-2 rounded-lg border p-4 shadow-lg">
+    <li className="bg-background relative flex flex-col items-start gap-2 rounded border p-4 shadow">
       <div className="flex w-full items-center gap-2">
         {/* Alias */}
-        <div className="skeleton bg-skeleton h-5 w-40 animate-pulse rounded-md" />
+        <Skeleton className="h-5 w-44" />
         {/* QR Code */}
-        <div className="skeleton bg-skeleton h-5 w-5 animate-pulse rounded-md" />
+        <Skeleton className="h-5 w-5" />
         {/* Copy */}
-        <div className="skeleton bg-skeleton h-5 w-5 animate-pulse rounded-md" />
+        <Skeleton className="h-5 w-5" />
       </div>
       {/* Date */}
-      <div className="skeleton bg-skeleton h-5 w-20 animate-pulse rounded-md" />
+      <Skeleton className="h-5 w-20" />
       {/* URL */}
-      <div className="skeleton bg-skeleton h-5 w-60 animate-pulse rounded-md" />
+      <Skeleton className="h-5 w-60" />
     </li>
   );
 };

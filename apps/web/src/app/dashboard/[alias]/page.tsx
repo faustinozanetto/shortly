@@ -1,6 +1,6 @@
 import { getCurrentUser } from '@modules/auth/lib/auth.lib';
 import UserDashboardLink from '@modules/dashboard/components/links/user-dashobard-link';
-import UserDashboardLinkProvider from '@modules/dashboard/context/link/user-dashboard-link-context';
+
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
@@ -23,10 +23,8 @@ export default async function DashboardLinkPage(props: DashboardLinkPageProps) {
   if (!user) return redirect('/sign-in');
 
   return (
-    <UserDashboardLinkProvider>
-      <div className="container my-4 md:my-8">
-        <UserDashboardLink alias={alias} />
-      </div>
-    </UserDashboardLinkProvider>
+    <div className="container my-4 md:my-8">
+      <UserDashboardLink alias={alias} />
+    </div>
   );
 }

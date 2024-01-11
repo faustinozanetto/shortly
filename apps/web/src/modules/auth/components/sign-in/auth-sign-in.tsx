@@ -1,7 +1,7 @@
 'use client';
 import { AuthSignInOption } from '@modules/auth/types/auth.types';
 import { useToast } from '@modules/toasts/hooks/use-toast';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 
 import { BuiltInProviderType } from 'next-auth/providers';
 import { signIn } from 'next-auth/react';
@@ -13,7 +13,7 @@ export const AUTH_SIGN_IN_OPTIONS: AuthSignInOption[] = [
     label: 'GitHub',
     icon: (
       <svg
-        className="h-6 w-6 stroke-neutral-900 dark:stroke-neutral-50"
+        className="h-6 w-6 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -31,7 +31,7 @@ export const AUTH_SIGN_IN_OPTIONS: AuthSignInOption[] = [
     label: 'Discord',
     icon: (
       <svg
-        className="h-6 w-6 stroke-neutral-900 dark:stroke-neutral-50"
+        className="h-6 w-6 stroke-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -63,12 +63,10 @@ const AuthSignIn: React.FC = () => {
   };
 
   return (
-    <div className="bg-foreground rounded-lg border p-4 px-4 shadow-lg md:p-6">
+    <div className="rounded border p-4 px-4 shadow md:p-6">
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-center text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl">
-          Sign In
-        </h1>
-        <p className="max-w-lg text-center text-neutral-800 dark:text-neutral-100 md:text-lg">
+        <h1 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">Sign In</h1>
+        <p className="max-w-lg text-center md:text-lg">
           Join us now to access a range of powerful features. Create and manage shortened URLs effortlessly, track link
           performance. Sign In today and unleash the full potential of our platform for your online success.
         </p>
@@ -80,9 +78,9 @@ const AuthSignIn: React.FC = () => {
                 key={option.provider}
                 aria-label={`Sign In With ${option.label}`}
                 onClick={async () => await handleAuthSignIn(option.provider)}
-                icon={option.icon}
-                size="xl"
+                size="lg"
               >
+                {option.icon}
                 Sign In With {option.label}
               </Button>
             );

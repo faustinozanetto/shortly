@@ -1,5 +1,5 @@
 'use client';
-import Button from '@modules/ui/components/button/button';
+import { Button } from '@modules/ui/components/button/button';
 import Table from '@modules/ui/components/table/table';
 import TableBody from '@modules/ui/components/table/table-body';
 import TableCell from '@modules/ui/components/table/table-cell';
@@ -21,7 +21,8 @@ import {
 import React, { useState } from 'react';
 import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 import Link from 'next/link';
-import UserDashboardLinksTableEntry from './user-dashboard-links-table-entry';
+import UserDashboardLinksTableActions from './user-dashboard-links-table-actions';
+import { DASHBOARD_LINKS_PAGE_SIZE } from '@modules/dashboard/lib/dashboard.constants';
 
 type UserDashboardURLsTableProps = {
   links: PrismaLink[];
@@ -36,34 +37,28 @@ const SortableColumn: React.FC<SortableColumnProps> = (props) => {
   const { column, title } = props;
 
   return (
-    <Button
-      size="sm"
-      icon={
-        <svg
-          className="h-4 w-4 stroke-neutral-900 dark:stroke-neutral-50"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <line x1="17" y1="3" x2="17" y2="21" />
-          <path d="M10 18l-3 3l-3 -3" />
-          <line x1="7" y1="21" x2="7" y2="3" />
-          <path d="M20 6l-3 -3l-3 3" />
-        </svg>
-      }
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-    >
+    <Button size="sm" variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+      <svg
+        className="mr-2 h-4 w-4 stroke-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <line x1="17" y1="3" x2="17" y2="21" />
+        <path d="M10 18l-3 3l-3 -3" />
+        <line x1="7" y1="21" x2="7" y2="3" />
+        <path d="M20 6l-3 -3l-3 3" />
+      </svg>
       {title}
     </Button>
   );
 };
 
-const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
+const UserDashboardLinksTable: React.FC<UserDashboardURLsTableProps> = (props) => {
   const { links } = props;
 
   const columns: ColumnDef<PrismaLink>[] = [
@@ -79,12 +74,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
       cell: ({ row }) => {
         const completeURL = getCompleteShortenedURL(row.getValue('alias'));
         return (
-          <Link
-            href={completeURL}
-            className="hover:text-primary-600 dark:hover:text-primary-500 font-bold"
-            target="_blank"
-            prefetch={false}
-          >
+          <Link href={completeURL} className="hover:text-primary font-bold" target="_blank" prefetch={false}>
             {row.getValue('alias')}
           </Link>
         );
@@ -119,7 +109,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
       id: 'actions',
       enableHiding: false,
       cell: ({ row }) => {
-        return <UserDashboardLinksTableEntry link={row.original} />;
+        return <UserDashboardLinksTableActions link={row.original} />;
       },
     },
   ];
@@ -140,7 +130,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
     initialState: {
       pagination: {
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: DASHBOARD_LINKS_PAGE_SIZE,
       },
     },
   });
@@ -166,7 +156,7 @@ const UserDashboardLinksTable = (props: UserDashboardURLsTableProps) => {
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="text-neutral-900 dark:text-neutral-50">
+                  <TableCell key={cell.id} className="">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

@@ -14,8 +14,8 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = (props) => {
   const { user } = props;
 
   return (
-    <div className="hidden items-center space-x-4 md:ml-auto md:flex">
-      <nav className="ml-auto flex space-x-4">
+    <div className="hidden items-center gap-4 md:ml-auto md:flex">
+      <nav className="ml-auto flex gap-4">
         {NAVBAR_LINKS.map((link) => {
           return <NavbarLink key={link.label} {...link} />;
         })}

@@ -1,0 +1,1 @@
+export const DASHBOARD_LINKS_PAGE_SIZE = 4;

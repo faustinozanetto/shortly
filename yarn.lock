@@ -2266,9 +2266,7 @@ escape-string-regexp@^4.0.0:
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
 eslint-config-next@^13.4.1:
-  version "13.4.4"
-  resolved "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-13.4.4.tgz#95356e96f3796ad0587fa2aaa51ec4a81e71cedc"
-  integrity sha512-z/PMbm6L0iC/fwISULxe8IVy4DtNqZk2wQY711o35klenq70O6ns82A8yuMVCFjHC0DIyB2lyugesRtuk9u8dQ==
+  version "13.5.6"
   dependencies:
     "@next/eslint-plugin-next" "13.4.4"
     "@rushstack/eslint-patch" "^1.1.3"

@@ -8,7 +8,7 @@ const DeleteIcon = React.forwardRef<SVGSVGElement, DeleteIconProps>(({ className
   return (
     <svg
       ref={ref}
-      className={cn(iconVariants({ size }), 'stroke-red-600 dark:stroke-red-400', className)}
+      className={cn(iconVariants({ size }), 'stroke-destructive', className)}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

@@ -11,6 +11,7 @@ import LoadingIcon from '@modules/ui/components/icons/loading-icon';
 import URLShortenerBaseForm, { URLBaseFormData } from '../forms/url-shortener-base-form';
 import { useRouter } from 'next/navigation';
 import { useUrlShortenerStore } from '@modules/url-shortener/state/url-shortener.slice';
+import ShortLinkIcon from '@modules/ui/components/icons/short-link-icon';
 
 type URLShortenerGeneratorFormProps = {
   user: Session['user'] | null;
@@ -49,7 +50,7 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
       renderButton={() => {
         return (
           <Button type="submit" className="w-full" disabled={isShortenLoading}>
-            {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
+            {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : <ShortLinkIcon className="mr-2" />}
             Shorten Now
           </Button>
         );

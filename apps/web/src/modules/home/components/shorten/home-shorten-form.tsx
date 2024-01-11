@@ -21,6 +21,7 @@ import {
 } from '@modules/ui/components/forms/forms';
 import { Input } from '@modules/ui/components/forms/input';
 import { useUrlShortenerStore } from '@modules/url-shortener/state/url-shortener.slice';
+import ShortLinkIcon from '@modules/ui/components/icons/short-link-icon';
 
 type HomeShortenLinkFormData = z.infer<typeof linkValidationSchema>;
 
@@ -69,7 +70,11 @@ const HomeShortenForm: React.FC = (props) => {
                     <Input className="rounded-r-none" placeholder="https://www.youtube.com" {...field} />
                   </FormControl>
                   <Button type="submit" className="rounded-l-none" disabled={isShortenLoading}>
-                    {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
+                    {isShortenLoading ? (
+                      <LoadingIcon className="mr-2 stroke-current" />
+                    ) : (
+                      <ShortLinkIcon className="mr-2" />
+                    )}
                     Shorten
                   </Button>
                 </div>

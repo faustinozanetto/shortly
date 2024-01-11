@@ -1,4 +1,4 @@
-import { ANALYTICS_BASE_URL } from '@modules/analytics/lib/analytics.lib';
+import { TINYBIRD_BASE_URL } from '@modules/analytics/lib/analytics.constants';
 import { AnalyticsDataType, LinkStatsResponse } from '@modules/analytics/types/analytics.types';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
     const alias = req.nextUrl.pathname.split('/')[3];
     const stat = req.nextUrl.searchParams.get('stat') as AnalyticsDataType;
 
-    const url = new URL(`${ANALYTICS_BASE_URL}pipes/link_${stat}.json`);
+    const url = new URL(`${TINYBIRD_BASE_URL}pipes/link_${stat}.json`);
 
     url.searchParams.append('alias', alias);
 

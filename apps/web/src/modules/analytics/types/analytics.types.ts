@@ -1,5 +1,6 @@
-export const analyticsTypes = ['country', 'browser', 'os', 'device'] as const;
-export type AnalyticsDataType = (typeof analyticsTypes)[number];
+import { ANALYTICS_CATEGORIES } from '../lib/analytics.constants';
+
+export type AnalyticsCategoryType = (typeof ANALYTICS_CATEGORIES)[number];
 
 export type LinkStatEntry<T> = { entry: T; count: number };
 

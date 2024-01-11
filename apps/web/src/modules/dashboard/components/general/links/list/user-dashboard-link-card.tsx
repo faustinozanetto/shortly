@@ -9,9 +9,9 @@ import QRIcon from '@modules/ui/components/icons/qr-icon';
 import URLShortenerCopyLink from '@modules/url-shortener/components/copy/url-shortener-copy-link';
 import URLShortenerQRCode from '@modules/url-shortener/components/qr-code/url-shortener-qr-code';
 import { Button, buttonVariants } from '@modules/ui/components/button/button';
-import UserLinkAlias from '@modules/dashboard/components/links/common/user-link-alias';
-import UserLinkCreatedAt from '@modules/dashboard/components/links/common/user-link-created-at';
-import UserLinkURL from '@modules/dashboard/components/links/common/user-link-url';
+import UserLinkAlias from '@modules/dashboard/components/links/common/link-alias';
+import UserLinkCreatedAt from '@modules/dashboard/components/links/common/link-created-at';
+import UserLinkURL from '@modules/dashboard/components/links/common/link-url';
 
 type UserDashboardLinkCardProps = {
   link: PrismaLink;

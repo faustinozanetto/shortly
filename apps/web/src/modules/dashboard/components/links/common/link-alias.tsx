@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { Link as PrismaLink } from '@prisma/client';
 import { getCompleteShortenedURL } from '@modules/url-shortener/lib/url-shortener.lib';
 
-type UserLinkAliasProps = {
+type LinkAliasProps = {
   link: PrismaLink | null;
   loading?: boolean;
 };
 
-const UserLinkAlias: React.FC<UserLinkAliasProps> = (props) => {
+const LinkAlias: React.FC<LinkAliasProps> = (props) => {
   const { link, loading = false } = props;
 
   return (
@@ -34,4 +34,4 @@ const UserLinkAlias: React.FC<UserLinkAliasProps> = (props) => {
   );
 };
 
-export default UserLinkAlias;
+export default LinkAlias;

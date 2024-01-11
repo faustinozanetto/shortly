@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@modules/ui/lib/ui.lib';
+import SignInIcon from '@modules/ui/components/icons/sign-in-icon';
 
 const HomeHero: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ const HomeHero: React.FC = () => {
                 Get Started Now
               </Link>
               <Link href="/sign-in" className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}>
+                <SignInIcon className="mr-2" />
                 Sign In for Free
               </Link>
             </motion.div>

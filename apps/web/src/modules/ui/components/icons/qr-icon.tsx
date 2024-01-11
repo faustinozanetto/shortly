@@ -34,6 +34,6 @@ const QRIcon = React.forwardRef<SVGSVGElement, QRIconProps>(({ className, size, 
   );
 });
 
-QRIcon.displayName = 'QR Icon';
+QRIcon.displayName = 'QRIcon';
 
 export default QRIcon;

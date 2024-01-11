@@ -3,12 +3,12 @@ import React from 'react';
 import { Link } from '@prisma/client';
 import CalendarIcon from '@modules/ui/components/icons/calendar-icon';
 
-type UserLinkCreatedAtProps = {
+type LinkCreatedAtProps = {
   link: Link | null;
   loading?: boolean;
 };
 
-const UserLinkCreatedAt: React.FC<UserLinkCreatedAtProps> = (props) => {
+const LinkCreatedAt: React.FC<LinkCreatedAtProps> = (props) => {
   const { link, loading = false } = props;
 
   return (
@@ -19,4 +19,4 @@ const UserLinkCreatedAt: React.FC<UserLinkCreatedAtProps> = (props) => {
   );
 };
 
-export default UserLinkCreatedAt;
+export default LinkCreatedAt;

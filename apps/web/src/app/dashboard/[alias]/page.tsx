@@ -1,5 +1,5 @@
 import { getCurrentUser } from '@modules/auth/lib/auth.lib';
-import UserDashboardLink from '@modules/dashboard/components/links/user-dashobard-link';
+import UserDashboardLink from '@modules/dashboard/components/links/dashobard-link';
 
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';

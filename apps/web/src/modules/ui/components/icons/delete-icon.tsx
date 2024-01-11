@@ -27,6 +27,6 @@ const DeleteIcon = React.forwardRef<SVGSVGElement, DeleteIconProps>(({ className
   );
 });
 
-DeleteIcon.displayName = 'Delete Icon';
+DeleteIcon.displayName = 'DeleteIcon';
 
 export default DeleteIcon;

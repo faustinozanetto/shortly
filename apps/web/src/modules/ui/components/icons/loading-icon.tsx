@@ -30,6 +30,6 @@ const LoadingIcon = React.forwardRef<SVGSVGElement, LoadingIconProps>(({ classNa
   );
 });
 
-LoadingIcon.displayName = 'Loading Icon';
+LoadingIcon.displayName = 'LoadingIcon';
 
 export default LoadingIcon;

@@ -46,17 +46,12 @@ const URLShortenerGeneratorForm: React.FC<URLShortenerGeneratorFormProps> = (pro
   };
 
   return (
-    <URLShortenerBaseForm
-      renderButton={() => {
-        return (
-          <Button type="submit" className="w-full" disabled={isShortenLoading}>
-            {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : <ShortLinkIcon className="mr-2" />}
-            Shorten Now
-          </Button>
-        );
-      }}
-      onSubmitted={handleFormSubmit}
-    />
+    <URLShortenerBaseForm onSubmitted={handleFormSubmit}>
+      <Button type="submit" className="w-full" disabled={isShortenLoading}>
+        {isShortenLoading ? <LoadingIcon className="mr-2 stroke-current" /> : <ShortLinkIcon className="mr-2" />}
+        Shorten Now
+      </Button>
+    </URLShortenerBaseForm>
   );
 };
 

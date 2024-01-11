@@ -28,12 +28,12 @@ export type URLBaseFormData = z.infer<typeof linkValidationSchema>;
 
 type URLShortenerBaseFormProps = {
   initialData?: URLBaseFormData;
-  renderButton: () => JSX.Element;
+  children: React.ReactNode;
   onSubmitted: (data: URLBaseFormData) => void;
 };
 
 const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
-  const { renderButton, onSubmitted, initialData } = props;
+  const { children, onSubmitted, initialData } = props;
 
   const form = useForm<URLBaseFormData>({
     resolver: zodResolver(linkValidationSchema),
@@ -113,7 +113,7 @@ const URLShortenerBaseForm: React.FC<URLShortenerBaseFormProps> = (props) => {
           </AccordionItem>
         </Accordion>
 
-        {renderButton()}
+        {children}
       </form>
     </Form>
   );

@@ -4,12 +4,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@modul
 import Link from 'next/link';
 import { Link as PrismaLink } from '@prisma/client';
 
-type UserLinkURLProps = {
+type LinkURLProps = {
   link: PrismaLink | null;
   loading?: boolean;
 };
 
-const UserLinkURL: React.FC<UserLinkURLProps> = (props) => {
+const LinkURL: React.FC<LinkURLProps> = (props) => {
   const { link, loading = false } = props;
 
   return (
@@ -35,4 +35,4 @@ const UserLinkURL: React.FC<UserLinkURLProps> = (props) => {
   );
 };
 
-export default UserLinkURL;
+export default LinkURL;

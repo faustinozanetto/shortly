@@ -1,7 +1,7 @@
 import React from 'react';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 
-const UserLinkStatsEntryPlaceholder: React.FC = () => {
+const LinkStatsListsEntryPlaceholder: React.FC = () => {
   return (
     <div className="flex w-full gap-1">
       <Skeleton className="h-5 w-5" />
@@ -10,4 +10,4 @@ const UserLinkStatsEntryPlaceholder: React.FC = () => {
   );
 };
 
-export default UserLinkStatsEntryPlaceholder;
+export default LinkStatsListsEntryPlaceholder;

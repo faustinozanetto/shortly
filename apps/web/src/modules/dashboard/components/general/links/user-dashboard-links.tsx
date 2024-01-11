@@ -10,6 +10,8 @@ import { Button } from '@modules/ui/components/button/button';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import UserDashboardLinksTable from './table/user-dashboard-links-table';
 import { useUserDashboardLinksStore } from '@modules/dashboard/state/user-dashboard-links.slice';
+import ArrowLeftIcon from '@modules/ui/components/icons/arrow-left-icon';
+import ArrowRightIcon from '@modules/ui/components/icons/arrow-right-icon copy';
 
 type UserLinksAPIResponse = {
   links: Link[];
@@ -82,6 +84,7 @@ const UserDashboardLinks: React.FC = () => {
             )}
             <div className="flex gap-2">
               <Button aria-label="Previous Page" disabled={currentPage === 0} onClick={handlePrevPage} size="sm">
+                <ArrowLeftIcon className="mr-2" />
                 Prev Page
               </Button>
               <Button
@@ -91,6 +94,7 @@ const UserDashboardLinks: React.FC = () => {
                 size="sm"
               >
                 Next Page
+                <ArrowRightIcon className="ml-2" />
               </Button>
             </div>
           </div>

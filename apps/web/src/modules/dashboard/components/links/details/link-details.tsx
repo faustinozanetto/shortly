@@ -9,14 +9,14 @@ import QRIcon from '@modules/ui/components/icons/qr-icon';
 import URLShortenerCopyLink from '@modules/url-shortener/components/copy/url-shortener-copy-link';
 import CopyIcon from '@modules/ui/components/icons/copy-icon';
 import LoadingIcon from '@modules/ui/components/icons/loading-icon';
-import UserLinkAlias from '../common/user-link-alias';
-import UserLinkURL from '../common/user-link-url';
-import UserLinkCreatedAt from '../common/user-link-created-at';
+import UserLinkAlias from '../common/link-alias';
+import UserLinkURL from '../common/link-url';
+import UserLinkCreatedAt from '../common/link-created-at';
 import { Button } from '@modules/ui/components/button/button';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboard-link.slice';
 
-const UserLinkDetails: React.FC = () => {
+const LinkDetails: React.FC = () => {
   const { link, isLloading } = useUserDashboardLinkStore();
 
   return (
@@ -64,4 +64,4 @@ const UserLinkDetails: React.FC = () => {
   );
 };
 
-export default UserLinkDetails;
+export default LinkDetails;

@@ -1,4 +1,5 @@
 import { siteConfig } from '@config/config';
+import { DISABLE_LINK_TRACKING } from '@modules/analytics/lib/analytics.constants';
 import { trackShortenedUrlClick } from '@modules/analytics/lib/analytics.lib';
 import { getLinkFromAlias } from '@modules/redis/lib/redis.lib';
 
@@ -31,7 +32,7 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
     const link = await getLinkFromAlias({ alias });
 
     // Track url click
-    ev.waitUntil(trackShortenedUrlClick(req, domain));
+    if (!DISABLE_LINK_TRACKING) ev.waitUntil(trackShortenedUrlClick(req, domain));
 
     // If has password, redirect to access page
     if (link.password) {

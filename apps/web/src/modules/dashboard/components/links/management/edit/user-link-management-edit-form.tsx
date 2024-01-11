@@ -63,16 +63,14 @@ const UserLinkManagementEditForm: React.FC<UserLinkManagementEditFormProps> = (p
         url: link.url,
         expiresAt: link.expiresAt ?? undefined,
       }}
-      renderButton={() => {
-        return (
-          <Button type="submit" className="w-full" disabled={isEditingLoading}>
-            {isEditingLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
-            Save Changes
-          </Button>
-        );
-      }}
       onSubmitted={handleFormSubmit}
-    />
+    >
+      <Button type="submit" className="w-full" disabled={isEditingLoading}>
+        {isEditingLoading ? <LoadingIcon className="mr-2 stroke-current" /> : null}
+        Save Changes
+      </Button>
+      <p className="text-sm text-destructive font-medium mt-1">Changing the alias will result in reseting the stats!</p>
+    </URLShortenerBaseForm>
   );
 };
 

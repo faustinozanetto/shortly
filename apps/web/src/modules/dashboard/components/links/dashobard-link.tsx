@@ -1,16 +1,16 @@
 'use client';
 import React from 'react';
 import { Link } from '@prisma/client';
-import UserLinkDetails from './details/user-link-details';
-import UserLinkStats from './stats/user-link-stats';
+import LinkDetails from './details/link-details';
+import LinkStats from './stats/link-stats';
 import { useQuery } from '@tanstack/react-query';
 import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboard-link.slice';
 
-type UserLinkDetailsProps = {
+type DashboardLinkProps = {
   alias: string;
 };
 
-const UserDashboardLink = (props: UserLinkDetailsProps) => {
+const DashboardLink = (props: DashboardLinkProps) => {
   const { alias } = props;
 
   const { setLink, setIsLoading } = useUserDashboardLinkStore();
@@ -35,10 +35,10 @@ const UserDashboardLink = (props: UserLinkDetailsProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <UserLinkDetails />
-      <UserLinkStats />
+      <LinkDetails />
+      <LinkStats />
     </div>
   );
 };
 
-export default UserDashboardLink;
+export default DashboardLink;

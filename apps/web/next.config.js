@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  images: { domains: ['cdn.discordapp.com', 'faisalman.github.io', 'avatars.githubusercontent.com'] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
 };

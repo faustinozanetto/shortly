@@ -5,7 +5,7 @@ export type UserDashboardPayload = {
 export type UserDashboardStatsData = {
   totalLinks: number;
   totalClicks: number;
-  cplRate: number;
+  averageClicksPerLink: number;
 };
 
 export type DeleteUserLinkPayload = {

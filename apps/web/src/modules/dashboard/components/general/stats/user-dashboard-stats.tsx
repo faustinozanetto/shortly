@@ -15,11 +15,12 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
   const getUserStats = async (userEmail: string): Promise<UserDashboardStatsData> => {
     const totalLinks = await getUserTotalLinks({ userEmail });
     const totalClicks = await getUserTotalLinkClicks({ userEmail });
-    const cplRate = (totalClicks / totalLinks) * 100;
+    const averageClicksPerLink = totalLinks > 0 ? totalClicks / totalLinks : 0;
+
     return {
       totalLinks,
       totalClicks,
-      cplRate,
+      averageClicksPerLink,
     };
   };
 
@@ -35,8 +36,8 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
     unit: getFormattedNumberIntoThousands(userStats.totalClicks)[1],
   };
   statsMap[2] = {
-    stat: userStats.cplRate,
-    unit: '%',
+    stat: userStats.averageClicksPerLink,
+    unit: getFormattedNumberIntoThousands(userStats.averageClicksPerLink)[1],
   };
 
   return (
@@ -61,8 +62,8 @@ const UserDashboardStats = async (props: UserDashboardStatsProps) => {
           unit={statsMap[1].unit}
         />
         <StatsCard
-          title="CPL Rate"
-          description="Click-Per-Link Rate"
+          title="Average CPL"
+          description="Average Clicks-Per-Link"
           stat={statsMap[2].stat.toFixed(2)}
           unit={statsMap[2].unit}
         />

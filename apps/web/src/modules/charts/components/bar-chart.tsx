@@ -24,8 +24,8 @@ const BarChart: React.FC<BarChartProps> = (props) => {
     tooltipFormat,
     data,
     colors = {
-      border: theme === 'dark' ? 'rgb(74, 222, 128)' : 'rgb(21, 128, 61)',
-      background: theme === 'dark' ? 'rgba(74, 222, 128, 0.45)' : 'rgba(21, 128, 61, 0.45)',
+      border: theme === 'dark' ? 'hsl(263.4, 70%, 50.4%)' : 'hsl(262.1, 83.3%, 57.8%)',
+      background: theme === 'dark' ? 'hsla(263.4, 70%, 50.4%, 0.45)' : 'hsla(262.1, 83.3%, 57.8%, 0.45)',
     },
   } = props;
 

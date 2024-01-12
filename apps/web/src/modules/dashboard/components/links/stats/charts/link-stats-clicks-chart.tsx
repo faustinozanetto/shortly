@@ -5,8 +5,10 @@ import { useQuery } from '@tanstack/react-query';
 import { LinkGroupedClicksResponse } from '@modules/analytics/types/analytics.types';
 import BarChart from '@modules/charts/components/bar-chart';
 import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
+import { useToast } from '@modules/toasts/hooks/use-toast';
 
 const LinkStatsClicksChart: React.FC = () => {
+  const { toast } = useToast();
   const { link } = useUserDashboardLinkStore();
 
   const { data, isLoading } = useQuery<LinkGroupedClicksResponse>([`clicks-grouped-${link?.alias}`], {
@@ -19,6 +21,12 @@ const LinkStatsClicksChart: React.FC = () => {
       const response = await fetch(url, {
         method: 'GET',
       });
+
+      if (!response.ok) {
+        toast({ variant: 'error', content: 'Failed to fetch clicks!' });
+        return [];
+      }
+
       const { data }: { data: LinkGroupedClicksResponse } = await response.json();
 
       return data;
@@ -28,18 +36,18 @@ const LinkStatsClicksChart: React.FC = () => {
   const labels = useMemo(() => {
     if (!data) return [];
 
-    return data?.map((entry) => entry.date);
+    return data.map((entry) => entry.date);
   }, [data]);
 
   const clicksData = useMemo(() => {
     if (!data) return [];
 
-    return data?.map((entry) => entry.count);
+    return data.map((entry) => entry.count);
   }, [data]);
 
   return (
     <div className="flex flex-col rounded border p-4 shadow">
-      <h2 className="text-lg font-semibold">Clicks</h2>
+      {isLoading ? <Skeleton className="h-5 w-40 mb-1" /> : <h2 className="text-lg font-semibold">Clicks</h2>}
 
       {data && data.length > 0 ? (
         <BarChart

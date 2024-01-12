@@ -4,14 +4,14 @@ import { create } from 'zustand';
 
 export type UserDashboardLinkSliceState = {
   link: Link | null;
-  isLloading: boolean;
+  isLoading: boolean;
   stats: Record<AnalyticsCategoryType, LinkStatsResponse<unknown>>;
   statsIsLoading: Record<AnalyticsCategoryType, boolean>;
 };
 
 export type UserDashboardLinkSliceActions = {
   setLink: (link: Link) => void;
-  setIsLoading: (isLloading: boolean) => void;
+  setIsLoading: (isLoading: boolean) => void;
   setStatsCategory: (category: AnalyticsCategoryType, stats: LinkStatsResponse<unknown>) => void;
   setStatsCategoryIsLoading: (category: AnalyticsCategoryType, isLoading: boolean) => void;
 };
@@ -19,14 +19,14 @@ export type UserDashboardLinkSliceActions = {
 export const useUserDashboardLinkStore = create<UserDashboardLinkSliceState & UserDashboardLinkSliceActions>(
   (set, get) => ({
     link: null,
-    isLloading: true,
+    isLoading: true,
     stats: { browser: [], country: [], device: [], os: [] },
     statsIsLoading: { browser: true, country: true, device: true, os: true },
     setLink(link) {
       set({ link });
     },
-    setIsLoading(isLloading) {
-      set({ isLloading });
+    setIsLoading(isLoading) {
+      set({ isLoading });
     },
     setStatsCategory(category, stats) {
       let updatedStats = get().stats;

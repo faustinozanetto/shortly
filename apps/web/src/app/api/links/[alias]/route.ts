@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     const link = await getLinkFromDatabase({ alias });
     return NextResponse.json({ link }, { status: 200 });
   } catch (error) {
-    return new NextResponse('An error occurred!', { status: 500 });
+    return new NextResponse('An error occurred!', { status: 404 });
   }
 }
 

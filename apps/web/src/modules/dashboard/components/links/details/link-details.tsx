@@ -17,15 +17,15 @@ import { Skeleton } from '@modules/ui/components/skeleton/skeleton';
 import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboard-link.slice';
 
 const LinkDetails: React.FC = () => {
-  const { link, isLloading } = useUserDashboardLinkStore();
+  const { link, isLoading } = useUserDashboardLinkStore();
 
   return (
     <div className="flex flex-col gap-4 rounded border p-4 shadow md:flex-row md:justify-between">
       <div className="flex flex-col items-start justify-center">
         <div className="w-full gap-1">
           <div className="flex flex-row items-center justify-between gap-2 md:justify-start">
-            {isLloading ? <Skeleton className="mb-1 h-5 w-44" /> : <UserLinkAlias link={link} loading={isLloading} />}
-            {isLloading ? (
+            {isLoading ? <Skeleton className="mb-1 h-5 w-44" /> : <UserLinkAlias link={link} loading={isLoading} />}
+            {isLoading ? (
               <Skeleton className="mb-1 h-5 w-5" />
             ) : (
               <URLShortenerQRCode
@@ -37,7 +37,7 @@ const LinkDetails: React.FC = () => {
                 )}
               />
             )}
-            {isLloading ? (
+            {isLoading ? (
               <Skeleton className="mb-1 h-5 w-5" />
             ) : (
               <URLShortenerCopyLink
@@ -54,12 +54,12 @@ const LinkDetails: React.FC = () => {
               />
             )}
           </div>
-          {isLloading ? <Skeleton className="mb-1 h-5 w-20" /> : <UserLinkCreatedAt link={link} loading={isLloading} />}
-          {isLloading ? <Skeleton className="h-5 w-60" /> : <UserLinkURL link={link} loading={isLloading} />}
+          {isLoading ? <Skeleton className="mb-1 h-5 w-20" /> : <UserLinkCreatedAt link={link} loading={isLoading} />}
+          {isLoading ? <Skeleton className="h-5 w-60" /> : <UserLinkURL link={link} loading={isLoading} />}
         </div>
         {link && link.password ? <Badge className="mt-2">Password protected</Badge> : null}
       </div>
-      {isLloading ? <Skeleton className="w-36" /> : <UserLinkManagement />}
+      {isLoading ? <Skeleton className="w-36" /> : <UserLinkManagement />}
     </div>
   );
 };

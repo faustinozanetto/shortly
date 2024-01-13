@@ -1,7 +1,5 @@
 import React from 'react';
 import LinkStatsChartsCategory, { LinkStatsChartsCategoryProps } from './link-stats-charts-category';
-import { ANALYTICS_CATEGORIES } from '@modules/analytics/lib/analytics.constants';
-import { capitalize } from '@modules/common/lib/common.lib';
 import LinkStatsClicksChart from './link-stats-clicks-chart';
 
 const LINK_STATS_CHARTS: LinkStatsChartsCategoryProps[] = [

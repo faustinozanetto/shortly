@@ -1,9 +1,9 @@
+import React from 'react';
 import StatsCard from '@modules/common/components/stats/stats-card';
 import { getFormattedNumberIntoThousands } from '@modules/common/lib/common.lib';
 import { getUserTotalLinkClicks, getUserTotalLinks } from '@modules/dashboard/lib/dashboard.lib';
 import { UserDashboardStatsData } from '@modules/dashboard/types/dashboard.types';
 import { Session } from 'next-auth';
-import React from 'react';
 
 type UserDashboardStatsProps = {
   user: Session['user'];

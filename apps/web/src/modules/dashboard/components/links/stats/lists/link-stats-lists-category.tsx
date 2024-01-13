@@ -12,11 +12,11 @@ import { DISABLE_LINK_TRACKING } from '@modules/analytics/lib/analytics.constant
 export type LinkStatsListsCategoryProps = {
   title: string;
   categoryType: AnalyticsCategoryType;
-  renderContent: (data: LinkStatsResponse<unknown>, totalCount: number) => React.ReactElement;
+  onRenderContent: (data: LinkStatsResponse<unknown>, totalCount: number) => React.ReactElement;
 };
 
 const LinkStatsListsCategory: React.FC<LinkStatsListsCategoryProps> = (props) => {
-  const { title, categoryType, renderContent } = props;
+  const { title, categoryType, onRenderContent } = props;
 
   const { link, stats, statsIsLoading, setStatsCategory, setStatsCategoryIsLoading } = useUserDashboardLinkStore();
 
@@ -58,7 +58,9 @@ const LinkStatsListsCategory: React.FC<LinkStatsListsCategoryProps> = (props) =>
         <h2 className="text-lg font-semibold">{title}</h2>
       )}
       <div className="grid auto-rows-min gap-1">
-        {stats[categoryType] && stats[categoryType].length > 0 ? renderContent(stats[categoryType], totalCount) : null}
+        {stats[categoryType] && stats[categoryType].length > 0
+          ? onRenderContent(stats[categoryType], totalCount)
+          : null}
         {statsIsLoading[categoryType]
           ? Array.from({ length: 3 }).map((_, index) => {
               return <LinkStatsListsEntryPlaceholder key={`entry-placeholder-${index}`} />;

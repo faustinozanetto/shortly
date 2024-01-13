@@ -195,9 +195,6 @@ importers:
       tailwindcss:
         specifier: 3.4.1
         version: 3.4.1(ts-node@10.9.2)
-      tailwindcss-animate:
-        specifier: 1.0.7
-        version: 1.0.7(tailwindcss@3.4.1)
       typescript:
         specifier: ^5.0.0
         version: 5.3.3
@@ -225,6 +222,9 @@ importers:
       tailwindcss:
         specifier: ^3.2.4
         version: 3.4.1(ts-node@10.9.2)
+      tailwindcss-animate:
+        specifier: 1.0.7
+        version: 1.0.7(tailwindcss@3.4.1)
 
   packages/typescript-config-shortly: {}
 

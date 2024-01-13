@@ -6,14 +6,14 @@ import UserLinkStatsCategory, { LinkStatsListsCategoryProps } from './link-stats
 import LinkStatsListsEntry from './link-stats-lists-entry';
 
 type LinkStatsListsCategory = Pick<LinkStatsListsCategoryProps, 'title' | 'categoryType'> & {
-  renderIcon: (entry: unknown) => JSX.Element;
+  onRenderIcon: (entry: unknown) => JSX.Element;
 };
 
 const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
   {
     title: 'Browsers',
     categoryType: 'browser',
-    renderIcon: (entry: string) => {
+    onRenderIcon: (entry: string) => {
       return (
         <Image
           src={`https://faisalman.github.io/ua-parser-js/images/browsers/${entry.toLowerCase()}.png`}
@@ -27,14 +27,14 @@ const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
   {
     title: 'Countries',
     categoryType: 'country',
-    renderIcon: (entry: string) => {
+    onRenderIcon: (entry: string) => {
       return <Image src={`https://flag.vercel.app/m/${entry}.svg`} alt={entry} width={20} height={20} />;
     },
   },
   {
     title: 'Devices',
     categoryType: 'device',
-    renderIcon: (entry: string) => {
+    onRenderIcon: (entry: string) => {
       return (
         <Image
           src={
@@ -52,7 +52,7 @@ const LINK_STATS_LISTS: LinkStatsListsCategory[] = [
   {
     title: 'Operative System',
     categoryType: 'os',
-    renderIcon: (entry: string) => {
+    onRenderIcon: (entry: string) => {
       return (
         <Image
           src={`https://faisalman.github.io/ua-parser-js/images/os/${entry.toLowerCase()}.png`}
@@ -74,7 +74,7 @@ const LinkStatsLists: React.FC = () => {
             key={stats.title}
             title={stats.title}
             categoryType={stats.categoryType}
-            renderContent={(data, total) => {
+            onRenderContent={(data, total) => {
               return (
                 <>
                   {data.map((statEntry: LinkStatEntry<string>) => {
@@ -84,7 +84,7 @@ const LinkStatsLists: React.FC = () => {
                         label={statEntry.entry}
                         count={statEntry.count}
                         total={total}
-                        renderIcon={() => stats.renderIcon(statEntry.entry)}
+                        onRenderIcon={() => stats.onRenderIcon(statEntry.entry)}
                       />
                     );
                   })}

@@ -5,6 +5,8 @@ import LinkDetails from './details/link-details';
 import LinkStats from './stats/link-stats';
 import { useQuery } from '@tanstack/react-query';
 import { useUserDashboardLinkStore } from '@modules/dashboard/state/user-dashboard-link.slice';
+import { useToast } from '@modules/toasts/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 type DashboardLinkProps = {
   alias: string;
@@ -13,6 +15,8 @@ type DashboardLinkProps = {
 const DashboardLink = (props: DashboardLinkProps) => {
   const { alias } = props;
 
+  const router = useRouter();
+  const { toast } = useToast();
   const { setLink, setIsLoading } = useUserDashboardLinkStore();
 
   useQuery<Link>([alias], {
@@ -21,6 +25,11 @@ const DashboardLink = (props: DashboardLinkProps) => {
       const response = await fetch(url, {
         method: 'GET',
       });
+      if (!response.ok) {
+        toast({ variant: 'error', content: 'Failed to fetch link!' });
+        router.push('/dashboard');
+      }
+
       const { link }: { link: Link } = await response.json();
       return link;
     },

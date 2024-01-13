@@ -25,34 +25,37 @@ const LinkDetails: React.FC = () => {
         <div className="w-full gap-1">
           <div className="flex flex-row items-center justify-between gap-2 md:justify-start">
             {isLoading ? <Skeleton className="mb-1 h-5 w-44" /> : <UserLinkAlias link={link} loading={isLoading} />}
-            {isLoading ? (
-              <Skeleton className="mb-1 h-5 w-5" />
-            ) : (
-              <URLShortenerQRCode
-                link={link}
-                renderButton={(onClick) => (
-                  <Button size="icon" className="h-8 w-8" aria-label="Create QR Code" onClick={onClick}>
-                    <QRIcon className="stroke-current" />
-                  </Button>
-                )}
-              />
-            )}
-            {isLoading ? (
-              <Skeleton className="mb-1 h-5 w-5" />
-            ) : (
-              <URLShortenerCopyLink
-                link={link}
-                renderButton={(onClick, isCopyingLoading) => (
-                  <Button size="icon" className="h-8 w-8" aria-label="Create QR Code" onClick={onClick}>
-                    {isCopyingLoading ? (
-                      <LoadingIcon className="stroke-current" />
-                    ) : (
-                      <CopyIcon className="stroke-current" />
-                    )}
-                  </Button>
-                )}
-              />
-            )}
+
+            <div className="gap-2 flex">
+              {isLoading ? (
+                <Skeleton className="mb-1 h-5 w-5" />
+              ) : (
+                <URLShortenerQRCode
+                  link={link}
+                  renderButton={(onClick) => (
+                    <Button size="icon" className="h-8 w-8" aria-label="Create QR Code" onClick={onClick}>
+                      <QRIcon className="stroke-current" />
+                    </Button>
+                  )}
+                />
+              )}
+              {isLoading ? (
+                <Skeleton className="mb-1 h-5 w-5" />
+              ) : (
+                <URLShortenerCopyLink
+                  link={link}
+                  renderButton={(onClick, isCopyingLoading) => (
+                    <Button size="icon" className="h-8 w-8" aria-label="Create QR Code" onClick={onClick}>
+                      {isCopyingLoading ? (
+                        <LoadingIcon className="stroke-current" />
+                      ) : (
+                        <CopyIcon className="stroke-current" />
+                      )}
+                    </Button>
+                  )}
+                />
+              )}
+            </div>
           </div>
           {isLoading ? <Skeleton className="mb-1 h-5 w-20" /> : <UserLinkCreatedAt link={link} loading={isLoading} />}
           {isLoading ? <Skeleton className="h-5 w-60" /> : <UserLinkURL link={link} loading={isLoading} />}
